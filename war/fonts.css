@@ -1,0 +1,12 @@
+<!-- logo-->
+@font-face {
+  font-family: LogoFont;
+  src: url('fonts/Decibel_2.ttf');
+}
+
+@font-face {
+  font-family: MyCustomFont;
+  src: url('fonts/Matthan_Sans_Regular.ttf');
+}
+
+

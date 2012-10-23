@@ -1,0 +1,144 @@
+a.header
+{
+	color:black;
+}
+
+* { margin: 0; padding: 0; font-family: 'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;}
+html, body, #main { height: 100% }
+body, div { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ; }
+body { margin: 0; padding: 0; font-size: medium 	; color: #333;  }
+h1, h2 { font-family: 'trebuchet ms', verdana, arial; padding: 10px; margin: 0 }
+h3 { margin-top: .5em; opacity:.8}
+a { text-decoration:none}
+input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;}
+
+#container
+{
+	margin: 0 30px;
+}
+
+#header
+{
+	background: #FFFAF0;
+	padding: 20px;
+}
+
+#content
+{
+	padding-top: 150px;
+}
+
+#browserFooter
+{
+	background: #ccc;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}
+
+
+.videoContent
+{
+	position: relative;
+	margin-left: auto;   
+	margin-right: auto;
+/* 	display: inline-block;   */
+}
+
+.eventFooter
+ {
+width:0px;
+margin:0 auto;
+bottom:0;
+height:20px;
+	} 
+	
+.image{
+    display:inline-block;
+/*     margin:5px 20px; */
+    padding:5px;
+/*     border:1px solid #CCC; */
+}
+
+.navbar .nav {
+	float:right;
+}
+
+div.navbar {
+	opacity:.8;
+}
+
+a.brand{
+	cursor:pointer;
+	margin-left:20px;
+}
+
+.modal-body { height: 200px; max-height: 200px; }
+
+#contactInfo{
+/* 	margin-left: 30px; */
+	vertical-align: middle; 
+/* 	line-height: 2.2em; */
+	display: block;
+/*   	float: right; */
+}
+
+#search{
+	display: block;
+	margin: 10px auto 10px;
+}
+
+a.topButtons {
+	margin-top:6px;
+}
+
+.icon {
+	height:68px;
+	width:68px;
+	background-image:url('twbootstrap/img/glyphicons-halflings.png');
+}
+
+.modal-backdrop {
+  z-index: 200;
+}
+
+.modal {
+  z-index: 300;
+}
+
+span.eventDate{
+/*     float:right; */
+position:absolute;
+left: 85%;
+}
+
+div#browserFooter{
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+	background-image:url('images/crowd1.gif');
+	background-color: transparent;
+
+}
+
+div#footer{
+    margin: 100px auto 100px auto;
+    text-align: center;
+}
+
+h3 a.header{
+    font-size: 1.4em;
+}
+
+html { 
+	background: url(images/bg.gif) no-repeat center 0; 
+}
+
+div#logo{
+	position:absolute;
+	z-index:4;	
+	font-family: 'LogoFont','MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;
+	font-size: 2.5em;
+	padding: 0 0 0 30px;
+}

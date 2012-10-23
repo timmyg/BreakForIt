@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="war/WEB-INF/lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-base-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-client-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-core-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-media-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-youtube-2.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/facebook-java-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-r07.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/com.google.gdata-1.41.5.w1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appfuse-data-common-2.0-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javatuples-1.2.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/v2"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

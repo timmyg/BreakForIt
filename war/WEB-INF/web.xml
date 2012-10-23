@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<servlet>
+		<servlet-name>welcome</servlet-name>
+		<servlet-class>com.bfi.WelcomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>welcome</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>createstuff</servlet-name>
+		<servlet-class>com.bfi.CreateStuffServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createstuff</servlet-name>
+		<url-pattern>/createstuff</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>createevents</servlet-name>
+		<servlet-class>com.bfi.CreateEventsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createevents</servlet-name>
+		<url-pattern>/createevents</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updaterecentvideocounts</servlet-name>
+		<servlet-class>com.bfi.UpdateRecentEventVideoCountsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updaterecentvideocounts</servlet-name>
+		<url-pattern>/updaterecentvideocounts</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updateallvideocounts</servlet-name>
+		<servlet-class>com.bfi.UpdateAllEventVideoCountsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateallvideocounts</servlet-name>
+		<url-pattern>/updateallvideocounts</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>updatedb</servlet-name>
+		<servlet-class>com.bfi.UpdateDBQueueServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updatedb</servlet-name>
+		<url-pattern>/updatedb</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deletestuff</servlet-name>
+		<servlet-class>com.bfi.DeleteStuffServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deletestuff</servlet-name>
+		<url-pattern>/deletestuff</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>dmb</servlet-name>
+		<servlet-class>com.bfi.ArtistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dmb</servlet-name>
+		<url-pattern>/dmb</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Videos</servlet-name>
+		<servlet-class>com.bfi.VideoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Videos</servlet-name>
+		<url-pattern>/videos</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>com.bfi.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>welcome</welcome-file>
+	</welcome-file-list>
+ <servlet>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+  <init-param>
+   <param-name>services</param-name>
+   <param-value/>
+  </init-param>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <url-pattern>/_ah/spi/*</url-pattern>
+ </servlet-mapping>
+</web-app>
