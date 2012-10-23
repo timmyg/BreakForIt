@@ -229,7 +229,8 @@
 	$(function() {
 		var searchBox = $('#search');
 		searchBox.typeahead({
-			source: termsArrayStrings
+			source: termsArrayStrings,
+			items: 30,
 		  });
 		
 		function bob(result) {
@@ -237,7 +238,7 @@
 		}
 
 		searchBox.change(function(){
-		    var searchTerm = $(this).val()
+		    var searchTerm = $(this).val();
 		    var searchTermObject = $(termsArray).filter(function(){
 		        return this.label == searchTerm;
 		    });

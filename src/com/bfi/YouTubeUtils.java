@@ -21,7 +21,7 @@ public class YouTubeUtils {
 		VideoFeed videoFeed = null;
 		Long startIndex = 1L;
 		String orderBy = "viewCount";
-		String developerKey = "AI39si6xzNDr4sK-84zSW9v2Yc9HvVE5cC6WhDtmMn0jO7RH0496fjRpw-E3iyH8m4iElENPGZsDm0ntVQzSU9QbRItB37k_2g"; // TODO
+		String developerKey = "AI39si6xzNDr4sK-84zSW9v2Yc9HvVE5cC6WhDtmMn0jO7RH0496fjRpw-E3iyH8m4iElENPGZsDm0ntVQzSU9QbRItB37k_2g";
 		List<VideoEntry> cleanedList = new ArrayList<VideoEntry>();
 		try {
 			YouTubeService service = new YouTubeService("BFI", developerKey);
@@ -32,13 +32,10 @@ public class YouTubeUtils {
 			videoFeed = service.getFeed(new URL(feedURL),
 					VideoFeed.class);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<VideoEntry> allVideos = videoFeed.getEntries();

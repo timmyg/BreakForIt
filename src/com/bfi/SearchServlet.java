@@ -1,19 +1,18 @@
 package com.bfi;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.bfi.jdo.Artist;
 import com.bfi.jdo.Event;
@@ -35,19 +34,16 @@ public class SearchServlet extends HttpServlet {
     PersistenceManager pm = null;
     Collection<Event> filteredEvents = null;
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+    @SuppressWarnings("unchecked")
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         resp.setContentType("text/plain");
         System.out.println("in SearchServlet");
         
-        boolean isFilter = true;
-        boolean isExactDt = false;
         boolean isRangeDts = false;
 
         String value = req.getParameter("value");
         String category = req.getParameter("category");
-        SimpleDateFormat yyyyMMddformat = new SimpleDateFormat("yyyyMMdd");
-//		String label = req.getParameter("label");
         final Calendar thisMoment = Calendar.getInstance();
 
         Calendar exactDate = Calendar.getInstance();
@@ -93,10 +89,8 @@ public class SearchServlet extends HttpServlet {
 	            String LAST_YEAR = "L365";
 	            String ALL = "A";
 		        if(value.equals(TODAY)){
-		        	isExactDt = true;
 		        	exactDate = thisMoment;
 		        }else if(value.equals(YESTERDAY)){
-		        	isExactDt = true;
 		        	exactDate.add(Calendar.DATE, -1);
 		        }else if(value.equals(THIS_WEEK)){
 		        	isRangeDts = true;
@@ -117,7 +111,6 @@ public class SearchServlet extends HttpServlet {
 		        }else if(value.equals(THIS_YEAR)){
 		        	isRangeDts = true;
 		        	//endDate ok
-		        	Calendar jan1TY = thisMoment;
 		        	startDate.set(Calendar.MONTH, Calendar.JANUARY);
 		        	startDate.set(Calendar.DATE, 1);
 		        }else if(value.equals(LAST_YEAR)){
@@ -129,7 +122,6 @@ public class SearchServlet extends HttpServlet {
 		        	startDate.set(Calendar.DATE, 1);
 		        	startDate.set(Calendar.YEAR, thisMoment.get(Calendar.YEAR) -1);
 		        }else if(value.equals(ALL)){
-		        	isFilter = false;
 		        }
 		    }
 		      
@@ -167,7 +159,6 @@ public class SearchServlet extends HttpServlet {
         try {
             req.getRequestDispatcher("/FilteredAccordian.jsp").forward(req,resp);
         } catch (ServletException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 

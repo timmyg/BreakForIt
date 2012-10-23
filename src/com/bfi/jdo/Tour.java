@@ -1,9 +1,7 @@
 package com.bfi.jdo;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -11,8 +9,6 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-
-import org.javatuples.Pair;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -22,7 +18,6 @@ public class Tour {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
 
     public Tour() {
     }

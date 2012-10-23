@@ -1,22 +1,4 @@
 package com.bfi;
-import com.google.gson.Gson;
-import com.bfi.jdo.Artist;
-import com.bfi.jdo.Event;
-import com.bfi.jdo.PMF;
-import com.bfi.jdo.Tour;
-import com.bfi.jdo.Venue;
-
-import org.datanucleus.util.StringUtils;
-import org.javatuples.Pair;
-import org.javatuples.Triplet;
-
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.text.DateFormat;
@@ -25,8 +7,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.javatuples.Pair;
+import org.javatuples.Triplet;
+
+import com.bfi.jdo.Artist;
+import com.bfi.jdo.Event;
+import com.bfi.jdo.PMF;
+import com.bfi.jdo.Tour;
+import com.bfi.jdo.Venue;
+import com.google.gson.Gson;
 
 @SuppressWarnings("serial")
 public class ArtistServlet extends HttpServlet {
@@ -36,6 +35,7 @@ public class ArtistServlet extends HttpServlet {
 	Venue bader = null;
 	PersistenceManager pm = null;
 
+	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
@@ -94,9 +94,6 @@ public class ArtistServlet extends HttpServlet {
 			q.setOrdering("date desc");
 			q.declareParameters("String startParam,String endParam");
 			Collection<Event> filteredEvents = (Collection<Event>) q.execute(startDate.getTime(), endDate.getTime());
-			for(Event e: filteredEvents){
-				String c = "";
-			}
 		
 			ArrayList<Triplet<String, String, String>> allSearchTerms = getAllSearchTerms();
 			
@@ -125,13 +122,13 @@ public class ArtistServlet extends HttpServlet {
 		try {
 			req.getRequestDispatcher("/Artist.jsp").forward(req, resp);
 		} catch (ServletException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
 
 	
 
+	@SuppressWarnings({ "unchecked" })
 	private ArrayList<Triplet<String, String, String>> getAllSearchTerms() {
 		ArrayList<Triplet<String, String, String>> allSearchTerms = new ArrayList<Triplet<String, String, String>>();
 		//VENUE
