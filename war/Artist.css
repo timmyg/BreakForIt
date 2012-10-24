@@ -32,7 +32,7 @@ input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial,
 {
 	background: #ccc;
 	text-align: right;
-	padding: 20px;
+	padding: 0px;
 	height: 1%;
 }
 
@@ -47,10 +47,10 @@ input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial,
 
 .eventFooter
  {
-width:0px;
-margin:0 auto;
-bottom:0;
-height:20px;
+	width:0px;
+	margin:0 auto;
+	bottom:0;
+	height:20px;
 	} 
 	
 .image{
@@ -70,7 +70,8 @@ div.navbar {
 
 a.brand{
 	cursor:pointer;
-	margin-left:20px;
+	margin:auto 0;
+	position:absolute;
 }
 
 .modal-body { height: 200px; max-height: 200px; }
@@ -137,8 +138,11 @@ html {
 
 div#logo{
 	position:absolute;
-	z-index:4;	
+	z-index:40000;	
 	font-family: 'LogoFont','MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;
 	font-size: 2.5em;
-	padding: 0 0 0 30px;
+	text-align: center;
+	margin-left: 30px;
+	margin-top: 3px;
+	color:rgb(34, 34, 34);
 }

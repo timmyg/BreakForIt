@@ -230,7 +230,7 @@
 		var searchBox = $('#search');
 		searchBox.typeahead({
 			source: termsArrayStrings,
-			items: 30,
+			items: 8,
 		  });
 		
 		function bob(result) {
@@ -351,8 +351,8 @@
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
 	<div id="container">
-	<div id="logo">Break For It</div> 
 		<div class="navbar ui-widget-header">
+		<div id="logo">Break For It</div> 
 		    <a href="" class="brand"></a>
 		    
 <!-- 		    <ul class="nav"> -->

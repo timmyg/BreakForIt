@@ -18,8 +18,10 @@ public class UpdateAllVideosQueueServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		
+		//http://www.rominirani.com/2009/11/24/episode-10-using-the-task-queue-service/
 		Queue queue = QueueFactory.getQueue("updateall-queue");
-		queue.add(TaskOptions.Builder.withUrl("/updateallvideocounts"));
+		queue.add(TaskOptions.Builder.withUrl("/updateallvideocounts").param("emailid",""));
 
 //		resp.getWriter().println("Successfully created artists, tours, and venues");
 	}
