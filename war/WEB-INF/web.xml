@@ -35,6 +35,7 @@
 		<url-pattern>/updaterecentvideocounts</url-pattern>
 	</servlet-mapping>
 	
+	<!-- called by allVideosQueueServlet (task)-->
 	<servlet>
 		<servlet-name>updateallvideocounts</servlet-name>
 		<servlet-class>com.bfi.UpdateAllEventVideoCountsServlet</servlet-class>
@@ -42,6 +43,16 @@
 	<servlet-mapping>
 		<servlet-name>updateallvideocounts</servlet-name>
 		<url-pattern>/updateallvideocounts</url-pattern>
+	</servlet-mapping>
+	
+	<!-- called by cron job -->
+	<servlet>
+		<servlet-name>updateallvideocountsqueue</servlet-name>
+		<servlet-class>com.bfi.UpdateAllVideosQueueServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateallvideocountsqueue</servlet-name>
+		<url-pattern>/updateallvideocountsqueue</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
