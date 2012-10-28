@@ -113,7 +113,7 @@
 // 					duration: 300000,
 					collapsible : true,
 					active : false,
-					changestart : function(e, ui) {
+					changestart : function(e, ui) {	
 						var videoCount = $(ui.newHeader[0]).children('a').children('span.videoCount').text().replace(/[^0-9]/g, '');
 						var content = $(ui.newHeader[0]).next();
 						if(videoCount >=9){//3 rows
@@ -143,7 +143,6 @@
 
 							function(data) {
 								if(data.indexOf('noMoreVideos') == -1){
-									ui.newContent.addClass('populated');
 									var thisVidDiv = $(ui.newHeader[0]).next().children(':first-child');
 									thisVidDiv.hide();
 									thisVidDiv.html(data), 'html';
@@ -156,11 +155,6 @@
 											moreButton.hide();
 											getMoreVideos(this);
 											moreButton.delay(1000).fadeIn("slow");
-										}else{
-											//TODO shouldnt have to call this but popover isnt working right without
-// 											getMoreVideos(this);
-											$(this).attr('click','')
-											moreButton.popover('show');
 										}
 									});
 									moreButton.delay(1000).fadeIn("slow");
@@ -173,6 +167,7 @@
 										':first-child').html(noVidsDiv), 'html';
 									$('#noVideosAlert').show();
 								}
+								ui.newContent.addClass('populated');
 							});
 						}
 					}
@@ -260,6 +255,7 @@
 // 							.fadeIn('4000')
 						    .html(data)
 						    , 'html';
+						dimZeroCountEvents();
 						$('#accordion').accordion('destroy');
 						makeAccordion();
 						$('#accordion').animate({
@@ -305,8 +301,18 @@
 			'title': 'This is the default timeframe for events that will appear upon entering the site', 
 			'placement':'top'
 			});
-
+		
+		dimZeroCountEvents();
+		
 	});
+	
+	function dimZeroCountEvents(){
+		$('span.videoCount').each(function(){
+	        if($(this).html()=='0'){
+				$(this).parents('h3').css('opacity','.5');
+	        }
+	    });	
+	}
 	
 	
 	$(function() {

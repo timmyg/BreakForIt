@@ -33,5 +33,3 @@
 		<c:out value="eventsEmpty!" />
 	</c:otherwise>
 </c:choose>
-
-
