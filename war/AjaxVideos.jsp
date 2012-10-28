@@ -100,9 +100,6 @@
 			</div>
 
 		</c:forEach>
-		<input type="hidden" name="moreClicked" value="${moreClicked}" />
-<!-- 		<input type="submit" id="moreButton" value="More"  /> -->
-
 	</c:when>
 	<c:otherwise>
 		<c:out value="noMoreVideos" />

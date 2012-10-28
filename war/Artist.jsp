@@ -125,9 +125,6 @@
 						}else{//no videos
 							content.height('145px');		
 						}
-						
-						var moreButtonDiv = $(ui.newHeader[0]).next().children(
-								'.eventFooter');
 						var moreButton = $(ui.newHeader[0]).next().children('.eventFooter').children('.moreButton');
 						var populated = ui.newContent.hasClass('populated');
 						if (!populated && ui.newContent.length > 0) {
@@ -148,19 +145,26 @@
 								if(data.indexOf('noMoreVideos') == -1){
 									ui.newContent.addClass('populated');
 									var thisVidDiv = $(ui.newHeader[0]).next().children(':first-child');
-// 									thisVidDiv.load(data), 'html'; 
 									thisVidDiv.hide();
 									thisVidDiv.html(data), 'html';
-// 									thisVidDiv.show('size');
 									thisVidDiv.fadeIn('slow');
 									thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
 									installStuff();
 									moreButton.button();
 									moreButton.click(function() {
-										moreButton.button("disable");
-										getMoreVideos(this);
+										if(!$(this).hasClass('disabled')){
+											moreButton.hide();
+											getMoreVideos(this);
+											moreButton.delay(1000).fadeIn("slow");
+										}else{
+											//TODO shouldnt have to call this but popover isnt working right without
+// 											getMoreVideos(this);
+											$(this).attr('click','')
+											moreButton.popover('show');
+										}
 									});
 									moreButton.delay(1000).fadeIn("slow");
+									$(this).popover('show');
 								}else{
 									//no videos at all for event
 // 									$(ui.newHeader[0]).next().animate({'height':'100%'});
@@ -192,7 +196,6 @@
 					"input[name=date]").val(),
 		}, function(data) {
 			if (data.indexOf('noMoreVideos') == -1) {
-// 				$(button).popover('hide');
 				$(button).parent().prev().append(data), 'html';
 				installStuff();
 				//reposition more button
@@ -200,13 +203,15 @@
 				$('.eventFooter').css('margin', '0 auto');
 			} else {
 				//no more videos message
+				$(button).show();
+				$(button).addClass('disabled');
 				$(button).popover('show');
 			}
 		});
 	}
 	
 	$(document).click(function(event){
-		$('.moreButton').popover('destroy')
+		$('.moreButton').popover('destroy');
 	});
 
 	var searchTerms = ${searchJson};
