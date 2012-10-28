@@ -37,22 +37,22 @@
 	
 	<!-- called by allVideosQueueServlet (task)-->
 	<servlet>
-		<servlet-name>updateallvideocounts</servlet-name>
-		<servlet-class>com.bfi.UpdateAllEventVideoCountsServlet</servlet-class>
+		<servlet-name>updateallcountstask</servlet-name>
+		<servlet-class>com.bfi.UpdateAllCountsTaskServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>updateallvideocounts</servlet-name>
-		<url-pattern>/updateallvideocounts</url-pattern>
+		<servlet-name>updateallcountstask</servlet-name>
+		<url-pattern>/updateallcountstask</url-pattern>
 	</servlet-mapping>
 	
 	<!-- called by cron job -->
 	<servlet>
-		<servlet-name>updateallvideocountsqueue</servlet-name>
-		<servlet-class>com.bfi.UpdateAllVideosQueueServlet</servlet-class>
+		<servlet-name>updateallcountsqueue</servlet-name>
+		<servlet-class>com.bfi.UpdateAllCountsQueueServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>updateallvideocountsqueue</servlet-name>
-		<url-pattern>/updateallvideocountsqueue</url-pattern>
+		<servlet-name>updateallcountsqueue</servlet-name>
+		<url-pattern>/updateallcountsqueue</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

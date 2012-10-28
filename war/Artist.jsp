@@ -157,7 +157,7 @@
 									installStuff();
 									moreButton.button();
 									moreButton.click(function() {
-// 										moreButton.prop('disabled', true);
+										moreButton.button("disable");
 										getMoreVideos(this);
 									});
 									moreButton.delay(1000).fadeIn("slow");

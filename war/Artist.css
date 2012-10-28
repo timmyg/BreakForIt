@@ -28,15 +28,6 @@ input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial,
 	padding-top: 150px;
 }
 
-#browserFooter
-{
-	background: #ccc;
-	text-align: right;
-	padding: 0px;
-	height: 1%;
-}
-
-
 .videoContent
 {
 	position: relative;
@@ -114,6 +105,7 @@ left: 85%;
 }
 
 div#browserFooter{
+	height: 8%;
     position:fixed;
     left:0px;
     bottom:0px;

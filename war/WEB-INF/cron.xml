@@ -6,7 +6,7 @@
     <schedule>every 30 minutes</schedule>
   </cron>
   <cron>
-    <url>/updateallvideocounts</url>
+    <url>/updateallcounts</url>
     <description>Update all event video counts</description>
     <schedule>every 12 hours</schedule>
   </cron>
