@@ -54,6 +54,11 @@ public class VideoServlet extends HttpServlet {
 			//load event and update videoCount
 			Event e = null;
 			e = pm.getObjectById(Event.class, Long.valueOf(eventID));
+			if(e.getClicks() != null){
+				e.setClicks(e.getClicks() + 1);
+			}else{
+				e.setClicks(1L);
+			}
 				
 			//get videos for UI
 			YouTubeUtils ytu = new YouTubeUtils();

@@ -110,6 +110,17 @@ public class CreateEventsServlet extends HttpServlet {
 	public static Venue MN_SPWILD = null;
 	public static Venue IL_WRIGLEY = null;
 	public static Venue ID_BOISE = null;
+	
+	public static Venue NJ_EASTRUTH = null;
+	public static Venue KY_YUM = null;
+	public static Venue IL_UNITED = null;
+	public static Venue CAN_TOR = null;
+	public static Venue CT_UNC = null;
+	public static Venue GA_DULUTH = null;
+	public static Venue NC_RALEIGH = null;
+	public static Venue MD_BALT = null;
+	public static Venue NH_MANCH = null;
+	public static Venue NY_BROOK = null;
 
 	public static Artist ARTIST_DAVE = null;
 
@@ -134,349 +145,103 @@ public class CreateEventsServlet extends HttpServlet {
 			List<Venue> results = (List<Venue>) q.execute();
 			if (!results.isEmpty()) {
 				for (Venue v : results) {
-					if (v.getName().equals("Alpine Valley")) {
-						WI_ALPINE = v;
-					}
-					;
-					if (v.getName().equals("Riverbend")) {
-						OH_RBEND = v;
-					}
-					;
-					if (v.getName().equals("Deer Creek")) {
-						IN_DEER = v;
-					}
-					;
-					if (v.getName().equals("Gorge")) {
-						WA_GORGE = v;
-					}
-					;
-					if (v.getName().equals("Cricket Wireless Amphitheatre")) {
-						CA_CHULA = v;
-					}
-					;
-					if (v.getName().equals("Verizon Wireless Amphitheatre") && v.getCity().equals("Irvine")) {
-						CA_IRVINE = v;
-					}
-					;
-					if (v.getName().equals("Shoreline Amphitheatre")) {
-						CA_MTNVIEW = v;
-					}
-					;
-					if (v.getName().equals("Hollywood Bowl")) {
-						CA_HOLLYWOOD = v;
-					}
-					;
-					if (v.getName().equals("Warner Bros. Studios")) {
-						CA_BURBANKELLEN = v;
-					}
-					;
-					if (v.getName().equals("El Captain Theatre")) {
-						CA_HWKIMMEL = v;
-					}
-					;
-					if (v.getName().equals(
-							"The Cynthia Woods Mitchell Pavilion")) {
-						TX_WOOD = v;
-					}
-					;
-					if (v.getName().equals("Gexa Energy Pavilion")) {
-						TX_DALLASGEX = v;
-					}
-					;
-					if (v.getName().equals("Hangout Festival")) {
-						AL_GULF = v;
-					}
-					;
-					if (v.getName().equals("Aaron's Amphitheatre at Lakewood")) {
-						GA_ATLLW = v;
-					}
-					;
-					if (v.getName().equals("Verizon Wireless Amphitheatre") && v.getCity().equals("Charlotte")) {
-						NC_CHARVW = v;
-					}
-					;
-					if (v.getName().equals("Comcast Theatre") && v.getCity().equals("Hartford") ) {
-						CT_HARTFORD = v;
-					}
-					;
-					if (v.getName().equals(
-							"Toyota Pavilion at Montage Mountain")) {
-						PA_SCRANTON = v;
-					}
-					;
-					if (v.getName().equals("The Molson Amphitheatre")) {
-						CAN_TORONTO = v;
-					}
-					;
-					if (v.getName().equals("Blossom Music Center")) {
-						OH_BLOSSOM = v;
-					}
-					;
-					if (v.getName().equals("Comcast Center") && v.getCity().equals("Mansfield")) {
-						MA_MANSFIELD = v;
-					}
-					;
-					if (v.getName().equals("Saratoga Performing Arts Center")) {
-						NY_SPAC = v;
-					}
-					;
-					if (v.getName().equals("Nikon at Jones Beach Theater")) {
-						NY_WANTAGH = v;
-					}
-					;
-					if (v.getName().equals("Jiffy Lube Live")) {
-						VA_BRISTOW = v;
-					}
-					;
-					if (v.getName()
-							.equals("Farm Bureau Live at Virginia Beach")) {
-						VA_VBEACH = v;
-					}
-					;
-					if (v.getName().equals("Harriet Island")) {
-						MN_STPAUL = v;
-					}
-					;
-					if (v.getName().equals("Susquehanna Bank Center")) {
-						NJ_CAMDEN = v;
-					}
-					;
-					if (v.getName().equals("Hersheypark Stadium")) {
-						PA_HERSHEY = v;
-					}
-					;
-					if (v.getName().equals("Bethel Woods Center for the Arts")) {
-						NY_BETHEL = v;
-					}
-					;
-					if (v.getName()
-							.equals("Darien Lake Performing Arts Center")) {
-						NY_DARIEN = v;
-					}
-					;
-					if (v.getName().equals("DTE Energy Music Theatre")) {
-						MI_CLARKSTON = v;
-					}
-					;
-					if (v.getName().equals("Verizon Wireless Amphitheatre")  && v.getCity().equals("Maryland Heights")) {
-						MO_MARYH = v;
-					}
-					;
-					if (v.getName().equals("First Niagara Pavilion")) {
-						PA_BTOWN = v;
-					}
-					;
-					if (v.getName().equals("1-800-ASK-GARY Amphitheater")) {
-						FL_TAMPA = v;
-					}
-					;
-					if (v.getName().equals("Cruzan Amphitheatre")) {
-						FL_WPB = v;
-					}
-					;
-					if (v.getName().equals("Governors Island")) {
-						NY_GI = v;
-					}
-					;
-					if (v.getName().equals("Bader Field")) {
-						NJ_BADER = v;
-					}
-					;
-					if (v.getName().equals("Lakeside")) {
-						IL_CHLAKESIDE = v;
-					}
-					;
-					if (v.getName().equals("Randall's Island Park")) {
-						NY_RANDALLS = v;
-					}
-					;
-					if (v.getName().equals("HSBC Arena")) {
-						NY_BUFF = v;
-					}
-					;
-					if (v.getName().equals("Nassau Veterans Memorial Coliseum")) {
-						NY_UNIONDALE = v;
-					}
-					;
-					if (v.getName().equals("Times Union Center")) {
-						NY_ALBANY = v;
-					}
-					;
-					if (v.getName().equals("Wells Fargo Center")) {
-						PA_PHIL76 = v;
-					}
-					;
-					if (v.getName().equals("TD Garden")) {
-						MA_BOSTONTD = v;
-					}
-					;
-					if (v.getName().equals("Madison Square Garden")) {
-						NY_MSG = v;
-					}
-					;
-					if (v.getName().equals("Philips Arena")) {
-						GA_ATLHAWKS = v;
-					}
-					;
-					if (v.getName().equals("North Charleston Coliseum")) {
-						SC_NCHARL = v;
-					}
-					;
-					if (v.getName().equals("John Paul Jones Arena")) {
-						VA_JPJ = v;
-					}
-					;
-					if (v.getName().equals("HSBC Arena")) {
-						BRA_RIO = v;
-					}
-					;
-					if (v.getName().equals("Fazenda Meada")) {
-						BRA_ITU = v;
-					}
-					;
-					if (v.getName().equals("Luna Park")) {
-						AUG_BUENA = v;
-					}
-					;
-					if (v.getName().equals("Movistar Areana")) {
-						CHI_SANTIAGO = v;
-					}
-					;
-					if (v.getName().equals("Bonnaroo")) {
-						TN_MANCHESTER = v;
-					}
-					;
-					if (v.getName().equals("Huntington Park")) {
-						OH_COLUMHUNT = v;
-					}
-					;
-					if (v.getName().equals("PNC Park")) {
-						PA_PITTPIRATES = v;
-					}
-					;
-					if (v.getName().equals("Citi Field")) {
-						NY_FLUSHINGMETS = v;
-					}
-					;
-					if (v.getName().equals("Nationals Park")) {
-						DC_NATIONALS = v;
-					}
-					;
-					if (v.getName().equals("Churchill Downs")) {
-						KY_HULLA = v;
-					}
-					;
-					if (v.getName().equals("InTrust Bank Arena")) {
-						KS_WITCH = v;
-					}
-					;
-					if (v.getName().equals("Dick's Sporting Good Park")) {
-						CO_COMMC = v;
-					}
-					;
-					if (v.getName().equals("USANA Amphitheatre")) {
-						UT_WESTVALLEYCITY = v;
-					}
-					;
-					if (v.getName().equals("Sleep Train Pavilion at Concord")) {
-						CA_CONCORD = v;
-					}
-					;
-					if (v.getName().equals("Sleep Train Amphitheatre")) {
-						CA_WHEATLAND = v;
-					}
-					;
-					if (v.getName().equals("Taco Bell Arena")) {
-						ID_BOISE = v;
-					}
-					;
-					if (v.getName().equals("Qwest Center")) {
-						NE_OMAHA = v;
-					}
-					;
-					if (v.getName().equals("Xcel Energy Center")) {
-						MN_SPWILD = v;
-					}
-					;
-					if (v.getName().equals("Wrigley Field")) {
-						IL_WRIGLEY = v;
-					}
-					;
-					if (v.getName().equals("Congress Center Hamburg")) {
-						GER_HAMBURG = v;
-					}
-					;
-					if (v.getName().equals("Tempodrom")) {
-						GER_BERLIN = v;
-					}
-					;
-					if (v.getName().equals("Gasometer")) {
-						AUT_VIENNA = v;
-					}
-					;
-					if (v.getName().equals("Zenith")) {
-						GER_MUNICH = v;
-					}
-					;
-					if (v.getName().equals("PalaSharp")) {
-						ITA_MILAN = v;
-					}
-					;
-					if (v.getName().equals("PalaLottomatica")) {
-						ITA_ROME = v;
-					}
-					;
-					if (v.getName().equals("PaloSport San Lazzaro")) {
-						ITA_PADUA = v;
-					}
-					;
-					if (v.getName().equals("Palladium Koln")) {
-						GER_COLOGNE = v;
-					}
-					;
-					if (v.getName().equals("Lotta Arena")) {
-						BEL_ANTWERP = v;
-					}
-					;
-					if (v.getName().equals("Heineken Music Hall")) {
-						NED_AMSTER = v;
-					}
-					;
-					if (v.getName().equals("Jahrhunderthalle Frankfurt")) {
-						GER_FRANK = v;
-					}
-					;
-					if (v.getName().equals("The O2 Arena")) {
-						ENG_LOND = v;
-					}
-					;
-					if (v.getName().equals("Manchester Appolo")) {
-						ENG_MANCH = v;
-					}
-					;
-					if (v.getName().equals("The O2")) {
-						IRE_DUB = v;
-					}
-					;
-					if (v.getName().equals("Clyde Auditorium")) {
-						SCT_GLAS = v;
-					}
-					;
-					if (v.getName().equals("O2 Academy")) {
-						ENG_BIRM = v;
-					}
-					;
-					if (v.getName().equals("Falkoner Salen")) {
-						DEN_FRED = v;
-					}
-					;
-					if (v.getName().equals("Arenan Fryshuset")) {
-						SWE_STOCK = v;
-					}
-					;
-					if (v.getName().equals("Red Rocks")) {
-						CO_REDROCKS = v;
-					}
+					if (v.getName().equals("Alpine Valley")) {WI_ALPINE = v;};
+					if (v.getName().equals("Riverbend")) {OH_RBEND = v;};
+					if (v.getName().equals("Deer Creek")) {IN_DEER = v;};
+					if (v.getName().equals("Gorge")) {WA_GORGE = v;};
+					if (v.getName().equals("Cricket Wireless Amphitheatre")) {CA_CHULA = v;};
+					if (v.getName().equals("Verizon Wireless Amphitheatre") && v.getCity().equals("Irvine")) {CA_IRVINE = v;};
+					if (v.getName().equals("Shoreline Amphitheatre")) {CA_MTNVIEW = v;};
+					if (v.getName().equals("Hollywood Bowl")) {CA_HOLLYWOOD = v;};
+					if (v.getName().equals("Warner Bros. Studios")) {CA_BURBANKELLEN = v;};
+					if (v.getName().equals("El Captain Theatre")) {CA_HWKIMMEL = v;};
+					if (v.getName().equals(	"The Cynthia Woods Mitchell Pavilion")) {TX_WOOD = v;};
+					if (v.getName().equals("Gexa Energy Pavilion")) {TX_DALLASGEX = v;};
+					if (v.getName().equals("Hangout Festival")) {AL_GULF = v;};
+					if (v.getName().equals("Aaron's Amphitheatre at Lakewood")) {GA_ATLLW = v;};
+					if (v.getName().equals("Verizon Wireless Amphitheatre") && v.getCity().equals("Charlotte")) {NC_CHARVW = v;};
+					if (v.getName().equals("Comcast Theatre") && v.getCity().equals("Hartford") ) {CT_HARTFORD = v;};
+					if (v.getName().equals(	"Toyota Pavilion at Montage Mountain")) {PA_SCRANTON = v;};
+					if (v.getName().equals("The Molson Amphitheatre")) {CAN_TORONTO = v;};
+					if (v.getName().equals("Blossom Music Center")) {OH_BLOSSOM = v;};
+					if (v.getName().equals("Comcast Center") && v.getCity().equals("Mansfield")) {MA_MANSFIELD = v;};
+					if (v.getName().equals("Saratoga Performing Arts Center")) {NY_SPAC = v;};
+					if (v.getName().equals("Nikon at Jones Beach Theater")) {NY_WANTAGH = v;};
+					if (v.getName().equals("Jiffy Lube Live")) {VA_BRISTOW = v;};
+					if (v.getName()	.equals("Farm Bureau Live at Virginia Beach")) {VA_VBEACH = v;};
+					if (v.getName().equals("Harriet Island")) {MN_STPAUL = v;};
+					if (v.getName().equals("Susquehanna Bank Center")) {NJ_CAMDEN = v;};
+					if (v.getName().equals("Hersheypark Stadium")) {PA_HERSHEY = v;};
+					if (v.getName().equals("Bethel Woods Center for the Arts")) {NY_BETHEL = v;};
+					if (v.getName()	.equals("Darien Lake Performing Arts Center")) {NY_DARIEN = v;};
+					if (v.getName().equals("DTE Energy Music Theatre")) {MI_CLARKSTON = v;};
+					if (v.getName().equals("Verizon Wireless Amphitheatre")  && v.getCity().equals("Maryland Heights")) {MO_MARYH = v;};
+					if (v.getName().equals("First Niagara Pavilion")) {PA_BTOWN = v;};
+					if (v.getName().equals("1-800-ASK-GARY Amphitheater")) {FL_TAMPA = v;};
+					if (v.getName().equals("Cruzan Amphitheatre")) {FL_WPB = v;};
+					if (v.getName().equals("Governors Island")) {NY_GI = v;};
+					if (v.getName().equals("Bader Field")) {NJ_BADER = v;};
+					if (v.getName().equals("Lakeside")) {IL_CHLAKESIDE = v;};
+					if (v.getName().equals("Randall's Island Park")) {NY_RANDALLS = v;};
+					if (v.getName().equals("HSBC Arena")) {NY_BUFF = v;};
+					if (v.getName().equals("Nassau Veterans Memorial Coliseum")) {NY_UNIONDALE = v;};
+					if (v.getName().equals("Times Union Center")) {NY_ALBANY = v;};
+					if (v.getName().equals("Wells Fargo Center")) {PA_PHIL76 = v;};
+					if (v.getName().equals("TD Garden")) {MA_BOSTONTD = v;};
+					if (v.getName().equals("Madison Square Garden")) {NY_MSG = v;};
+					if (v.getName().equals("Philips Arena")) {GA_ATLHAWKS = v;};
+					if (v.getName().equals("North Charleston Coliseum")) {SC_NCHARL = v;};
+					if (v.getName().equals("John Paul Jones Arena")) {VA_JPJ = v;};
+					if (v.getName().equals("HSBC Arena")) {BRA_RIO = v;};
+					if (v.getName().equals("Fazenda Meada")) {BRA_ITU = v;};
+					if (v.getName().equals("Luna Park")) {AUG_BUENA = v;};
+					if (v.getName().equals("Movistar Areana")) {CHI_SANTIAGO = v;};
+					if (v.getName().equals("Bonnaroo")) {TN_MANCHESTER = v;};
+					if (v.getName().equals("Huntington Park")) {OH_COLUMHUNT = v;};
+					if (v.getName().equals("PNC Park")) {PA_PITTPIRATES = v;};
+					if (v.getName().equals("Citi Field")) {NY_FLUSHINGMETS = v;};
+					if (v.getName().equals("Nationals Park")) {DC_NATIONALS = v;};
+					if (v.getName().equals("Churchill Downs")) {KY_HULLA = v;};
+					if (v.getName().equals("InTrust Bank Arena")) {KS_WITCH = v;};
+					if (v.getName().equals("Dick's Sporting Good Park")) {CO_COMMC = v;};
+					if (v.getName().equals("USANA Amphitheatre")) {UT_WESTVALLEYCITY = v;};
+					if (v.getName().equals("Sleep Train Pavilion at Concord")) {CA_CONCORD = v;};
+					if (v.getName().equals("Sleep Train Amphitheatre")) {CA_WHEATLAND = v;};
+					if (v.getName().equals("Taco Bell Arena")) {ID_BOISE = v;};
+					if (v.getName().equals("Qwest Center")) {NE_OMAHA = v;};
+					if (v.getName().equals("Xcel Energy Center")) {MN_SPWILD = v;};
+					if (v.getName().equals("Wrigley Field")) {IL_WRIGLEY = v;};
+					if (v.getName().equals("Congress Center Hamburg")) {GER_HAMBURG = v;};
+					if (v.getName().equals("Tempodrom")) {GER_BERLIN = v;};
+					if (v.getName().equals("Gasometer")) {AUT_VIENNA = v;};
+					if (v.getName().equals("Zenith")) {GER_MUNICH = v;};
+					if (v.getName().equals("PalaSharp")) {ITA_MILAN = v;};
+					if (v.getName().equals("PalaLottomatica")) {ITA_ROME = v;};
+					if (v.getName().equals("PaloSport San Lazzaro")) {ITA_PADUA = v;};
+					if (v.getName().equals("Palladium Koln")) {GER_COLOGNE = v;};
+					if (v.getName().equals("Lotta Arena")) {BEL_ANTWERP = v;};
+					if (v.getName().equals("Heineken Music Hall")) {NED_AMSTER = v;};
+					if (v.getName().equals("Jahrhunderthalle Frankfurt")) {GER_FRANK = v;};
+					if (v.getName().equals("The O2 Arena")) {ENG_LOND = v;};
+					if (v.getName().equals("Manchester Appolo")) {ENG_MANCH = v;};
+					if (v.getName().equals("The O2")) {IRE_DUB = v;};
+					if (v.getName().equals("Clyde Auditorium")) {SCT_GLAS = v;};
+					if (v.getName().equals("O2 Academy")) {ENG_BIRM = v;};
+					if (v.getName().equals("Falkoner Salen")) {DEN_FRED = v;};
+					if (v.getName().equals("Arenan Fryshuset")) {SWE_STOCK = v;};
+					if (v.getName().equals("Red Rocks")) {CO_REDROCKS = v;};
+					
+					if (v.getName().equals("KFC Yum! Center")) {KY_YUM = v;};
+					if (v.getName().equals("Izod Center")) {NJ_EASTRUTH = v;};
+					if (v.getName().equals("United Center")) {IL_UNITED = v;};
+					if (v.getName().equals("Air Canada Centre")) {CAN_TOR = v;};
+					if (v.getName().equals("Mohegan Sun Arena")) {CT_UNC = v;};
+					if (v.getName().equals("The Arena at Gwinnett Center")) {GA_DULUTH = v;};
+					if (v.getName().equals("PNC Arena")) {NC_RALEIGH = v;};
+					if (v.getName().equals("1st Mariner Arena")) {MD_BALT = v;};
+					if (v.getName().equals("Verizon Wireless Arena")) {NH_MANCH = v;};
+					if (v.getName().equals("Barclays Center")) {NY_BROOK = v;};
+
 					;
 				}
 			}
@@ -510,6 +275,22 @@ public class CreateEventsServlet extends HttpServlet {
 		Collection<Object> collection = new ArrayList<Object>();
 		
 		load();
+		
+		collection.add(new Event(date(2012, 11, 30), NJ_EASTRUTH, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 1), NJ_EASTRUTH, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 4), KY_YUM, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 5), IL_UNITED, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 7), CAN_TOR, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 8), CT_UNC, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 9), MA_BOSTONTD, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 11), GA_DULUTH, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 12), NC_RALEIGH, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 14), VA_JPJ, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 15), VA_JPJ, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 18), MD_BALT, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 19), NH_MANCH, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 21), NY_BROOK, ARTIST_DAVE));
+		collection.add(new Event(date(2012, 12, 22), PA_PHIL76, ARTIST_DAVE));
 		
 		collection.add(new Event(date(2012, 9, 13), CA_HWKIMMEL, ARTIST_DAVE));
 		collection.add(new Event(date(2012, 9, 12), CA_HOLLYWOOD, ARTIST_DAVE));

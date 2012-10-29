@@ -14,6 +14,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.datanucleus.annotations.Unowned;
+import com.google.gwt.user.client.AsyncProxy.DefaultValue;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Event {
@@ -28,19 +29,11 @@ public class Event {
 		this.venue = v;
 		this.venueID = String.valueOf(v.getId().getId());
 		this.artistID = String.valueOf(a.getId().getId());
-//        this.artistKey = a.getId();
-//        this.venueKey = v.getId();
     }
 	
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key id; 
-	
-//    @Persistent
-//    private Key artistKey;
-    
-//    @Persistent
-//    private Key venueKey;
     
     @Persistent
     private Event event;
@@ -61,6 +54,9 @@ public class Event {
     
     @Persistent
     private Date updateTs;
+    
+    @Persistent
+    private Long clicks;
     
     @Persistent(defaultFetchGroup = "true")
     @Unowned
@@ -208,6 +204,14 @@ public class Event {
 
 	public void setUpdateTs(Date updateTs) {
 		this.updateTs = updateTs;
+	}
+
+	public Long getClicks() {
+		return clicks;
+	}
+
+	public void setClicks(Long clicks) {
+		this.clicks = clicks;
 	}
 	
 }

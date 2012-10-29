@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" type="text/css" media="all" href="fonts.css" />
 <!--[if IE]>
-<link rel="stylesheet" type="text/css" media="all" href="ie-fonts.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="ie-fonts.css" />
 <![endif]-->
 
 <!-- jQuery-->
@@ -103,14 +103,16 @@
 			}
 		});
 	}
+	
+	var contentHeight = 0;
+	var firstTime = true;
+	
 	function makeAccordion() {
+		
 		$("#accordion").accordion(
 				{
-					autoHeight : false,
-// 					fillSpace: true,
-// 					clearStyle: true,
+					autoHeight : true,
 					animated: 'bounceslide', 
-// 					duration: 300000,
 					collapsible : true,
 					active : false,
 					changestart : function(e, ui) {	
@@ -124,6 +126,19 @@
 							content.height('215px');								
 						}else{//no videos
 							content.height('145px');		
+						}
+						//accordion expanding
+						if(ui.newContent.length > 0){
+							contentHeight = content.height();
+// 							$('#paddingDiv').height(contentHeight);
+// 							$('#paddingDiv').show();
+							$('#accordion').height($('#accordion').height() + contentHeight);
+							firstTime = false;
+						//accordion collapsing
+						}else{
+							$('#accordion').height($('#accordion').height() - contentHeight);
+// 							$('#paddingDiv').hide();	
+// 							$('#paddingDiv').height('0');
 						}
 						var moreButton = $(ui.newHeader[0]).next().children('.eventFooter').children('.moreButton');
 						var populated = ui.newContent.hasClass('populated');
@@ -334,13 +349,19 @@
 			$.cookie("artist", artist, {expires: 9999, path: '/'});
 			$.cookie("timeframe", tf, {expires: 9999, path: '/'});
 		});	
+		$('#dontShowFirstTime').click(function() {
+			$.cookie("firstTime", "true", {expires: 9999, path: '/'});
+		});	
 		//set defaults from cookies
 		 var artistCookie = $.cookie("artist");
 		 var tfCookie = $.cookie("timeframe");
+		 var firstTimeCookie = $.cookie("firstTime");
 		 if(tfCookie != null){
 		 	$('#timeframeDD').val(tfCookie);
 		 }if(artistCookie != null){
 		 	$('#artistDD').val(artistCookie);
+		 }if(firstTimeCookie == null){
+			 $('#firstTimeModal').modal('show');
 		 }
 		
 	});
@@ -364,12 +385,9 @@
 	<div id="container">
 		<div class="navbar ui-widget-header">
 		<div id="logo">Break For It</div> 
-		    <a href="" class="brand"></a>
 		    
 <!-- 		    <ul class="nav"> -->
-<!-- 		      <li><a href="" class="topButtons">Home</a></li> -->
-<!-- 		      <li><a href="#aboutModal" class="topButtons" data-toggle="modal">About</a></li> -->
-<!-- 		      <li><a href="#accountModal" class="topButtons" data-toggle="modal">Defaults</a></li> -->
+<!-- <!-- 		      <li><a href="" class="topButtons">Home</a></li> --> 
 <!-- 		    </ul> -->
 		    <div class="searchBox">
 	             <input type="text" autocomplete="off" class="searchInput" id="search"  data-provide="typeahead" placeholder="Search" data-items="4" >
@@ -381,6 +399,7 @@
 	        </div>
 		  </div>
 		</div>
+		
         <div class="modal hide" id="accountModal" tabindex="-1" >
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -413,6 +432,22 @@
 		  </div>
 		</div>
 		
+		<div class="modal hide" id="firstTimeModal" tabindex="-1" >
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Welcome!</h3>
+		  </div>
+		  <div class="modal-body">
+		   This is what you see the first time				    
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
+		    <button id="dontShowFirstTime"class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Don't Show Again</button>
+		  </div>
+		</div>
+		
+		
+		
 <div class="modal hide" id="aboutModal" tabindex="-1" >
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -431,10 +466,8 @@
 				<%@ include file="FilteredAccordian.jsp" %>
 			</div>
 		</div>
-		
-		<div id="footer">Footer</div>
-		
-		<div id="browserFooter"></div>
+		<div id="paddingDiv" style="height:400px;display:none;">
+		</div>
 		
 		<div class="alert alert-block" id="noVideosAlert">
 		  <button type="button" class="close" data-dismiss="alert">×</button>
@@ -480,7 +513,13 @@
 
 </script>
 <footer>
+	<div id="footer">
+		    <a href="#aboutModal" class="topButtons" data-toggle="modal">About</a>
+		    <a href="#accountModal" class="topButtons" data-toggle="modal">Defaults</a>
+		</div>
 </footer>
+
+<div id="browserFooter"></div> <!-- crowd -->
 </body>
 
 </html>

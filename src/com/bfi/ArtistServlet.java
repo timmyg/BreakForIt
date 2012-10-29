@@ -60,6 +60,13 @@ public class ArtistServlet extends HttpServlet {
 				timeframeCookieValue = "Recent Tour";
 			
 			final Calendar today = Calendar.getInstance();
+			String diffTodayDate = req.getParameter("todayDate");
+			if(diffTodayDate != null){
+				//20120645
+				today.set(Integer.valueOf(diffTodayDate.substring(0,4)), 
+						Integer.valueOf(diffTodayDate.substring(4,6))-1,Integer.valueOf(diffTodayDate.substring(6,8)));
+			}
+
 			Calendar startDate = Calendar.getInstance();
 	        Calendar endDate = Calendar.getInstance();
 	
@@ -83,6 +90,11 @@ public class ArtistServlet extends HttpServlet {
 	    		    	break;
 	    		    }
 	    		  }
+	        }
+	        
+	        //make sure it doesn't show future dates
+	        if(endDate.after(today)){
+	        	endDate = today;	        	
 	        }
 	        
 	        //zero dates

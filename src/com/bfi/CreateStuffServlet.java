@@ -35,6 +35,8 @@ public class CreateStuffServlet extends HttpServlet {
 		Collection<Object> collection = new ArrayList<Object>();
 		
 		collection.add(new Artist("Dave Matthews Band","DMB","dmb","DMB",null));
+		
+		collection.add(new Tour(date(2012,11,30),date(2012,12,22), "Summer", "US", null,null));
 		collection.add(new Tour(date(2012,5,18),date(2012,9,12), "Summer", "US", null,null));
 		collection.add(new Tour(date(2011,6,24),date(2011,9,18), "Summer", "US", "Caravan", null));
 		collection.add(new Tour(date(2010,11,2),date(2010,11,20), "Fall", "US", null,null));
@@ -57,6 +59,7 @@ public class CreateStuffServlet extends HttpServlet {
 		collection.add(new Tour(date(1996,6,4),date(1996,6,23), "Summer", "US", null,null));
 		collection.add(new Tour(date(1995,7,20),date(1995,9,3), "Summer", "US", null,null));
 		collection.add(new Tour(date(1994,7,17),date(1994,9,4), "Summer", "US", null,null));
+		
 		collection.add(new Venue("Alpine Valley","East Troy","WI","US","Alpine Valley",null));
 		collection.add(new Venue("Riverbend","Cincinnati","OH","US","Riverbend",null));
 		collection.add(new Venue("Deer Creek","Noblesville","IN","US","Deer Creek",null));
@@ -142,6 +145,18 @@ public class CreateStuffServlet extends HttpServlet {
 		collection.add(new Venue("Falkoner Salen","Frederiksberg",null,"DEN","Frederiksberg",null));
 		collection.add(new Venue("Arenan Fryshuset","Stockholm",null,"SWE","Stockholm",null));
 		collection.add(new Venue("Red Rocks","Morrison","CO","US","Red Rocks",null));
+		
+		collection.add(new Venue("Izod Center","East Rutherford","NJ","US","East Rutherford","Izod Center"));
+		collection.add(new Venue("KFC Yum! Center","Louisville","KY","US","KFC Yum! Center",null));
+		collection.add(new Venue("United Center","Chicago","IL","US","United Center",null));
+		collection.add(new Venue("Air Canada Centre","Toronto","ON","CAN","Air Canada Centre",null));
+		collection.add(new Venue("Mohegan Sun Arena","Uncasville","CT","US","Uncasville",null));
+		collection.add(new Venue("The Arena at Gwinnett Center","Duluth","GA","US","Duluth",null));
+		collection.add(new Venue("PNC Arena","Raleigh","NC","US","Raleigh",null));
+		collection.add(new Venue("1st Mariner Arena","Baltimore","MD","US","Baltimore",null));
+		collection.add(new Venue("Verizon Wireless Arena","Manchester","NH","US","Manchester, NH",null));
+		collection.add(new Venue("Barclays Center","Brooklyn","NY","US","Barclays Center","Brooklyn"));
+		
 		
 		pm.makePersistentAll(collection);
 	}
