@@ -130,15 +130,11 @@
 						//accordion expanding
 						if(ui.newContent.length > 0){
 							contentHeight = content.height();
-// 							$('#paddingDiv').height(contentHeight);
-// 							$('#paddingDiv').show();
 							$('#accordion').height($('#accordion').height() + contentHeight);
 							firstTime = false;
 						//accordion collapsing
 						}else{
 							$('#accordion').height($('#accordion').height() - contentHeight);
-// 							$('#paddingDiv').hide();	
-// 							$('#paddingDiv').height('0');
 						}
 						var moreButton = $(ui.newHeader[0]).next().children('.eventFooter').children('.moreButton');
 						var populated = ui.newContent.hasClass('populated');
