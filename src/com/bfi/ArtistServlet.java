@@ -1,5 +1,10 @@
 package com.bfi;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +46,8 @@ public class ArtistServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		try{
 			pm = PMF.get().getPersistenceManager();
+			
+//			String u = lookAtAnts();
 					
 			String timeframeCookieValue = "";
 			String artistCookieValue = "";
@@ -281,4 +288,47 @@ public class ArtistServlet extends HttpServlet {
 		c.set(Calendar.MILLISECOND, 0); // set millis in second
 		return c;
 	}
+	
+	String lookAtAnts(){
+		try {
+			return getDataAsString("http://antsmarching.org/forum/login.php?do=login?vb_login_username=timmyg013&vb_login_password=&s=&securitytoken=1352500371-375f0b9db0a23423113679372bcde4179002a46e&do=login&vb_login_md5password=4a3e58cdcd8212e87a8fbbee681a978f&vb_login_md5password_utf=4a3e58cdcd8212e87a8fbbee681a978f");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+        
+	}
+	
+	public String getDataAsString(String url) throws Exception {
+		try {
+		String responseBody = "";
+
+		HttpURLConnection urlc = (HttpURLConnection) new URL(url).openConnection();
+		urlc.setDoOutput(true);
+		urlc.setUseCaches(false);
+		urlc.setRequestMethod("GET");
+		urlc.setRequestProperty("Content-Type", "application/json");
+		urlc.setRequestProperty("User-Agent", "ToonnApp/0.0 +http://www.groept.be");
+		urlc.setRequestProperty("Accept-Encoding", "gzip");
+		OutputStreamWriter wr = new OutputStreamWriter(urlc.getOutputStream());
+		wr.flush();
+		wr.close();
+		InputStreamReader re = new InputStreamReader(urlc.getInputStream());
+		BufferedReader rd = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+		String line = "";
+
+		while ((line = rd.readLine()) != null) {
+		responseBody += line;
+		responseBody += "\n";
+		}
+		rd.close();
+		re.close();
+		return responseBody;
+		}
+		catch (Exception e) {
+		throw new RuntimeException(e);
+		}
+		}
+
 }

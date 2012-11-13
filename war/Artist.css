@@ -3,14 +3,14 @@ a.header
 	color:black;
 }
 
-* { margin: 0; padding: 0; font-family: 'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;}
+* { margin: 0; padding: 0; font-family: 'PT Sans Narrow','lucida grande', helvetica, verdana, arial, sans-serif ;}
 html, body, #main { height: 100% }
-body, div { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ; }
+/* body, div { font-family:  'Combo','lucida grande', helvetica, verdana, arial, sans-serif ; } */
 body { margin: 0; padding: 0; font-size: medium 	; color: #333;  }
-h1, h2 { font-family: 'trebuchet ms', verdana, arial; padding: 10px; margin: 0 }
-h3 { margin-top: .5em; opacity:.8}
+h1, h2 { padding: 10px; margin: 0;  }
+h3.evt { margin-top: .5em; opacity:.8; min-width: 800px; }
 a { text-decoration:none}
-input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;}
+/* input { font-family:  'Combo','lucida grande', helvetica, verdana, arial, sans-serif ;} */
 
 #container
 {
@@ -34,6 +34,12 @@ input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial,
 	margin-right: auto;
 }
 
+.centered
+{
+	margin-left: auto;   
+	margin-right: auto;
+}
+
 .eventFooter
  {
 	width:0px;
@@ -43,18 +49,25 @@ input { font-family:  'MyCustomFont','lucida grande', helvetica, verdana, arial,
 	} 
 	
 .image{
-    display:inline-block;
-/*     margin:5px 20px; */
-    padding:5px;
-/*     border:1px solid #CCC; */
+    margin-left: auto;   
+	margin-right: auto;
 }
 
-.navbar .nav {
+img#loading-image{
+	display:block;
+}
+
+.navbar .nav{
 	float:right;
 }
 
-div.navbar {
+div.navbar{
 	opacity:.8;
+	min-width: 900px; 
+}
+
+img.soc{
+	cursor:pointer;
 }
 
 a.brand{
@@ -97,9 +110,11 @@ a.topButtons {
 }
 
 span.eventDate{
-/*     float:right; */
-position:absolute;
-left: 85%;
+    float:right;
+    display:inline-block;
+/* position:absolute; */
+/* left: 82%; */
+/* min-width:60%; */
 }
 
 div#browserFooter{
@@ -112,6 +127,12 @@ div#browserFooter{
 	background-color: transparent;
 }
 
+div#social{
+	display:inline-block;
+	float:right;
+	margin-right:30px;
+}
+
 footer{
 	padding-top: 100px;
     padding-bottom: 100px;
@@ -119,7 +140,8 @@ footer{
 }
 
 h3 a.header{
-    font-size: 1.4em;
+    font-size: 1.1em;
+	font-weight: bold;
 }
 
 html { 
@@ -127,18 +149,22 @@ html {
 }
 
 div#logo{
-	position:absolute;
+	position:inline-block;
+	float:left;
 	z-index:40000;	
-	font-family: 'LogoFont','MyCustomFont','lucida grande', helvetica, verdana, arial, sans-serif ;
+	font-family: 'Jolly Lodger','lucida grande', helvetica, verdana, arial, sans-serif ;
 	font-size: 2.5em;
 	text-align: center;
 	margin-left: 30px;
-	margin-top: 3px;
 	color:rgb(34, 34, 34);
 }
 
 #toTop{
 	z-index:500;
+}
+
+.social{
+	cursor:pointer;
 }
 
 

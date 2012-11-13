@@ -12,6 +12,10 @@
 	<link rel="stylesheet" type="text/css" media="all" href="ie-fonts.css" />
 <![endif]-->
 
+<!-- FONTS -->
+<link href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Share+Tech|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+
 <!-- jQuery-->
 <link rel="stylesheet" href="jQ/js/jquery-1.8.0.min.js" />
 <script src="jQ/js/jquery-1.8.0.min.js"></script>
@@ -65,6 +69,10 @@
 <script src="jQcookie/jquery.cookie.js"></script>
 
 <link type="text/css" rel="stylesheet" href="Artist.css">
+
+
+
+
 <!-- ==================================================================================================================================== -->
 <script type="text/javascript">
 	function installStuff() {
@@ -359,12 +367,18 @@
 		 }if(firstTimeCookie == null){
 			 $('#firstTimeModal').modal('show');
 		 }
-		
+		 
+		 $('img#tw').click(function() {
+			 window.open('https://twitter.com/BreakForIt');
+		 });
+		 $('img#fb').click(function() {
+		 	window.open('https://www.facebook.com/BreakForIt');
+		 });
 	});
 	
 </script>
 
-<title>BreakForIt</title>
+<title>Break For It</title>
 </head>
 <body>
 	<noscript>
@@ -380,8 +394,11 @@
 	<!-- ==================================================================================================================================== -->
 	<div id="container">
 		<div class="navbar ui-widget-header">
-		<div id="logo">Break For It</div> 
-		    
+			<div id="logo">BreakForIt</div> 
+			<div id="social">
+				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
+				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
+		    </div>
 <!-- 		    <ul class="nav"> -->
 <!-- <!-- 		      <li><a href="" class="topButtons">Home</a></li> --> 
 <!-- 		    </ul> -->
@@ -393,6 +410,7 @@
 	             <input type="hidden" id="currentTime" value="${currentTime}" /> 
 	             <input type="hidden" id="artistTerms" value="${artistTerms}" /> 
 	        </div>
+	        
 		  </div>
 		</div>
 		
