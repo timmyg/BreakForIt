@@ -293,7 +293,6 @@ public class ArtistServlet extends HttpServlet {
 		try {
 			return getDataAsString("http://antsmarching.org/forum/login.php?do=login?vb_login_username=timmyg013&vb_login_password=&s=&securitytoken=1352500371-375f0b9db0a23423113679372bcde4179002a46e&do=login&vb_login_md5password=4a3e58cdcd8212e87a8fbbee681a978f&vb_login_md5password_utf=4a3e58cdcd8212e87a8fbbee681a978f");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

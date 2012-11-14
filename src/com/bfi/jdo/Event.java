@@ -14,7 +14,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.datanucleus.annotations.Unowned;
-import com.google.gwt.user.client.AsyncProxy.DefaultValue;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Event {

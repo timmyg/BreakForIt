@@ -17,15 +17,12 @@
 <link href='http://fonts.googleapis.com/css?family=Share+Tech|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 
 <!-- jQuery-->
-<link rel="stylesheet" href="jQ/js/jquery-1.8.0.min.js" />
-<script src="jQ/js/jquery-1.8.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <!-- jQuery UI-->
 <script src="jQ/js/jquery-ui-1.9.0.custom.min.js"></script>
-<!-- <script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
 <link rel="stylesheet"
 	href="jQ/css/custom-theme/jquery-ui-1.9.0.custom.css" type="text/css"
 	media="screen" />
-<!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> -->
 
 <!-- FANCY BOX -->
 <!-- Add mousewheel plugin (this is optional) -->
@@ -70,11 +67,18 @@
 
 <link type="text/css" rel="stylesheet" href="Artist.css">
 
+<!-- shortcut keys -->
+<script type="text/javascript" src="js/shortcut.js"></script>
 
 
 
 <!-- ==================================================================================================================================== -->
 <script type="text/javascript">
+
+	shortcut.add("alt+s", function() {
+	    $('#search').focus();
+	});  
+
 	function installStuff() {
 		makeFancyBoxey();
 		$('.thumbnail').css('cursor', 'pointer');
@@ -92,6 +96,16 @@
 	}
 	function makeFancyBoxey() {
 		$(".fancybox").fancybox({
+			
+			
+			'transitionIn'        :        'elastic', 
+            'transitionOut'        :        'elastic', 
+            'cyclic'                :        true, 
+            'easingIn'                :        'easeInOutQuad', 
+            'easingOut'                :        'easeInOutQuad', 
+            'speedIn'                :        300, 
+            'speedOut'                :        300, 
+            
 			openEffect : 'elastic',
 			closeEffect : 'elastic',
 			padding : 0,
@@ -102,7 +116,7 @@
 			// 								overlayShow: false,
 			// 								'showNavArrows'   : false,  
 			youtube : {
-				autoplay : 1, // 1 = will enable autoplay
+				'autoplay' : 1, // 1 = will enable autoplay
 				wmode : 'transparent'
 			},
 
@@ -251,10 +265,6 @@
 			source: termsArrayStrings,
 			items: 8,
 		  });
-		
-		function bob(result) {
-		    alert('hi bob, you typed: '+ result);
-		}
 
 		searchBox.change(function(){
 		    var searchTerm = $(this).val();
@@ -394,7 +404,9 @@
 	<!-- ==================================================================================================================================== -->
 	<div id="container">
 		<div class="navbar ui-widget-header">
-			<div id="logo">BreakForIt</div> 
+			<div id="logo">
+				<a href="http://localhost:55940/dmb" >BreakForIt</a>
+			</div> 
 			<div id="social">
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
 				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
@@ -403,7 +415,7 @@
 <!-- <!-- 		      <li><a href="" class="topButtons">Home</a></li> --> 
 <!-- 		    </ul> -->
 		    <div class="searchBox">
-	             <input type="text" autocomplete="off" class="searchInput" id="search"  data-provide="typeahead" placeholder="Search" data-items="4" >
+	             <input type="text" autocomplete="off" class="searchInput" id="search"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
 	             <input type="hidden" id="searchValue" />
 	             <input type="hidden" id="searchCategory" /> 
 	             <input type="hidden" id="searchLabel" /> 
@@ -528,9 +540,10 @@
 </script>
 <footer>
 	<div id="footer">
-		    <a href="#aboutModal" class="topButtons" data-toggle="modal">About</a>
-		    <a href="#accountModal" class="topButtons" data-toggle="modal">Defaults</a>
-		</div>
+	    <a href="#aboutModal" class="footerButtons" data-toggle="modal">About</a>
+	    <a href="#accountModal" class="footerButtons" data-toggle="modal">Defaults</a>
+	</div>
+	©2012 Break For It
 </footer>
 
 <div id="browserFooter"></div> <!-- crowd -->

@@ -17,7 +17,8 @@
 				</h3>
 				<div class="videoContent" style="height: 535px;">
 					<div class="image">
-						<img id="loading-image" class="centered" src="images/ajax-loader.gif" alt="Loading..."/>
+						<br><br><br><br>
+						<img id="loading-image" class="centered" style="display:block;" src="images/ajax-loader.gif" alt="Loading..."/>
 					</div>
 					<div class="bs-docs-example eventFooter more"
 						style="padding-bottom: 15px;">
