@@ -86,12 +86,14 @@ img#loading-image {
 }
 
 .navbar .nav {
-	float: right;
+/* 	float: right; */
+text-align: center;
 }
 
 div.navbar {
 	opacity: .8;
 	min-width: 900px;
+	
 }
 
 img.soc {
@@ -119,11 +121,6 @@ a.brand {
 #contactInfo {
 	vertical-align: middle;
 	display: block;
-}
-
-#search {
-	display: block;
-	margin: 10px auto 10px;
 }
 
 .footerButtons {
@@ -215,4 +212,16 @@ div#footer > a:hover{
 div#logo > a:hover{
       text-shadow: 0.1em 0.1em 0.05em white
 /*       transition: width 0.3s; */
+}
+
+#search {
+	display: block;
+/* 	width: 50%; */
+    margin: 10px auto;
+    
+}
+
+input.searchInput {
+	margin: 0px auto;
+	
 }

@@ -104,15 +104,16 @@ public class ArtistServlet extends HttpServlet {
 	        	endDate = today;	        	
 	        }
 	        
-	        //zero dates
-	        startDate = zeroTime(startDate);
-	        endDate = zeroTime(endDate);
-	        //filter
-	        Query q = pm.newQuery(Event.class);
-			q.setFilter("date >= startParam && date <= endParam");
-			q.setOrdering("date desc");
-			q.declareParameters("String startParam,String endParam");
-			Collection<Event> filteredEvents = (Collection<Event>) q.execute(startDate.getTime(), endDate.getTime());
+	        Collection<Event> filteredEvents = getEvents(startDate, endDate);
+	        
+			
+			if(filteredEvents == null || filteredEvents.size() == 0){
+				//if theres still not events, just return this years events
+				Calendar startDateY = Calendar.getInstance();
+				startDateY.add(Calendar.DATE, -365);
+				Calendar endDateY = Calendar.getInstance();
+				filteredEvents = getEvents(startDateY, endDateY);
+			}
 		
 			ArrayList<Triplet<String, String, String>> allSearchTerms = getAllSearchTerms();
 			
@@ -329,5 +330,16 @@ public class ArtistServlet extends HttpServlet {
 		throw new RuntimeException(e);
 		}
 		}
+	
+	Collection<Event> getEvents(Calendar start, Calendar end){
+		Calendar startDate = zeroTime(start);
+	    Calendar endDate = zeroTime(end);
+	    //filter
+	    Query q = pm.newQuery(Event.class);
+		q.setFilter("date >= startParam && date <= endParam");
+		q.setOrdering("date desc");
+		q.declareParameters("String startParam,String endParam");
+		return (Collection<Event>) q.execute(startDate.getTime(), endDate.getTime());
+	}
 
 }

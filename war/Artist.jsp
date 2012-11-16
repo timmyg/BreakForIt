@@ -54,7 +54,7 @@
 	media="screen" />
 <script type="text/javascript" src="mosaic/js/mosaic.1.0.1.min.js"></script>
 
-<!--  TWITTER BOOTSTRAP -->
+<!--  TWITTER BOOTSTRAP DONT GET FROM CDN USING FOR DIFFERING TOOLTIP LOCATIONS--> 
 <script src="twbootstrap/js/bootstrap.js"></script>
 <link href="twbootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -303,7 +303,7 @@
 					}
 				});
 		});
-	
+
 		makeAccordion();
 		$('.moreButton').hide();
 		$('.alert').hide();
@@ -341,10 +341,6 @@
 		
 		dimZeroCountEvents();
 		
-	
-	
-	
-	
 		$(window).scroll(function() {
 			if($(this).scrollTop() != 0) {
 				$('#toTop').fadeIn();	
@@ -388,6 +384,31 @@
 		 $('img#fb').click(function() {
 		 	window.open('https://www.facebook.com/BreakForIt');
 		 });
+		
+		 //color background differently
+		 var colorArray = [
+		                              'Red',
+		                              'BlueViolet',
+		                              'Orange',
+		                              'Chocolate',
+		                              'SteelBlue', 
+		                              'OliveDrab', 
+		                              'Green'
+		                          ];
+		 
+		 jQuery.each($('.tooltip-inner'), function(i, val) {
+		      $(this).css('background-color',getRandomColor());
+	     });
+		 
+		 function getRandomColor(){
+			 
+              var randomColorIx = Math.floor(Math.random()*colorArray.length);
+              var color = colorArray[randomColorIx];
+              colorArray.splice(randomColorIx,1);
+              
+              return color;
+		 }
+		 
 	});
 	
 	function showFirstTimeStuff(){
@@ -401,16 +422,16 @@
 			$('#search').tooltip(hideOrShow);
 			$('div#accordion h3:first-child .eventTitle').tooltip(hideOrShow);
 			$('div#accordion > h3:nth-child(11) .videoCount').tooltip(hideOrShow);
-		}
+		};
 	}
 	
 	function dimZeroCountEvents(){
-		$('span.videoCount').each(function(){
-	        if($(this).html()=='0'){
-				$(this).parents('h3').css('opacity','.5');
-	        }
-	    });	
-	}
+        $('span.videoCount').each(function(){
+        if($(this).html()=='0'){
+                        $(this).parents('h3').css('opacity','.5');
+        }
+    }); 
+}
 	
 </script>
 
@@ -423,7 +444,7 @@
 			web browser must have JavaScript enabled in order for this
 			application to display correctly.</div>
 	</noscript>
-
+	
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
@@ -437,17 +458,14 @@
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
 				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
 		    </div>
-<!-- 		    <ul class="nav"> -->
-<!-- <!-- 		      <li><a href="" class="topButtons">Home</a></li> --> 
-<!-- 		    </ul> -->
-		    <div class="searchBox">
-	             <input type="text" autocomplete="off" class="searchInput" id="search"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
+<!-- 		    <div class="searchBox"> -->
+	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
 	             <input type="hidden" id="searchValue" />
 	             <input type="hidden" id="searchCategory" /> 
 	             <input type="hidden" id="searchLabel" /> 
 	             <input type="hidden" id="currentTime" value="${currentTime}" /> 
 	             <input type="hidden" id="artistTerms" value="${artistTerms}" /> 
-	        </div>
+<!-- 	        </div> -->
 	        
 		  </div>
 		</div>
@@ -540,30 +558,7 @@
 <!-- 		<div id="toTop" class="navbar-inner"> -->
 		<button type="button" class="btn btn-primary" id="toTop" ></button>
 <!-- 		</div> -->
-	</div>
-	<!-- UserEcho Feedback Widget -->
-	<script type='text/javascript'>
-		
-		var _ues = {
-		host:'breakforit.userecho.com',
-		forum:'14750',
-		lang:'en',
-		tab_corner_radius:10,
-		tab_font_size:20,
-		tab_image_hash:'RmVlZGJhY2s%3D',
-		tab_alignment:'left',
-		tab_text_color:'#FFFFFF',
-		tab_bg_color:'#707AFF',
-		tab_hover_color:'#73EBF4'
-		};
-		
-		(function() {
-		    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true;
-		    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s);
-		  })();
 
-</script>
 <footer>
 	<div id="footer">
 	    <a href="#aboutModal" class="footerButtons" data-toggle="modal">About</a>
@@ -573,6 +568,30 @@
 </footer>
 
 <div id="browserFooter"></div> <!-- crowd -->
+<script type='text/javascript'>
+	
+// 	var _ues = {
+// 	host:'breakforit.userecho.com',
+// 	forum:'14750',
+// 	lang:'en',
+// 	tab_corner_radius:5,
+// 	tab_font_size:20,
+// 	tab_image_hash:'ZmVlZGJhY2s%3D',
+// 	tab_chat_hash:'Y2hhdA%3D%3D',
+// 	tab_alignment:'bottom',
+// 	tab_text_color:'#FFFFFF',
+// 	tab_text_shadow_color:'#00000055',
+// 	tab_bg_color:'#57A957',
+// 	tab_hover_color:'#F45C5C'
+// 	};
+	
+// 	(function() {
+// 	    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true;
+// 	    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js';
+// 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s);
+// 	  })();
+
+</script>
 </body>
 
 </html>
