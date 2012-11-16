@@ -868,13 +868,19 @@
             tp = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2}
             break
           case 'top':
-            tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2}
+            tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2} //tgtg
             break
           case 'left':
             tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth}
             break
           case 'right':
-            tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
+            tp = {top: pos.top + pos.height +2 / 2 - actualHeight  / 2, left: pos.left + pos.width}
+            break
+          case 'right bottom':
+            tp = {top: pos.top  + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
+            break
+          case 'top tab':
+        	tp = {top: pos.top - actualHeight, left: pos.left + 100 + pos.width / 2 - actualWidth / 2} //tgtg
             break
         }
 

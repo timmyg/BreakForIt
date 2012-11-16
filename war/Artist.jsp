@@ -303,9 +303,7 @@
 					}
 				});
 		});
-	});
 	
-	$(function() {
 		makeAccordion();
 		$('.moreButton').hide();
 		$('.alert').hide();
@@ -316,7 +314,7 @@
 		$('#search').tooltip({
 			'trigger':'hover', 
 			'title': 'Search for concerts by Date, Year, Tour, Venue, or even relative date terms.  Example: Today, Yesterday, July 7, 2012, Riverbend, Summer Tour 2002, Last Month, 11/20/2010', 
-			'placement':'bottom'
+			'placement':'right'
 			});
 		
 		$('div#artistTT.icon-question-sign').tooltip({
@@ -331,20 +329,22 @@
 			'placement':'top'
 			});
 		
+		$('div#accordion h3:first-child .eventTitle').tooltip({
+			'title': 'Click here to see videos for this event.  This pulls videos in real-time from YouTube', 
+			'placement':'top tab',
+			});
+		
+		$('div#accordion > h3:nth-child(11) .videoCount').tooltip({
+			'title': 'Number of video for this event', 
+			'placement':'top'
+			});
+		
 		dimZeroCountEvents();
 		
-	});
-	
-	function dimZeroCountEvents(){
-		$('span.videoCount').each(function(){
-	        if($(this).html()=='0'){
-				$(this).parents('h3').css('opacity','.5');
-	        }
-	    });	
-	}
 	
 	
-	$(function() {
+	
+	
 		$(window).scroll(function() {
 			if($(this).scrollTop() != 0) {
 				$('#toTop').fadeIn();	
@@ -365,7 +365,11 @@
 		});	
 		$('#dontShowFirstTime').click(function() {
 			$.cookie("firstTime", "true", {expires: 9999, path: '/'});
+			$('#search').tooltip('hide');
 		});	
+		$('#okButton').click(function() {
+			$('#search').tooltip('hide');
+		});
 		//set defaults from cookies
 		 var artistCookie = $.cookie("artist");
 		 var tfCookie = $.cookie("timeframe");
@@ -375,7 +379,7 @@
 		 }if(artistCookie != null){
 		 	$('#artistDD').val(artistCookie);
 		 }if(firstTimeCookie == null){
-			 $('#firstTimeModal').modal('show');
+			 showFirstTimeStuff();
 		 }
 		 
 		 $('img#tw').click(function() {
@@ -386,9 +390,31 @@
 		 });
 	});
 	
+	function showFirstTimeStuff(){
+		hideOrShowAllTooltips('show');
+		$('#firstTimeModal').modal('show');
+		$('#firstTimeModal').on('hidden', function () {
+			hideOrShowAllTooltips('hide');
+		});
+		
+		function hideOrShowAllTooltips(hideOrShow){
+			$('#search').tooltip(hideOrShow);
+			$('div#accordion h3:first-child .eventTitle').tooltip(hideOrShow);
+			$('div#accordion > h3:nth-child(11) .videoCount').tooltip(hideOrShow);
+		}
+	}
+	
+	function dimZeroCountEvents(){
+		$('span.videoCount').each(function(){
+	        if($(this).html()=='0'){
+				$(this).parents('h3').css('opacity','.5');
+	        }
+	    });	
+	}
+	
 </script>
 
-<title>Break For It</title>
+<title>BreakForIt</title>
 </head>
 <body>
 	<noscript>
@@ -405,7 +431,7 @@
 	<div id="container">
 		<div class="navbar ui-widget-header">
 			<div id="logo">
-				<a href="http://localhost:55940/dmb" >BreakForIt</a>
+				<a href="../dmb" >BreakForIt</a>
 			</div> 
 			<div id="social">
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
@@ -467,7 +493,7 @@
 		   This is what you see the first time				    
 		  </div>
 		  <div class="modal-footer">
-		    <button class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
+		    <button id="okButton" class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
 		    <button id="dontShowFirstTime"class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Don't Show Again</button>
 		  </div>
 		</div>
