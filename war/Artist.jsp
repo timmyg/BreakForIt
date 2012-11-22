@@ -452,7 +452,7 @@
 	<div id="container">
 		<div class="navbar ui-widget-header">
 			<div id="logo">
-				<a href="../dmb" >BreakForIt</a>
+				<a href="../dmb" ><img src="images/logotext.png" alt="Break For It Logo"></a>
 			</div> 
 			<div id="social">
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
@@ -530,6 +530,9 @@
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>
+		
+		<!-- ARTIST LOGO -->
+<!-- 		<img src="images/bglogo.png" alt="Artist Logo"> -->
 		
 		<div id="content">
 			<div class="basic" id="accordion">

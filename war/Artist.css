@@ -36,6 +36,7 @@ h3.evt{
 
 .videoContent{
 	min-width: 871px;
+	opacity: .7;
 }
 
 a {
@@ -180,7 +181,10 @@ h3 a.header {
 
 html {
 	
-	background: url(images/bglogo.png) no-repeat center 0;
+	background: url(images/bglogo.png), url(images/bg.png);
+	background-position: center top, left top;;
+	background-repeat: no-repeat, repeat;
+	
 /* 	background-color:red; */
 }
 
@@ -224,4 +228,12 @@ div#logo > a:hover{
 input.searchInput {
 	margin: 0px auto;
 	
+}
+
+#logo img{
+	width: 80%
+}
+
+img{
+	z-index:99999;
 }
