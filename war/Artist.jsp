@@ -128,6 +128,7 @@
 	
 	var contentHeight = 0;
 	var firstTime = true;
+	var divExpanded = false;
 	
 	function makeAccordion() {
 		
@@ -150,12 +151,17 @@
 							content.height('145px');		
 						}
 						//accordion expanding
-						if(ui.newContent.length > 0){
-							contentHeight = content.height();
-							$('#accordion').height($('#accordion').height() + contentHeight);
-							firstTime = false;
+						if(ui.newContent.length > 0 && !divExpanded){
+							if(!divExpanded){
+								contentHeight = content.height();
+								$('#accordion').height($('#accordion').height() + contentHeight);
+								firstTime = false;
+							}
+							divExpanded = true;
 						//accordion collapsing
+						}else if(divExpanded){
 						}else{
+							divExpanded = false;
 							$('#accordion').height($('#accordion').height() - contentHeight);
 						}
 						var moreButton = $(ui.newHeader[0]).next().children('.eventFooter').children('.moreButton');
@@ -540,8 +546,15 @@
 				<%@ include file="FilteredAccordian.jsp" %>
 			</div>
 		</section>
-		<div id="paddingDiv" style="height:400px;display:none;">
-		</div>
+<!-- 		<div id="paddingDiv" style="height:400px;display:none;"> -->
+<!-- 		</div> -->
+		<footer>
+			<div id="footer">
+			    <a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
+			    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a>
+			</div>
+			©2012 Break For It
+		</footer>
 		
 		<div class="alert alert-block" id="noVideosAlert">
 		  <button type="button" class="close" data-dismiss="alert">×</button>
@@ -555,14 +568,6 @@
 		</div>
 		
 		<button type="button" class="btn btn-primary" id="toTop" ></button>
-
-<footer>
-	<div id="footer">
-	    <a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
-	    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a>
-	</div>
-	©2012 Break For It
-</footer>
 
 <div id="browserFooter"></div> <!-- crowd -->
 <script type='text/javascript'>
