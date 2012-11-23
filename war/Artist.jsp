@@ -159,7 +159,7 @@
 							}
 							divExpanded = true;
 						//accordion collapsing
-						}else if(divExpanded){
+						}else if(divExpanded && ui.newContent.length > 0){
 						}else{
 							divExpanded = false;
 							$('#accordion').height($('#accordion').height() - contentHeight);
