@@ -36,7 +36,7 @@ public class CreateStuffServlet extends HttpServlet {
 		
 		collection.add(new Artist("Dave Matthews Band","DMB","dmb","DMB",null));
 		
-		collection.add(new Tour(date(2012,11,30),date(2012,12,22), "Summer", "US", null,null));
+		collection.add(new Tour(date(2012,11,30),date(2012,12,22), "Winter", "US", null,null));
 		collection.add(new Tour(date(2012,5,18),date(2012,9,12), "Summer", "US", null,null));
 		collection.add(new Tour(date(2011,6,24),date(2011,9,18), "Summer", "US", "Caravan", null));
 		collection.add(new Tour(date(2010,11,2),date(2010,11,20), "Fall", "US", null,null));

@@ -141,10 +141,10 @@ public class SearchServlet extends HttpServlet {
 				filteredEvents = (Collection<Event>) q.execute(startDate.getTime(), endDate.getTime());
 	        }else if(category.equals(CATEGORY_VENUE)){
 	        	Query q = pm.newQuery(Event.class);
-				q.setFilter("venueID == venueIdVal");
+				q.setFilter("venueID == venueIdVal && date <= todayParam");
 				q.setOrdering("date desc");
-				q.declareParameters("String venueIdVal");
-				filteredEvents = (Collection<Event>) q.execute(value);
+				q.declareParameters("String venueIdVal, String todayParam");
+				filteredEvents = (Collection<Event>) q.execute(value, new Date());
 	        }else if(category.equals(CATEGORY_DATE)){
 	        	Event e = pm.getObjectById(Event.class, Long.valueOf(value));
 				filteredEvents.add(e);

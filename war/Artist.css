@@ -36,7 +36,12 @@ h3.evt{
 
 .videoContent{
 	min-width: 871px;
-	opacity: .7;
+/* 	opacity: .7; */
+	background: rgba(255,255,255,0.5);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 a {
@@ -54,13 +59,6 @@ a {
 
 #content {
 	padding: 150px 50px 0;
-}
-
-.videoContent {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-left: auto;
 }
 
 .centered {
@@ -86,17 +84,6 @@ img#loading-image {
 	display: block;
 }
 
-.navbar .nav {
-/* 	float: right; */
-text-align: center;
-}
-
-div.navbar {
-	opacity: .8;
-	min-width: 900px;
-	
-}
-
 img.soc {
 	cursor: pointer;
 }
@@ -104,8 +91,8 @@ img.soc {
 img:hover {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	background: -moz-linear-gradient(bottom, rgba(255,255,255,0), rgba(255,255,255, .7));
-	background: -webkit-linear-gradient(bottom, rgba(255,255,255,0), rgba(255,255,255, .7));
+	background: -moz-linear-gradient(bottom, rgba(255,255,255,0), rgba(255,255,255, .4));
+	background: -webkit-linear-gradient(bottom, rgba(255,255,255,0), rgba(255,255,255, .4));
 }
 
 a.brand {
@@ -191,12 +178,10 @@ html {
 div#logo a{
 	position: inline-block;
 	float: left;
-	z-index: 40000;
 	font-family: 'Jolly Lodger', 'lucida grande', helvetica, verdana, arial,
 		sans-serif;
 	font-size: 2.5em;
 	text-align: center;
-	margin-left: 30px;
 	color: rgb(34, 34, 34);
 }
 
@@ -219,21 +204,25 @@ div#logo > a:hover{
 }
 
 #search {
-	display: block;
-/* 	width: 50%; */
-    margin: 10px auto;
-    
-}
-
-input.searchInput {
-	margin: 0px auto;
-	
+	display: inline-block;
+	float:right;
+    margin: 10px 20px;
 }
 
 #logo img{
 	width: 80%
 }
 
-img{
-	z-index:99999;
+#accordion{
+	margin-top:50px;
+}
+
+.footer{
+	height:70px;
+}
+
+#headerbar {
+/* 	opacity: .8; */
+	min-width: 900px;
+	margin-top: 5px;
 }

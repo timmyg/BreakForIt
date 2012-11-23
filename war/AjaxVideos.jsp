@@ -6,8 +6,8 @@
 	float: left;
 	position: relative;
 	overflow: hidden;
-	width: 260px;
-	height: 140px;
+	width: 240px;
+	height: 126px;
 	margin: 10px;
 	border: 1px solid #fff;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);

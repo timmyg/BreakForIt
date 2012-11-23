@@ -220,7 +220,6 @@ public class ArtistServlet extends HttpServlet {
 	String LAST_MONTH = "L30";
 	String THIS_YEAR = "365";
 	String LAST_YEAR = "L365";
-	String ALL = "A";
 
 	ArrayList<Pair<String, String>> getRelativeTimes() {
 		ArrayList<Pair<String, String>> a = new ArrayList<Pair<String, String>>();
@@ -234,7 +233,7 @@ public class ArtistServlet extends HttpServlet {
 		a.add(p("Last Month", LAST_MONTH));
 		a.add(p("This Year", THIS_YEAR));
 		a.add(p("Last Year", LAST_YEAR));
-		a.add(p("All", ALL));
+//		a.add(p("All", ALL));
 		return a;
 	}
 

@@ -267,6 +267,10 @@
 		  });
 
 		searchBox.change(function(){
+			//fixes a bug in FF where was re-searching after leaving search box
+			if(arguments[0].eventPhase == 2){
+				return;
+			}
 		    var searchTerm = $(this).val();
 		    var searchTermObject = $(termsArray).filter(function(){
 		        return this.label == searchTerm;
@@ -314,12 +318,12 @@
 		$('#search').tooltip({
 			'trigger':'hover', 
 			'title': 'Search for concerts by Date, Year, Tour, Venue, or even relative date terms.  Example: Today, Yesterday, July 7, 2012, Riverbend, Summer Tour 2002, Last Month, 11/20/2010', 
-			'placement':'right'
+			'placement':'bottom'
 			});
 		
 		$('div#artistTT.icon-question-sign').tooltip({
 			'trigger':'hover', 
-			'title': 'This is the artist that will be the default when you go to tgcgrapes3.com/grapes', 
+			'title': 'This is the artist that will be the default when you go to breakforit.com', 
 			'placement':'top',
 			});
 		
@@ -352,7 +356,7 @@
 		$('#toTop').click(function() {
 			$('body,html').animate({scrollTop:0},800);
 		});	
-// 		$('.dropdown-toggle').dropdown();
+
 		$('#saveDefaults').click(function() {
 			var tf = $('#timeframeDD').val();
 			var artist = $('#artistDD').val();
@@ -450,7 +454,7 @@
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
 	<div id="container">
-		<div class="navbar ui-widget-header">
+		<div id="headerbar">
 			<div id="logo">
 				<a href="../dmb" ><img src="images/logotext.png" alt="Break For It Logo"></a>
 			</div> 
@@ -530,15 +534,12 @@
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>
-		
-		<!-- ARTIST LOGO -->
-<!-- 		<img src="images/bglogo.png" alt="Artist Logo"> -->
-		
-		<div id="content">
+
+		<section id="content">
 			<div class="basic" id="accordion">
 				<%@ include file="FilteredAccordian.jsp" %>
 			</div>
-		</div>
+		</section>
 		<div id="paddingDiv" style="height:400px;display:none;">
 		</div>
 		
@@ -553,19 +554,12 @@
 		  No events for this search term
 		</div>
 		
-		
-		
-		
-		
-		
-<!-- 		<div id="toTop" class="navbar-inner"> -->
 		<button type="button" class="btn btn-primary" id="toTop" ></button>
-<!-- 		</div> -->
 
 <footer>
 	<div id="footer">
-	    <a href="#aboutModal" class="footerButtons" data-toggle="modal">About</a>
-	    <a href="#accountModal" class="footerButtons" data-toggle="modal">Defaults</a>
+	    <a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
+	    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a>
 	</div>
 	©2012 Break For It
 </footer>
