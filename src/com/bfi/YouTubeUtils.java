@@ -109,7 +109,8 @@ public class YouTubeUtils {
 				monthNameA + " " + dateA + " " + yrA,
 				monthNameA + " " + dateA + " " + yrShortA,
 				monthNameA + " " + dateA + ", " + yrA,
-				monthNameA + " " + dateA + ", " + yrShortA, };
+				monthNameA + " " + dateA + ", " + yrShortA, 
+				};
 
 		List<String> artistTermsList = Arrays.asList(artistTerms
 				.split("\\s*,\\s*"));

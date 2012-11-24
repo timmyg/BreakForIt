@@ -417,7 +417,23 @@
               colorArray.splice(randomColorIx,1);
               
               return color;
-		 }
+		 };
+		 
+		 $('#chg').click(function(){
+			 var bgCount = ${bgCount};
+			 var randomnumber=Math.floor(Math.random()*bgCount);
+			 var bg = 'url(images/bglogo.png), url(images/bg/bg'+randomnumber+'.png)';
+			 $('html').css('background',bg);
+			 $('html').css('background-position','center top, left top');
+			 $('html').css('background-repeat','no-repeat, repeat');
+			 $('#chg').html('change background '+ randomnumber);
+			 
+			 /*
+			 	background: url(images/bglogo.png), url(images/bg/bg21.png);
+				background-position: center top, left top;;
+				background-repeat: no-repeat, repeat;
+			 */
+		 });
 		 
 	});
 	
@@ -430,8 +446,11 @@
 		
 		function hideOrShowAllTooltips(hideOrShow){
 			$('#search').tooltip(hideOrShow);
-			$('div#accordion h3:first-child .eventTitle').tooltip(hideOrShow);
-			$('div#accordion > h3:nth-child(11) .videoCount').tooltip(hideOrShow);
+			if(hideOrShow='hide'){
+				hideOrShow = 'destroy';
+				$('div#accordion h3:first-child .eventTitle').tooltip(hideOrShow);
+				$('div#accordion > h3:nth-child(11) .videoCount').tooltip(hideOrShow);
+			}
 		};
 	}
 	
@@ -469,6 +488,7 @@
 				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
 		    </div>
 <!-- 		    <div class="searchBox"> -->
+				<button class="btn btn-inverse" id="chg">change background 0</button>
 	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
 	             <input type="hidden" id="searchValue" />
 	             <input type="hidden" id="searchCategory" /> 
@@ -518,7 +538,11 @@
 		    <h3 id="myModalLabel">Welcome!</h3>
 		  </div>
 		  <div class="modal-body">
-		   This is what you see the first time				    
+		  	<p>Welcome to Break For It! This site groups together footage by concert, currently just for DMB but others will be coming in the future.</p>
+		  	<br>
+		  	<p>Recent events will be on the main page, and you can search by venue, date, tour, or other terms at the top right.</p>
+		  	<br>
+		  	<p>Please leave any feedback you have through the feedback button, and feel free to tweet us or Facebook with any comments/suggestions.</p>				    
 		  </div>
 		  <div class="modal-footer">
 		    <button id="okButton" class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
@@ -534,7 +558,9 @@
 		    <h3 id="myModalLabel">About This Site</h3>
 		  </div>
 		  <div class="modal-body">
-		   About This Site			    
+		   <p>This site was designed by <a href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>. This site was meant to be used as a way to view concert footage in a fun and easy way. It currently pulls only from YouTube, but other sites are being looked into. </p>
+		   <br>
+		   <p>If you have YouTube videos that are being displayed on this site and would not like them to be, go to your video settings > advanced settings > uncheck 'Allow Embedding'.</p>		    
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -557,7 +583,7 @@
 		</footer>
 		
 		<div class="alert alert-block" id="noVideosAlert">
-		  <button type="button" class="close" data-dismiss="alert">×</button>
+<!-- 		  <button type="button" class="close" data-dismiss="alert">×</button> -->
 		  <h4>Sorry!</h4>
 		  No videos for this event yet!
 		</div>
@@ -572,26 +598,26 @@
 <div id="browserFooter"></div> <!-- crowd -->
 <script type='text/javascript'>
 	
-// 	var _ues = {
-// 	host:'breakforit.userecho.com',
-// 	forum:'14750',
-// 	lang:'en',
-// 	tab_corner_radius:5,
-// 	tab_font_size:20,
-// 	tab_image_hash:'ZmVlZGJhY2s%3D',
-// 	tab_chat_hash:'Y2hhdA%3D%3D',
-// 	tab_alignment:'bottom',
-// 	tab_text_color:'#FFFFFF',
-// 	tab_text_shadow_color:'#00000055',
-// 	tab_bg_color:'#57A957',
-// 	tab_hover_color:'#F45C5C'
-// 	};
+	var _ues = {
+	host:'breakforit.userecho.com',
+	forum:'14750',
+	lang:'en',
+	tab_corner_radius:15,
+	tab_font_size:20,
+	tab_image_hash:'ZmVlZGJhY2s%3D',
+	tab_chat_hash:'Y2hhdA%3D%3D',
+	tab_alignment:'left',
+	tab_text_color:'black',
+	tab_text_shadow_color:'#00000055',
+	tab_bg_color:'white',
+	tab_hover_color:'aqua'
+	};
 	
-// 	(function() {
-// 	    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true;
-// 	    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js';
-// 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s);
-// 	  })();
+	(function() {
+	    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true;
+	    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s);
+	  })();
 
 </script>
 </body>

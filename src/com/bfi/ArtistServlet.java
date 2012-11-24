@@ -1,5 +1,6 @@
 package com.bfi;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -34,10 +35,6 @@ import com.google.gson.Gson;
 
 @SuppressWarnings("serial")
 public class ArtistServlet extends HttpServlet {
-	Artist dmb = null;
-	Venue alpine = null;
-	Venue gi = null;
-	Venue bader = null;
 	PersistenceManager pm = null;
 
 	@SuppressWarnings("unchecked")
@@ -46,6 +43,8 @@ public class ArtistServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		try{
 			pm = PMF.get().getPersistenceManager();
+			
+			int bgCount = getBackgroundCount();
 			
 //			String u = lookAtAnts();
 					
@@ -135,6 +134,7 @@ public class ArtistServlet extends HttpServlet {
 					.toString());
 			req.setAttribute("searchJson", searchJson);
 			req.setAttribute("events", filteredEvents);
+			req.setAttribute("bgCount", bgCount);
 			req.setAttribute("eventsPopulated", filteredEvents.size() > 0);
 		} finally {
 	        pm.close();
@@ -339,6 +339,10 @@ public class ArtistServlet extends HttpServlet {
 		q.setOrdering("date desc");
 		q.declareParameters("String startParam,String endParam");
 		return (Collection<Event>) q.execute(startDate.getTime(), endDate.getTime());
+	}
+	
+	int getBackgroundCount(){	
+		return new File("images/bg").listFiles().length;
 	}
 
 }

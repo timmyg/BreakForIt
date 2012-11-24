@@ -29,7 +29,6 @@
 <script type="text/javascript">
 	$(function() {
 		$('#dmb').button();
-		
 	});
 </script>
   

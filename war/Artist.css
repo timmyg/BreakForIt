@@ -167,12 +167,9 @@ h3 a.header {
 }
 
 html {
-	
-	background: url(images/bglogo.png), url(images/bg.png);
+	background: url(images/bglogo.png), url(images/bg/bg0.png);
 	background-position: center top, left top;;
 	background-repeat: no-repeat, repeat;
-	
-/* 	background-color:red; */
 }
 
 div#logo a{
