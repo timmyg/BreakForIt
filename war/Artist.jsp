@@ -172,6 +172,7 @@
 									var thisVidDiv = $(ui.newHeader[0]).next().children(':first-child');
 									thisVidDiv.hide();
 									thisVidDiv.html(data), 'html';
+									formatVideos(thisVidDiv);
 									thisVidDiv.fadeIn('slow');
 									thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
 									installStuff();
@@ -200,7 +201,37 @@
 				});
 
 	}
-
+	
+	function formatVideos(thisVidDiv){
+		var dimensions = getDimensions(screen.width);
+		thisVidDiv.find('.mosaic-backdrop, .mosaic-block').css({
+		    'height': dimensions[0],
+		    'width': dimensions[1]
+		});
+		thisVidDiv.find('img').css({
+		    'height': '100%',
+		    'width': '100%'
+		});
+	}
+	
+	function getDimensions(screenWidth){
+			var width = 0;
+			var height = 0;
+			if(screenWidth <= 500){
+				height=70;
+				width = 140;
+			}
+			if(screenWidth <= 1500){
+				height=140;
+				width = 260;
+			}
+			else{
+				height=196;
+				width = 364;
+			}
+			return new Array(height,width);
+		}
+	
 	function getMoreVideos(button) {
 		$.get('/videos', {
 			action : "more",
@@ -217,7 +248,9 @@
 					"input[name=date]").val(),
 		}, function(data) {
 			if (data.indexOf('noMoreVideos') == -1) {
-				$(button).parent().prev().append(data), 'html';
+				var thisVidDiv = $(button).parent().prev();
+				thisVidDiv.append(data), 'html';
+				formatVideos(thisVidDiv);
 				installStuff();
 				//reposition more button
 				$('.eventFooter').css('width', '0px');

@@ -6,6 +6,8 @@
 	float: left;
 	position: relative;
 	overflow: hidden;
+	width: 240px;
+	height: 126px;
 	margin: 10px;
 	border: 1px solid #fff;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -20,6 +22,8 @@
 	height: 100%;
 	width: 100%;
 	background: #111;
+	width: 260px;
+	height: 140px;
 }
 
 .mosaic-overlay {
@@ -63,8 +67,6 @@
 			<%
 				VideoEntry v = (VideoEntry) pageContext
 									.getAttribute("v");
-			String vidHeight = (String)pageContext.getAttribute("videoHeight") ;
-			String vidWidth = (String)pageContext.getAttribute("videoWidth") + "px";
 				String id = v.getId().substring(
 									v.getId().indexOf("video:") + 6,
 									v.getId().length());
@@ -80,7 +82,7 @@
 
 
 
-			<div class="mosaic-block bar2 video" style="width:<%=vidWidth%>; height:<%=vidHeight%>">
+			<div class="mosaic-block bar2 video">
 				<a class="mosaic-overlay fancybox"
 					href="http://www.youtube.com/v/<%=id%>?wmode=opaque" rel="group">
 					<div class="details">
@@ -93,8 +95,7 @@
 				</a>
 				<div class="mosaic-backdrop">
 				<span class="image" >
-					<img src="http://img.youtube.com/vi/<%=id%>/0.jpg" alt=""
-						width=<%=vidWidth%> height=<%=vidHeight%> />
+					<img src="http://img.youtube.com/vi/<%=id%>/0.jpg" alt="" />
 				</span>
 				</div>
 			</div>
