@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.javatuples.Pair;
+
 import com.bfi.jdo.Artist;
 import com.bfi.jdo.Event;
 import com.bfi.jdo.PMF;
@@ -38,6 +40,7 @@ public class VideoServlet extends HttpServlet {
 
 		boolean isMore = (req.getParameter("action").equals("more"));
 		String eventID = req.getParameter("eventID");
+		String screenWidth = req.getParameter("screenWidth");
 		String videoCountString = req.getParameter("videoCount");
 		int videoCount = 0;
 		if(videoCountString != null){
@@ -93,8 +96,10 @@ public class VideoServlet extends HttpServlet {
 			finalList = new ArrayList<VideoEntry>();
 		}
 
-//		req.setAttribute("moreClicked", String.valueOf(more));
+		Pair<String,String> videoDimensions = getVideoWidth(Long.valueOf(screenWidth));
 		req.setAttribute("videos", finalList);
+		req.setAttribute("videoHeight", videoDimensions.getValue0());
+		req.setAttribute("videoWidth", videoDimensions.getValue1());
 		req.setAttribute("videosPopulated", finalList.size() > 0);
 		System.out.println("Videos returned: "
 				+ String.valueOf(finalList.size()));
@@ -103,6 +108,25 @@ public class VideoServlet extends HttpServlet {
 		} catch (ServletException e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	Pair<String,String> getVideoWidth(Long screenWidth){
+		int width = 0;
+		int height = 0;
+		if(screenWidth <= 500){
+			height=70;
+			width = 140;
+		}
+		if(screenWidth <= 1500){
+			height=140;
+			width = 260;
+		}
+		else{
+			height=196;
+			width = 364;
+		}
+		return new Pair<String,String>(String.valueOf(height),String.valueOf(width));
+		
 	}
 
 	

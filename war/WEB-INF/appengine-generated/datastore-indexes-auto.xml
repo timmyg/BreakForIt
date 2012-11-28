@@ -1,11 +1,4 @@
-<!-- Indices written at Sat, 24 Nov 2012 15:14:16 EST -->
+<!-- Indices written at Tue, 27 Nov 2012 20:24:20 EST -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 3 times in query history -->
-    <datastore-index kind="Event" ancestor="false" source="auto">
-        <property name="venueID" direction="asc"/>
-        <property name="date" direction="desc"/>
-    </datastore-index>
-
-</datastore-indexes>
