@@ -371,6 +371,9 @@
 		
 		dimZeroCountEvents();
 		
+		//bug that was causing last row to expand over footer
+		jQuery('.videoContent').last().css('overflow','visible');
+		
 		$(window).scroll(function() {
 			if($(this).scrollTop() != 0) {
 				$('#toTop').fadeIn();	
@@ -440,22 +443,26 @@
 		 };
 		 
 		 $('#chg').click(function(){
-			 var bgCount = ${bgCount};
-			 var randomnumber=Math.floor(Math.random()*bgCount);
-			 var bg = 'url(images/bglogo.png), url(images/bg/bg'+randomnumber+'.png)';
-			 $('html').css('background',bg);
-			 $('html').css('background-position','center top, left top');
-			 $('html').css('background-repeat','no-repeat, repeat');
-			 $('#chg').html('change background '+ randomnumber);
-			 
-			 /*
-			 	background: url(images/bglogo.png), url(images/bg/bg21.png);
-				background-position: center top, left top;;
-				background-repeat: no-repeat, repeat;
-			 */
+			 changeBackground();
 		 });
 		 
 	});
+	
+	function changeBackground(){
+		var bgCount = ${bgCount};
+		 var randomnumber=Math.floor(Math.random()*bgCount);
+		 var bg = 'url(images/bglogo.png), url(images/bg/bg'+randomnumber+'.png)';
+		 $('html').css('background',bg);
+		 $('html').css('background-position','center top, left top');
+		 $('html').css('background-repeat','no-repeat, repeat');
+		 $('#chg').html('change background '+ randomnumber);
+		 
+		 /*
+		 	background: url(images/bglogo.png), url(images/bg/bg21.png);
+			background-position: center top, left top;;
+			background-repeat: no-repeat, repeat;
+		 */
+	}
 	
 	function showFirstTimeStuff(){
 		hideOrShowAllTooltips('show');
@@ -509,7 +516,7 @@
 				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
 		    </div>
 <!-- 		    <div class="searchBox"> -->
-				<button class="btn btn-inverse" id="chg">change background 0</button>
+<!-- 				<button class="btn btn-inverse" id="chg">change background 0</button> -->
 	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
 	             <input type="hidden" id="searchValue" />
 	             <input type="hidden" id="searchCategory" /> 

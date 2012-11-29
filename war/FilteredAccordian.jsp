@@ -25,7 +25,6 @@
 						<a class="btn moreButton" rel="popover" title="Sorry"
 							data-content="No more videos!">More</a>
 					</div>
-					<div id="space" style="width:100px;display: block;"></div>
 				</div>
 			</c:forEach>
 	</c:when>

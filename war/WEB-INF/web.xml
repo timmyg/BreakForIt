@@ -101,7 +101,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>welcome</welcome-file>
+		<welcome-file>dmb</welcome-file>
 	</welcome-file-list>
 
  <error-page>   

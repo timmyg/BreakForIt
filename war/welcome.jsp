@@ -7,5 +7,5 @@
 <!-- but may lead to some differences in layout.   -->
 
 <html>
- <meta http-equiv="REFRESH" content="0;url=../dmb"></HEAD>
+ welcome.jsp
 </html>
