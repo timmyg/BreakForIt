@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <c:choose>
 	<c:when test="${eventsPopulated}">
 		
@@ -16,9 +17,11 @@
 					</a>
 				</h3>
 				<div class="videoContent" style="height: 535px;">
-					<div class="image">
+					<div class="vidz">
+						<div class="vidzContainer">
 						<br><br><br><br>
 						<img id="loading-image" class="centered" style="display:block;" src="images/ajax-loader.gif" alt="Loading..."/>
+						</div>
 					</div>
 					<div class="bs-docs-example eventFooter more"
 						style="padding-bottom: 15px;">

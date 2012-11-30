@@ -28,9 +28,6 @@ h1,h2 {
 h3.evt {
 	margin-top: .5em;
 	opacity: .8;
-}
-
-h3.evt{
 	min-width: 900px;
 }
 
@@ -42,6 +39,18 @@ h3.evt{
 	margin-left: auto;
 	margin-right: auto;
 	margin-left: auto;
+	text-align: center;
+}
+
+.videoContent *{
+	text-align: left;
+}
+
+.mosaic-block{
+	display:inline;
+	margin:0;
+	padding:0;
+	vertical-align: middle;
 }
 
 a {
@@ -75,7 +84,8 @@ section#content {
 	width: 0px;
 }
 
-.image {
+.vidz {
+	display:inline-block;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -203,7 +213,7 @@ div#logo > a:hover{
 }
 
 #accordion{
-	margin-top:50px;
+	margin-top:200px;
 }
 
 .footer{

@@ -3,8 +3,6 @@
 
 <style type="text/css">
 .mosaic-block {
-	float: left;
-	position: relative;
 	overflow: hidden;
 	width: 240px;
 	height: 126px;

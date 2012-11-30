@@ -144,9 +144,9 @@
 						if(videoCount >=9){//3 rows
 							content.height('555px');								
 						}else if(videoCount >=5){//2 rows
-							content.height('385px');								
+							content.height('420px');								
 						}else if(videoCount >=1){//1 row
-							content.height('215px');								
+							content.height('235px');								
 						}else{//no videos
 							content.height('145px');		
 						}
@@ -171,7 +171,7 @@
 								if(data.indexOf('noMoreVideos') == -1){
 									var thisVidDiv = $(ui.newHeader[0]).next().children(':first-child');
 									thisVidDiv.hide();
-									thisVidDiv.html(data), 'html';
+									thisVidDiv.children('.vidzContainer').html(data), 'html';
 									formatVideos(thisVidDiv);
 									thisVidDiv.fadeIn('slow');
 									thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
@@ -181,7 +181,6 @@
 										if(!$(this).hasClass('disabled')){
 											moreButton.hide();
 											getMoreVideos(this);
-											moreButton.delay(1000).fadeIn("slow");
 										}
 									});
 									moreButton.delay(1000).fadeIn("slow");
@@ -214,10 +213,6 @@
 		});
 	}
 	
-	function tg(){
-		jQuery('.videoContent').last().css('overflow', 'auto');	
-	}
-	
 	function getDimensions(screenWidth){
 			var width = 0;
 			var height = 0;
@@ -230,8 +225,8 @@
 				width = 260;
 			}
 			else{
-				height=196;
-				width = 364;
+				height=175;
+				width = 325;
 			}
 			return new Array(height,width);
 		}
@@ -242,7 +237,7 @@
 			artistTerms : $('#artistTerms').val(),
 			eventID : $(button).parent().parent().prev().children('a').children(
 					"input[name=eventID]").val(),
-			videoCount : $(button).parent().parent().children('.image')
+			videoCount : $(button).parent().parent().children('.vidz')
 					.children('.video').length,
 			feedURL : $(button).parent().parent().prev().children('a')
 					.children("input[name=feedURL]").val(),
@@ -265,7 +260,9 @@
 				$(button).addClass('disabled');
 				$(button).popover('show');
 			}
-		});
+		}).done(function() { 
+			$(button).fadeIn("slow");
+		});;
 	}
 	
 	$(document).click(function(event){
@@ -374,9 +371,6 @@
 			});
 		
 		dimZeroCountEvents();
-		
-		//bug that was causing last row to expand over footer
-		jQuery('h3').last().css('visibility','hidden');
 		
 		$(window).scroll(function() {
 			if($(this).scrollTop() != 0) {
@@ -495,6 +489,10 @@
         if($(this).html()=='0'){
                         $(this).parents('h3').css('opacity','.5');
         }
+
+        //bug that was causing last row to expand over footer
+        jQuery('h3').last().css('visibility','hidden');
+
     }); 
 }
 	
@@ -575,7 +573,7 @@
 		    <h3 id="myModalLabel">Welcome to Break For It!</h3>
 		  </div>
 		  <div class="modal-body">
-		  	<p>Here you will find a collection of live DMB footage grouped together by concert date. As our site expands, more artists will be coming in the future.</p>
+		  	<p>Here you will find a collection of live DMB footage grouped together by concert date. More artists will be coming in the future as our site expands.</p>
 		  	<br>
 		  	<p>The home page will always display the most recent events, but use the search box at the top right to find and relive concerts from any year.</p>
 		  	<br>
@@ -597,7 +595,7 @@
 		  <div class="modal-body">
 		   <p>Break For It was designed and developed by <a href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>. It allows users to view organized concert footage in order to easily relive concert experiences again and again. Videos are currently streamed solely from YouTube, but other sites are being looked into.</p>
 		   <br>
-		   <p>If there are any concerts or additional artists that you would like to see, please contact us via the feedback widget, Facebook, or Twitter.</p>
+		   <p>If there is any concerts or additional artists that you would like to see, please contact us via the feedback widget, Facebook, or Twitter.</p>
 		   <br>
 		   <p>If you have YouTube videos that are being displayed on this site and would not like them to be, go to your video settings > advanced settings > uncheck 'Allow Embedding'. Remember, this site makes no money and has no plans to. All views will be recorded just like if watching through YouTube.com.</p>		    
 		  </div>

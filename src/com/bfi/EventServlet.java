@@ -198,7 +198,11 @@ public class EventServlet extends HttpServlet {
 			    	Calendar c = Calendar.getInstance();
 			        c.setTime(t.getStartDate());
 			        String yr = Integer.toString(c.get(Calendar.YEAR));
-			    	allSearchTerms.add(new Triplet<String, String, String>(t.getName() + " Tour " + yr, String.valueOf(t.getId().getId()), SearchServlet.CATEGORY_TOUR));
+			        String nonUSLocation = "";
+			        if(!t.getLocation().equals("US")){
+			        	nonUSLocation = " " + t.getLocation() + " ";
+			        }
+			    	allSearchTerms.add(new Triplet<String, String, String>(t.getName() + nonUSLocation + " Tour " + yr, String.valueOf(t.getId().getId()), SearchServlet.CATEGORY_TOUR));
 			    	if(t.getAlternateName1() != null){
 			    		allSearchTerms.add(new Triplet<String, String, String>(t.getName() + " " + t.getAlternateName1() + " " + yr + " " + t.getLocation(), String.valueOf(t.getId().getId()), SearchServlet.CATEGORY_TOUR));
 			    	}
