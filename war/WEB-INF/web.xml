@@ -75,7 +75,7 @@
 	
 	<servlet>
 		<servlet-name>dmb</servlet-name>
-		<servlet-class>com.bfi.ArtistServlet</servlet-class>
+		<servlet-class>com.bfi.EventServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dmb</servlet-name>

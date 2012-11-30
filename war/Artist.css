@@ -101,11 +101,6 @@ a.brand {
 	position: absolute;
 }
 
-.modal-body {
-	height: 200px;
-	max-height: 200px;
-}
-
 #contactInfo {
 	vertical-align: middle;
 	display: block;
@@ -207,10 +202,6 @@ div#logo > a:hover{
     margin: 10px 20px;
 }
 
-#logo img{
-	width: 80%
-}
-
 #accordion{
 	margin-top:50px;
 }
@@ -223,4 +214,8 @@ div#logo > a:hover{
 /* 	opacity: .8; */
 	min-width: 900px;
 	margin-top: 5px;
+}
+
+button#resetDefaults{
+	float:left;
 }

@@ -214,6 +214,10 @@
 		});
 	}
 	
+	function tg(){
+		jQuery('.videoContent').last().css('overflow', 'auto');	
+	}
+	
 	function getDimensions(screenWidth){
 			var width = 0;
 			var height = 0;
@@ -372,7 +376,7 @@
 		dimZeroCountEvents();
 		
 		//bug that was causing last row to expand over footer
-		jQuery('.videoContent').last().css('overflow','visible');
+		jQuery('h3').last().css('visibility','hidden');
 		
 		$(window).scroll(function() {
 			if($(this).scrollTop() != 0) {
@@ -392,6 +396,10 @@
 			$.cookie("artist", artist, {expires: 9999, path: '/'});
 			$.cookie("timeframe", tf, {expires: 9999, path: '/'});
 		});	
+		$('#resetDefaults').click(function() {
+			$.cookie("artist",null);
+			$.cookie("timeframe",null);
+		});
 		$('#dontShowFirstTime').click(function() {
 			$.cookie("firstTime", "true", {expires: 9999, path: '/'});
 			$('#search').tooltip('hide');
@@ -509,7 +517,7 @@
 	<div id="container">
 		<div id="headerbar">
 			<div id="logo">
-				<a href="../dmb" ><img src="images/logotext.png" alt="Break For It Logo"></a>
+				<a href="../" ><img src="images/logotext.png" alt="Break For It Logo"></a>
 			</div> 
 			<div id="social">
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
@@ -547,14 +555,15 @@
 			<div class="icon-question-sign" id="timeframeTT">
 			</div>
 			<select name="test" id="timeframeDD" >
-				<option value="This Week">This Week</option>
-				<option value="This Month">This Month</option>
 				<option value="This Year">This Year</option>
+				<option value="This Month">This Month</option>
+				<option value="This Week">This Week</option>			
 				<option value="Recent Tour">Recent Tour</option>
 			</select>	
 			</div>			    
 		  </div>
 		  <div class="modal-footer">
+		    <button class="btn btn-warning" data-dismiss="modal" id="resetDefaults">Reset Defaults</button>
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		    <button class="btn btn-primary" data-dismiss="modal" id="saveDefaults">Save changes</button>
 		  </div>
@@ -563,14 +572,14 @@
 		<div class="modal hide" id="firstTimeModal" tabindex="-1" >
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="myModalLabel">Welcome!</h3>
+		    <h3 id="myModalLabel">Welcome to Break For It!</h3>
 		  </div>
 		  <div class="modal-body">
-		  	<p>Welcome to Break For It! This site groups together footage by concert, currently just for DMB but others will be coming in the future.</p>
+		  	<p>Here you will find a collection of live DMB footage grouped together by concert date. As our site expands, more artists will be coming in the future.</p>
 		  	<br>
-		  	<p>Recent events will be on the main page, and you can search by venue, date, tour, or other terms at the top right.</p>
+		  	<p>The home page will always display the most recent events, but use the search box at the top right to find and relive concerts from any year.</p>
 		  	<br>
-		  	<p>Please leave any feedback you have through the feedback button, and feel free to tweet us or Facebook with any comments/suggestions.</p>				    
+		  	<p>Please feel free to leave comments and suggestions on our feedback widget(left side), Facebook, or Twitter!				    
 		  </div>
 		  <div class="modal-footer">
 		    <button id="okButton" class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
@@ -586,9 +595,11 @@
 		    <h3 id="myModalLabel">About This Site</h3>
 		  </div>
 		  <div class="modal-body">
-		   <p>This site was designed by <a href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>. This site was meant to be used as a way to view concert footage in a fun and easy way. It currently pulls only from YouTube, but other sites are being looked into. </p>
+		   <p>Break For It was designed and developed by <a href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>. It allows users to view organized concert footage in order to easily relive concert experiences again and again. Videos are currently streamed solely from YouTube, but other sites are being looked into.</p>
 		   <br>
-		   <p>If you have YouTube videos that are being displayed on this site and would not like them to be, go to your video settings > advanced settings > uncheck 'Allow Embedding'.</p>		    
+		   <p>If there are any concerts or additional artists that you would like to see, please contact us via the feedback widget, Facebook, or Twitter.</p>
+		   <br>
+		   <p>If you have YouTube videos that are being displayed on this site and would not like them to be, go to your video settings > advanced settings > uncheck 'Allow Embedding'. Remember, this site makes no money and has no plans to. All views will be recorded just like if watching through YouTube.com.</p>		    
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

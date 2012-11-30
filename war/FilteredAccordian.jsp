@@ -27,6 +27,12 @@
 					</div>
 				</div>
 			</c:forEach>
+			<!-- dummy event because jquery UI accordion was overlapping for last event-->
+			<h3 class="evt">
+			<a class="header"> <span class = "eventTitle"></span>Test
+								<span class="eventDate">June 2, 2012</span>
+					</a>
+			</h3>
 	</c:when>
 	<c:otherwise>
 		<c:out value="eventsEmpty!" />
