@@ -248,7 +248,7 @@
 		}, function(data) {
 			if (data.indexOf('noMoreVideos') == -1) {
 				var thisVidDiv = $(button).parent().prev();
-				thisVidDiv.append(data), 'html';
+				thisVidDiv.children('.vidzContainer').append(data), 'html';
 				formatVideos(thisVidDiv);
 				installStuff();
 				//reposition more button
