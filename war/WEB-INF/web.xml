@@ -26,6 +26,7 @@
 		<url-pattern>/createevents</url-pattern>
 	</servlet-mapping>
 	
+	<!-- called by cron job -->
 	<servlet>
 		<servlet-name>updaterecentvideocounts</servlet-name>
 		<servlet-class>com.bfi.UpdateRecentEventVideoCountsServlet</servlet-class>

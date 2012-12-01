@@ -2,6 +2,7 @@ package com.bfi;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,12 +26,15 @@ public class UpdateRecentEventVideoCountsServlet extends HttpServlet {
 			throws IOException {
 		
 		try {
-			
+			Calendar tomorrow = Calendar.getInstance();
+			tomorrow.add(Calendar.DATE,1);
 			pm = PMF.get().getPersistenceManager();
 			Query q = pm.newQuery(Event.class);
+			q.setFilter("date <= tomorrow");
 			q.setOrdering("date desc");
+			q.declareParameters("String tomorrow");
 			@SuppressWarnings("unchecked")
-			Collection<Event> events = (Collection<Event>) q.execute();
+			Collection<Event> events = (Collection<Event>) q.execute( tomorrow.getTime());
 			updateCollection = new ArrayList<Event>();
 			for(Event e: events){
 				YouTubeUtils ytu = new YouTubeUtils();

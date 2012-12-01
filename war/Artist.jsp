@@ -237,8 +237,8 @@
 			artistTerms : $('#artistTerms').val(),
 			eventID : $(button).parent().parent().prev().children('a').children(
 					"input[name=eventID]").val(),
-			videoCount : $(button).parent().parent().children('.vidz')
-					.children('.video').length,
+			videoCount : $(button).parent().parent().children('.vidz').children(
+					".vidzContainer").children('.video').length,
 			feedURL : $(button).parent().parent().prev().children('a')
 					.children("input[name=feedURL]").val(),
 			tag : $(button).parent().parent().prev().children('a').children(

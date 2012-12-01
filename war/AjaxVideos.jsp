@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="com.google.gdata.data.youtube.YouTubeMediaGroup"%>
 <%@page import="com.google.gdata.data.youtube.VideoEntry"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -63,6 +65,8 @@
 		<c:forEach var="thisVideo" items="${videos}">
 			<c:set var="v" value="${thisVideo}" />
 			<%
+				DecimalFormat minFormat = new DecimalFormat("#0");
+				DecimalFormat secFormat = new DecimalFormat("00");
 				VideoEntry v = (VideoEntry) pageContext
 									.getAttribute("v");
 				String id = v.getId().substring(
@@ -71,11 +75,18 @@
 				String author = v.getAuthors().get(0).getName();
 				String title = v.getTitle().getPlainText();
 				title = title + " (" + author + ")";
+				//get duration
+				Long totalDuration = v.getMediaGroup().getDuration();
+				String dur = minFormat.format((int)Math.floor(totalDuration / 60)) + ":" + secFormat.format(totalDuration % 60);
+						
+				title = title + " " + dur;
+				
 				String viewCount = "";
 							if (v.getStatistics() != null) {
 								viewCount = String.valueOf(v.getStatistics()
 										.getViewCount());
 							}
+							
 			%>
 
 
