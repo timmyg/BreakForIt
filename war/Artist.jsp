@@ -294,14 +294,20 @@
 		  });
 
 		searchBox.change(function(){
-			//fixes a bug in FF where was re-searching after leaving search box
-			if(arguments[0].eventPhase == 2){
-				return;
-			}
 		    var searchTerm = $(this).val();
 		    var searchTermObject = $(termsArray).filter(function(){
 		        return this.label == searchTerm;
 		    });
+		    //nothing was selected
+		    if(searchTermObject.length==0){
+		    	var noEventsDiv = $('#nothingSelectedAlert');
+				noEventsDiv.css({'position':'fixed','top':'0', 'margin-top':'50px','width':'100%','z-index':'100'});
+				noEventsDiv.show().delay(8000).fadeOut();
+		    }
+		    //fixes a bug in FF where was re-searching after leaving search box
+		    if(arguments[0].eventPhase == 2){
+				return;
+			}
 		    
 		    $.get('/search', {
 					value : searchTermObject[0].value,
@@ -628,6 +634,11 @@
 		  <button type="button" class="close" data-dismiss="alert">×</button>
 		  <h4>Sorry!</h4>
 		  No events for this search term
+		</div>
+		<div class="alert alert-danger" id="nothingSelectedAlert">
+		  <button type="button" class="close" data-dismiss="alert">×</button>
+		  <h4>Sorry!</h4>
+		  You must selected a term from the search list!
 		</div>
 		
 		<button type="button" class="btn btn-primary" id="toTop" ></button>
