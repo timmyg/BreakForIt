@@ -114,9 +114,16 @@ public class VideoServlet extends HttpServlet {
 		System.out.println("Videos returned: "
 				+ String.valueOf(finalList.size()));
 		try {
-			req.getRequestDispatcher("/AjaxVideos.jsp").forward(req, resp);
+			if(MobileDeviceDetector.isMobile(req)){
+				req.getRequestDispatcher("/AjaxVideosMobile.jsp").forward(req, resp);
+			}else{
+				req.getRequestDispatcher("/AjaxVideos.jsp").forward(req, resp);
+			}
 		} catch (ServletException e1) {
 			e1.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

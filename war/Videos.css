@@ -1,0 +1,54 @@
+.mosaic-block {
+	overflow: hidden;
+	width: 240px;
+	height: 126px;
+	margin: 10px;
+	border: 1px solid #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mosaic-backdrop {
+	display: none;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #111;
+	width: 260px;
+	height: 140px;
+}
+
+.mosaic-overlay {
+	display: none;
+	z-index: 5;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #111;
+}
+
+.mosaic-overlay .details {
+	font-family: sans-serif, Arial, Helvetica;
+	color: #fff;
+	font-size: 13px;
+	padding: 3px
+}
+
+<!-- FIX FANCYBOX CHROME BUG -->
+.fancybox-prev,
+ .fancybox-next {
+  width: 30px; height: 30px; top: 45%
+ }
+
+ .fancybox-prev:hover span,
+ .fancybox-prev-ico{
+  left: -10px;
+ }
+
+ .fancybox-next:hover span,
+ .fancybox-next-ico {
+  right: -10px;
+  left: auto;
+ }

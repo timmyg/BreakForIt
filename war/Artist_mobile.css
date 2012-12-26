@@ -1,0 +1,41 @@
+* {
+	font-family: 'PT Sans Narrow', 'lucida grande', helvetica, verdana,
+		arial, sans-serif;
+	font-weight:bold;
+}
+
+html {
+	background: url(images/bglogo.png), url(images/bg/bg0.png);
+	background-position: center top, left top;;
+	background-repeat: no-repeat, repeat;
+}
+body{
+	padding: 0;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.vidzContainer  div{
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+button.btn{
+	width:100%;
+	margin-top: 2%;
+}
+
+.videoContent{
+	background: rgba(255,255,255,0.5);
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.moreButton{
+/* 	margin-top:3%; */
+}

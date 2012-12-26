@@ -42,6 +42,7 @@ public class EventServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("text/plain");
 		try{
+			
 			pm = PMF.get().getPersistenceManager();
 			
 			int bgCount = getBackgroundCount();
@@ -141,12 +142,19 @@ public class EventServlet extends HttpServlet {
 			req.setAttribute("bgCount", bgCount);
 			req.setAttribute("eventsPopulated", filteredEvents.size() > 0);
 		} finally {
-	        pm.close();
+//	        pm.close();
 	    }
 		try {
-			req.getRequestDispatcher("/Artist.jsp").forward(req, resp);
+			if(MobileDeviceDetector.isMobile(req)){
+				req.getRequestDispatcher("/ArtistMobile.jsp").forward(req, resp);
+			}else{
+				req.getRequestDispatcher("/Artist.jsp").forward(req, resp);
+			}
 		} catch (ServletException e1) {
 			e1.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -297,46 +305,8 @@ public class EventServlet extends HttpServlet {
 		return c;
 	}
 	
-	String lookAtAnts(){
-		try {
-			return getDataAsString("http://antsmarching.org/forum/login.php?do=login?vb_login_username=timmyg013&vb_login_password=&s=&securitytoken=1352500371-375f0b9db0a23423113679372bcde4179002a46e&do=login&vb_login_md5password=4a3e58cdcd8212e87a8fbbee681a978f&vb_login_md5password_utf=4a3e58cdcd8212e87a8fbbee681a978f");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-        
-	}
 	
-	public String getDataAsString(String url) throws Exception {
-		try {
-		String responseBody = "";
 
-		HttpURLConnection urlc = (HttpURLConnection) new URL(url).openConnection();
-		urlc.setDoOutput(true);
-		urlc.setUseCaches(false);
-		urlc.setRequestMethod("GET");
-		urlc.setRequestProperty("Content-Type", "application/json");
-		urlc.setRequestProperty("User-Agent", "ToonnApp/0.0 +http://www.groept.be");
-		urlc.setRequestProperty("Accept-Encoding", "gzip");
-		OutputStreamWriter wr = new OutputStreamWriter(urlc.getOutputStream());
-		wr.flush();
-		wr.close();
-		InputStreamReader re = new InputStreamReader(urlc.getInputStream());
-		BufferedReader rd = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
-		String line = "";
-
-		while ((line = rd.readLine()) != null) {
-		responseBody += line;
-		responseBody += "\n";
-		}
-		rd.close();
-		re.close();
-		return responseBody;
-		}
-		catch (Exception e) {
-		throw new RuntimeException(e);
-		}
-		}
 	
 	Collection<Event> getEvents(Calendar start, Calendar end){
 		Calendar startDate = zeroTime(start);

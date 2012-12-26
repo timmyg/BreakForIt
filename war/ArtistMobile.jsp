@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css" media="all" href="fonts.css" />
+<!-- <link rel="stylesheet" type="text/css" media="all" href="fonts.css" /> -->
 <!--[if IE]>
 	<link rel="stylesheet" type="text/css" media="all" href="ie-fonts.css" />
 <![endif]-->
@@ -24,102 +24,75 @@
 	href="jQ/css/custom-theme/jquery-ui-1.9.0.custom.css" type="text/css"
 	media="screen" />
 
-<!-- FANCY BOX -->
-<!-- Add mousewheel plugin (this is optional) -->
-<script type="text/javascript"
-	src="fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-<!-- Add fancyBox -->
-<link rel="stylesheet"
-	href="fancybox/source/jquery.fancybox.css?v=2.0.6" type="text/css"
-	media="screen" />
-<script type="text/javascript"
-	src="fancybox/source/jquery.fancybox.pack.js?v=2.0.6"></script>
-<!-- Optionally add helpers - button, thumbnail and/or media
-            -->
-<link rel="stylesheet"
-	href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.2"
-	type="text/css" media="screen" />
-<script type="text/javascript"
-	src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.2"></script>
-<script type="text/javascript"
-	src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
-<link rel="stylesheet"
-	href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=2.0.6"
-	type="text/css" media="screen" />
-<script type="text/javascript"
-	src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=2.0.6"></script>
-
-<!--  MOSAIC -->
-<link rel="stylesheet" href="mosaic/css/mosaic.css" type="text/css"
-	media="screen" />
-<script type="text/javascript" src="mosaic/js/mosaic.1.0.1.min.js"></script>
-
 <!--  TWITTER BOOTSTRAP DONT GET FROM CDN USING FOR DIFFERING TOOLTIP LOCATIONS--> 
 <script src="twbootstrap/js/bootstrap.js"></script>
 <link href="twbootstrap/css/bootstrap.css" rel="stylesheet">
 
-<!--  TO TOP -->
-<script src="jqTop/js/jquery.ui.totop.js"></script>
-<link href="jqTop/css/ui.totop.css" rel="stylesheet">
-
 <!--  jQ cookie -->
 <script src="jQcookie/jquery.cookie.js"></script>
 
+<!-- shortcut keys -->
+<script type="text/javascript" src="js/shortcut.js"></script>
+
 <!-- BFI CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="Artist.css" media="all"> -->
-<link rel="stylesheet" type="text/css" href="Artist_screen.css" media="screen"/>
+<!-- <link rel="stylesheet" type="text/css" href="Artist_screen.css" media="screen"/> -->
+<link rel="stylesheet" type="text/css" href="Artist_mobile.css" media="all"/>
 
 
 <!-- ==================================================================================================================================== -->
 <script type="text/javascript">
 
+	shortcut.add("alt+s", function() {
+	    $('#search').focus();
+	});  
 
-	function installStuff() {
-		makeFancyBoxey();
-		$('.thumbnail').css('cursor', 'pointer');
-		$('.bar2').mosaic({
-			animation : 'slide',
-			// 									 speed : 150,
-			opacity : 0,
-// 			preload : 1,
-			anchor_x : 'bottom',
-			// 									 anchor_y : 'left',
-			// 									 hover_x : '0px',
-			hover_y : '1px'
-		});
+// 	function installStuff() {
+// // 		makeFancyBoxey();
+// // 		$('.thumbnail').css('cursor', 'pointer');
+// // 		$('.bar2').mosaic({
+// // 			animation : 'slide',
+// // 			// 									 speed : 150,
+// // 			opacity : 0,
+// // // 			preload : 1,
+// // 			anchor_x : 'bottom',
+// // 			// 									 anchor_y : 'left',
+// // 			// 									 hover_x : '0px',
+// // 			hover_y : '1px'
+// // 		});
 
-	}
-	function makeFancyBoxey() {
-		$(".fancybox").fancybox({
+// // 	}
+// 	function makeFancyBoxey() {
+// 		$(".fancybox").fancybox({
 			
 			
-			'transitionIn'        :        'elastic', 
-            'transitionOut'        :        'elastic', 
-            'cyclic'                :        true, 
-            'easingIn'                :        'easeInOutQuad', 
-            'easingOut'                :        'easeInOutQuad', 
-            'speedIn'                :        300, 
-            'speedOut'                :        300, 
+// 			'transitionIn'        :        'elastic', 
+//             'transitionOut'        :        'elastic', 
+//             'cyclic'                :        true, 
+//             'easingIn'                :        'easeInOutQuad', 
+//             'easingOut'                :        'easeInOutQuad', 
+//             'speedIn'                :        300, 
+//             'speedOut'                :        300, 
             
-			openEffect : 'elastic',
-			closeEffect : 'elastic',
-			padding : 0,
-			width : '640',
-			height : '385',
-			hideOnOverlayClick : 'false',
-			hideOnContentClick : 'false',
-			// 								overlayShow: false,
-			// 								'showNavArrows'   : false,  
-			youtube : {
-				'autoplay' : 1, // 1 = will enable autoplay
-				wmode : 'transparent'
-			},
+// 			openEffect : 'elastic',
+// 			closeEffect : 'elastic',
+// 			padding : 0,
+// 			width : '640',
+// 			height : '385',
+// 			hideOnOverlayClick : 'false',
+// 			hideOnContentClick : 'false',
+// 			// 								overlayShow: false,
+// 			// 								'showNavArrows'   : false,  
+// 			youtube : {
+// 				'autoplay' : 1, // 1 = will enable autoplay
+// 				wmode : 'transparent'
+// 			},
 
-			helpers : {
-				media : {}
-			}
-		});
-	}
+// 			helpers : {
+// 				media : {}
+// 			}
+// 		});
+// 	}
 	
 	var contentHeight = 0;
 	var firstTime = true;
@@ -170,7 +143,7 @@
 									formatVideos(thisVidDiv);
 									thisVidDiv.fadeIn('slow');
 									thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
-									installStuff();
+// 									installStuff();
 									moreButton.button();
 									moreButton.click(function() {
 										if(!$(this).hasClass('disabled')){
@@ -245,7 +218,7 @@
 				var thisVidDiv = $(button).parent().prev();
 				thisVidDiv.children('.vidzContainer').append(data), 'html';
 				formatVideos(thisVidDiv);
-				installStuff();
+// 				installStuff();
 				//reposition more button
 				$('.eventFooter').css('width', '0px');
 				$('.eventFooter').css('margin', '0 auto');
