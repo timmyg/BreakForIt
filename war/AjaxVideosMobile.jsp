@@ -3,7 +3,6 @@
 <%@page import="com.google.gdata.data.youtube.VideoEntry"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <c:choose>
 	<c:when test="${videosPopulated}">
 		<c:forEach var="thisVideo" items="${videos}">
@@ -34,26 +33,12 @@
 							}
 							
 			%>
-
-
-
-			<div class="">
-				<a class=""
-					href="http://www.youtube.com/v/<%=id%>?wmode=opaque" rel="group">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">
-					<div class="details">
-						<%=title%>
-							View Count:
-							<%=viewCount%></p>
-					</div>
-					</button>
-				</a>
-				<div class="">
-<!-- 				<span class="image" > -->
-<%-- 					<img src="http://img.youtube.com/vi/<%=id%>/0.jpg" alt="" /> --%>
-<!-- 				</span> -->
-				</div>
-			</div>
+			
+			
+			<a href="http://www.youtube.com/v/<%=id%>?wmode=opaque" data-role="button">
+				<div class="ui-body ui-body-e"><h4><%=title%>&nbsp;View Count:<%=viewCount%></h4></div>
+			</a>
+			
 
 		</c:forEach>
 	</c:when>

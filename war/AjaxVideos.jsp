@@ -42,22 +42,21 @@
 	padding: 3px
 }
 
-<!-- FIX FANCYBOX CHROME BUG -->
-.fancybox-prev,
- .fancybox-next {
-  width: 30px; height: 30px; top: 45%
- }
+<!--
+FIX FANCYBOX CHROME BUG -->.fancybox-prev,.fancybox-next {
+	width: 30px;
+	height: 30px;
+	top: 45%
+}
 
- .fancybox-prev:hover span,
- .fancybox-prev-ico{
-  left: -10px;
- }
+.fancybox-prev:hover span,.fancybox-prev-ico {
+	left: -10px;
+}
 
- .fancybox-next:hover span,
- .fancybox-next-ico {
-  right: -10px;
-  left: auto;
- }
+.fancybox-next:hover span,.fancybox-next-ico {
+	right: -10px;
+	left: auto;
+}
 </style>
 
 <c:choose>
@@ -66,33 +65,35 @@
 			<c:set var="v" value="${thisVideo}" />
 			<%
 				DecimalFormat minFormat = new DecimalFormat("#0");
-				DecimalFormat secFormat = new DecimalFormat("00");
-				VideoEntry v = (VideoEntry) pageContext
+							DecimalFormat secFormat = new DecimalFormat("00");
+							VideoEntry v = (VideoEntry) pageContext
 									.getAttribute("v");
-				String id = v.getId().substring(
+							String id = v.getId().substring(
 									v.getId().indexOf("video:") + 6,
 									v.getId().length());
-				String author = v.getAuthors().get(0).getName();
-				String title = v.getTitle().getPlainText();
-				title = title + " (" + author + ")";
-				//get duration
-				Long totalDuration = v.getMediaGroup().getDuration();
-				String dur = minFormat.format((int)Math.floor(totalDuration / 60)) + ":" + secFormat.format(totalDuration % 60);
-						
-				title = title + " " + dur;
-				
-				String viewCount = "";
+							String author = v.getAuthors().get(0).getName();
+							String title = v.getTitle().getPlainText();
+							title = title + " (" + author + ")";
+							//get duration
+							Long totalDuration = v.getMediaGroup().getDuration();
+							String dur = minFormat.format((int) Math
+									.floor(totalDuration / 60))
+									+ ":"
+									+ secFormat.format(totalDuration % 60);
+
+							title = title + " " + dur;
+
+							String viewCount = "";
 							if (v.getStatistics() != null) {
 								viewCount = String.valueOf(v.getStatistics()
 										.getViewCount());
 							}
-							
 			%>
 
 
 
 			<div class="mosaic-block bar2 video">
-				<a class="mosaic-overlay fancybox"
+				<a class="mosaic-overlay fancybox" onClick="logMixpanelVideo(this)"
 					href="http://www.youtube.com/v/<%=id%>?wmode=opaque" rel="group">
 					<div class="details">
 						<h4><%=title%></h4>
@@ -103,9 +104,9 @@
 					</div>
 				</a>
 				<div class="mosaic-backdrop">
-				<span class="image" >
-					<img src="http://img.youtube.com/vi/<%=id%>/0.jpg" alt="" />
-				</span>
+					<span class="image"> <img
+						src="http://img.youtube.com/vi/<%=id%>/0.jpg" alt="" />
+					</span>
 				</div>
 			</div>
 

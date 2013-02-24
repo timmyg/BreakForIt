@@ -1,6 +1,5 @@
 package com.bfi.jdo;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,53 +16,59 @@ import com.google.appengine.datanucleus.annotations.Unowned;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Event {
-	
+
 	public Event() {
 	}
-	
-	public Event(Date date, Venue v, Artist a) {
+
+	public Event(Date date, Venue v, Artist a, Tour t) {
 		super();
 		this.date = date;
 		this.artist = a;
 		this.venue = v;
+		this.tour = t;
 		this.venueID = String.valueOf(v.getId().getId());
 		this.artistID = String.valueOf(a.getId().getId());
-    }
-	
-	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key id; 
-    
-    @Persistent
-    private Event event;
-    
-    @Persistent
-    private Date date;
+	}
 
-    private String tag;
-    
-    @Persistent
-    private String venueID;
-    
-    @Persistent
-    private String artistID;
-    
-    @Persistent
-    private String videoCount;
-    
-    @Persistent
-    private Date updateTs;
-    
-    @Persistent
-    private Long clicks;
-    
-    @Persistent(defaultFetchGroup = "true")
-    @Unowned
-    private Artist artist;
-    
-    @Persistent(defaultFetchGroup = "true")
-    @Unowned
-    private Venue venue;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
+
+	@Persistent
+	private Event event;
+
+	@Persistent
+	private Date date;
+
+	private String tag;
+
+	@Persistent
+	private String venueID;
+
+	@Persistent
+	private String artistID;
+
+	@Persistent
+	private String videoCount;
+
+	@Persistent
+	private Date updateTs;
+
+	@Persistent
+	private Long clicks;
+
+	@Persistent(defaultFetchGroup = "true")
+	@Unowned
+	private Artist artist;
+
+	@Persistent(defaultFetchGroup = "true")
+	@Unowned
+	private Venue venue;
+
+	@Persistent
+	// (defaultFetchGroup = "true")
+	@Unowned
+	private Tour tour;
 
 	public Key getId() {
 		return id;
@@ -81,28 +86,32 @@ public class Event {
 		this.event = event;
 	}
 
-//	public Key getArtistKey() {
-//		return artistKey;
-//	}
-//
-//	public void setArtistKey(Key artistKey) {
-//		this.artistKey = artistKey;
-//	}
-//
-//	public Key getVenueKey() {
-//		return venueKey;
-//	}
-//
-//	public void setVenueKey(Key venueKey) {
-//		this.venueKey = venueKey;
-//	}
-	
+	// public Key getArtistKey() {
+	// return artistKey;
+	// }
+	//
+	// public void setArtistKey(Key artistKey) {
+	// this.artistKey = artistKey;
+	// }
+	//
+	// public Key getVenueKey() {
+	// return venueKey;
+	// }
+	//
+	// public void setVenueKey(Key venueKey) {
+	// this.venueKey = venueKey;
+	// }
+
 	public Artist getArtist() {
 		return artist;
 	}
-	
+
 	public Venue getVenue() {
 		return venue;
+	}
+
+	public Tour getTour() {
+		return tour;
 	}
 
 	public String getTag() {
@@ -114,11 +123,11 @@ public class Event {
 	}
 
 	public String getVideoCount() {
-		if(videoCount == null){
+		if (videoCount == null) {
 			return "?";
-		}else if(Long.valueOf(videoCount) >= 25){
+		} else if (Long.valueOf(videoCount) >= 25) {
 			return "25+";
-		}else{
+		} else {
 			return videoCount;
 		}
 	}
@@ -143,43 +152,47 @@ public class Event {
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
-	
+
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
+
 	public String getDateFormatted() {
-        return DateFormat.getDateInstance(DateFormat.LONG).format(getDate());
-    }
+		return DateFormat.getDateInstance(DateFormat.LONG).format(getDate());
+	}
 
-	public String getFeedURL(){
-        String feedURL = "http://gdata.youtube.com/feeds/api/videos?"+
-                "q=";
-        		if(this.getArtist() != null && this.getArtist().getName() != null){
-        			feedURL = feedURL + this.getArtist().getName() + "+";
-        		}
-                if(this.getVenue() != null && this.getVenue().getSearchTerm1() != null){
-                	feedURL = feedURL + this.getVenue().getSearchTerm1()+ "+";
-                }
-        		if(this.getSearchDate() != null){
-        			feedURL = feedURL + this.getSearchDate();
-        		}
-        return feedURL.replaceAll(" ", "+");
-    }
-	
-	public String getSearchDate(){
-        Date date = getDate();
-        Calendar d = Calendar.getInstance();
-        d.setTime(date);
-        String month = Integer.toString(d.get(Calendar.MONTH)+1);
-//		String monthString = new SimpleDateFormat("MMMM").format(d);
-        String day = Integer.toString(d.get(Calendar.DATE));
-        String year = Integer.toString(d.get(Calendar.YEAR));
+	public String getFeedURL() {
+		String feedURL = "http://gdata.youtube.com/feeds/api/videos?" + "q=";
+		if (this.getArtist() != null && this.getArtist().getName() != null) {
+			feedURL = feedURL + this.getArtist().getName() + "+";
+		}
+		if (this.getVenue() != null && this.getVenue().getSearchTerm1() != null) {
+			feedURL = feedURL + this.getVenue().getSearchTerm1() + "+";
+		}
+		if (this.getSearchDate() != null) {
+			feedURL = feedURL + this.getSearchDate();
+		}
+		return feedURL.replaceAll(" ", "+");
+	}
 
-        // starts with ( ends with )
-        return month + " " + day + " " + year;
-    }
-	
+	public String getSearchDate() {
+		Date date = getDate();
+		Calendar d = Calendar.getInstance();
+		d.setTime(date);
+		String month = Integer.toString(d.get(Calendar.MONTH) + 1);
+		// String monthString = new SimpleDateFormat("MMMM").format(d);
+		String day = Integer.toString(d.get(Calendar.DATE));
+		String year = Integer.toString(d.get(Calendar.YEAR));
+
+		// starts with ( ends with )
+		return month + " " + day + " " + year;
+	}
+
 	public String getDateNumString() {
-        SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
-        return new StringBuilder(dateformatYYYYMMDD.format(getDate())).toString();
-    }
+		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+		return new StringBuilder(dateformatYYYYMMDD.format(getDate()))
+				.toString();
+	}
 
 	public String getVenueID() {
 		return venueID;
@@ -212,5 +225,5 @@ public class Event {
 	public void setClicks(Long clicks) {
 		this.clicks = clicks;
 	}
-	
+
 }

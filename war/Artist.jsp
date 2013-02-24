@@ -13,8 +13,11 @@
 <![endif]-->
 
 <!-- FONTS -->
-<link href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Share+Tech|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Jolly+Lodger'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Share+Tech|PT+Sans+Narrow:400,700'
+	rel='stylesheet' type='text/css'>
 
 <!-- jQuery-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -54,7 +57,7 @@
 	media="screen" />
 <script type="text/javascript" src="mosaic/js/mosaic.1.0.1.min.js"></script>
 
-<!--  TWITTER BOOTSTRAP DONT GET FROM CDN USING FOR DIFFERING TOOLTIP LOCATIONS--> 
+<!--  TWITTER BOOTSTRAP DONT GET FROM CDN USING FOR DIFFERING TOOLTIP LOCATIONS-->
 <script src="twbootstrap/js/bootstrap.js"></script>
 <link href="twbootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -67,7 +70,8 @@
 
 <!-- BFI CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="Artist.css" media="all"> -->
-<link rel="stylesheet" type="text/css" href="Artist_screen.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="Artist_screen.css"
+	media="screen" />
 
 
 <!-- ==================================================================================================================================== -->
@@ -124,6 +128,12 @@
 	var contentHeight = 0;
 	var firstTime = true;
 	var divExpanded = false;
+	
+	function logMixpanelVideo(evt){
+		mixpanel.track('Video', {
+		    'videoTitle': evt.innerText
+		});
+	}
 	
 	function makeAccordion() {
 		
@@ -282,6 +292,14 @@
 	var i = 0;
 
 	$(function() {
+		mixpanel.track('Visit', {
+		});
+		
+		$('.evt').click(function(){
+			mixpanel.track('Event', {
+			});
+		});
+		
 		var searchBox = $('#search');
 		searchBox.typeahead({
 			source: termsArrayStrings,
@@ -383,6 +401,8 @@
 	 
 		$('#toTop').click(function() {
 			$('body,html').animate({scrollTop:0},800);
+			mixpanel.track('To Top', {
+			});
 		});	
 
 		$('#saveDefaults').click(function() {
@@ -394,6 +414,8 @@
 		$('#resetDefaults').click(function() {
 			$.cookie("artist",null);
 			$.cookie("timeframe",null);
+			mixpanel.track('Reset Defaults', {
+			});
 		});
 		$('#dontShowFirstTime').click(function() {
 			$.cookie("firstTime", "true", {expires: 9999, path: '/'});
@@ -416,9 +438,13 @@
 		 
 		 $('img#tw').click(function() {
 			 window.open('https://twitter.com/BreakForIt');
+			 mixpanel.track('Twitter', {
+				});
 		 });
 		 $('img#fb').click(function() {
 		 	window.open('https://www.facebook.com/BreakForIt');
+		 	mixpanel.track('Facebook', {
+			});
 		 });
 		
 		 //color background differently
@@ -499,6 +525,14 @@
 	
 </script>
 
+<!-- start Mixpanel -->
+<script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||
+[]);
+mixpanel.init("aa7b0128e1925baed3a3618c08dc6c3c");
+</script>
+<!-- end Mixpanel -->
+
 <title>BreakForIt</title>
 </head>
 <body>
@@ -508,7 +542,7 @@
 			web browser must have JavaScript enabled in order for this
 			application to display correctly.</div>
 	</noscript>
-	
+
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
 	<!-- ==================================================================================================================================== -->
@@ -516,130 +550,171 @@
 	<div id="container">
 		<div id="headerbar">
 			<div id="logo">
-				<a href="../" ><img src="images/logotext.png" alt="Break For It Logo"></a>
-			</div> 
-			<div id="social">
-				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
-				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
-		    </div>
-<!-- 		    <div class="searchBox"> -->
-<!-- 				<button class="btn btn-inverse" id="chg">change background 0</button> -->
-	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
-	             <input type="hidden" id="searchValue" />
-	             <input type="hidden" id="searchCategory" /> 
-	             <input type="hidden" id="searchLabel" /> 
-	             <input type="hidden" id="currentTime" value="${currentTime}" /> 
-	             <input type="hidden" id="artistTerms" value="${artistTerms}" /> 
-<!-- 	        </div> -->
-	        
-		  </div>
-		</div>
-		
-        <div class="modal hide" id="accountModal" tabindex="-1" >
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="myModalLabel">Set Defaults</h3>
-		  </div>
-		  <div class="modal-body">
-		  <div>
-		  	Default Artist:
-		  	<div class="icon-question-sign" id="artistTT">
+				<a href="../"><img src="images/logotext.png"
+					alt="Break For It Logo"></a>
 			</div>
-		  	<select name="test" id="artistDD">
-				<option value="dmb">DMB</option>
-			</select>
+			<div id="social">
+				<img id="fb" class="soc" src="images/facebook.png" alt="facebook"
+					style="height: 50px" /> <img id="tw" class="soc"
+					src="images/twitter.png" alt="twitter" style="height: 50px" />
 			</div>
 			<div>
-			Default Timeframe:
-			<div class="icon-question-sign" id="timeframeTT">
+				${daysUntil} days until opening night
 			</div>
-			<select name="test" id="timeframeDD" >
-				<option value="This Year">This Year</option>
-				<option value="This Month">This Month</option>
-				<option value="This Week">This Week</option>			
-				<option value="Recent Tour">Recent Tour</option>
-			</select>	
-			</div>			    
-		  </div>
-		  <div class="modal-footer">
-		    <button class="btn btn-warning" data-dismiss="modal" id="resetDefaults">Reset Defaults</button>
-		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		    <button class="btn btn-primary" data-dismiss="modal" id="saveDefaults">Save changes</button>
-		  </div>
-		</div>
-		
-		<div class="modal hide" id="firstTimeModal" tabindex="-1" >
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="myModalLabel">Welcome to Break For It!</h3>
-		  </div>
-		  <div class="modal-body">
-		  	<p>Here you will find a collection of live DMB footage grouped together by concert date. More artists will be coming in the future as our site expands.</p>
-		  	<br>
-		  	<p>The home page will always display the most recent events, but use the search box at the top right to find and relive concerts from any year.</p>
-		  	<br>
-		  	<p>Please feel free to leave comments and suggestions on our feedback widget(left side), Facebook, or Twitter!				    
-		  </div>
-		  <div class="modal-footer">
-		    <button id="okButton" class="btn"  data-dismiss="modal" aria-hidden="true">OK</button>
-		    <button id="dontShowFirstTime"class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Don't Show Again</button>
-		  </div>
-		</div>
-		
-		
-		
-<div class="modal hide" id="aboutModal" tabindex="-1" >
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="myModalLabel">About This Site</h3>
-		  </div>
-		  <div class="modal-body">
-		   <p>Break For It was designed and developed by <a href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>. It allows users to view organized concert footage in order to easily relive concert experiences again and again. Videos are currently streamed solely from YouTube, but other sites are being looked into.</p>
-		   <br>
-		   <p>If there is any concerts or additional artists that you would like to see, please contact us via the feedback widget, Facebook, or Twitter.</p>
-		   <br>
-		   <p>If you have YouTube videos that are being displayed on this site and would not like them to be, go to your video settings > advanced settings > uncheck 'Allow Embedding'. Remember, this site makes no money and has no plans to. All views will be recorded just like if watching through YouTube.com.</p>		    
-		  </div>
-		  <div class="modal-footer">
-		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		  </div>
-		</div>
+			<div>
+				Coming up:
+				<c:forEach var="thisEvent" items="${nextEvents}">
+				<p>
+				${thisEvent.venue.name} ${thisEvent.venue.location} ${thisEvent.dateFormatted}
+				</p>
+				</c:forEach>
+			</div>
+			<!-- 		    <div class="searchBox"> -->
+			<!-- 				<button class="btn btn-inverse" id="chg">change background 0</button> -->
+			<input type="text" autocomplete="off" id="search" class="searchInput"
+				data-provide="typeahead" placeholder="Search" data-items="4"
+				tabindex="0"> <input type="hidden" id="searchValue" /> <input
+				type="hidden" id="searchCategory" /> <input type="hidden"
+				id="searchLabel" /> <input type="hidden" id="currentTime"
+				value="${currentTime}" /> <input type="hidden" id="artistTerms"
+				value="${artistTerms}" />
+			<!-- 	        </div> -->
 
-		<section id="content">
-			<div class="basic" id="accordion">
-				<%@ include file="FilteredAccordian.jsp" %>
-			</div>
-		</section>
-<!-- 		<div id="paddingDiv" style="height:400px;display:none;"> -->
-<!-- 		</div> -->
-		<footer>
-			<div id="footer">
-			    <a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
-			    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a>
-			</div>
-			©2012 Break For It
-		</footer>
-		
-		<div class="alert alert-block" id="noVideosAlert">
-<!-- 		  <button type="button" class="close" data-dismiss="alert">×</button> -->
-		  <h4>Sorry!</h4>
-		  No videos for this event yet!
 		</div>
-		<div class="alert alert-danger" id="noEventsAlert">
-		  <button type="button" class="close" data-dismiss="alert">×</button>
-		  <h4>Sorry!</h4>
-		  No events for this search term
-		</div>
-		<div class="alert alert-danger" id="nothingSelectedAlert">
-		  <button type="button" class="close" data-dismiss="alert">×</button>
-		  <h4>Sorry!</h4>
-		  You must selected a term from the search list!
-		</div>
-		
-		<button type="button" class="btn btn-primary" id="toTop" ></button>
+	</div>
 
-<div id="browserFooter"></div> <!-- crowd -->
-<script type='text/javascript'>
+	<div class="modal hide" id="accountModal" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Set Defaults</h3>
+		</div>
+		<div class="modal-body">
+			<div>
+				Default Artist:
+				<div class="icon-question-sign" id="artistTT"></div>
+				<select name="test" id="artistDD">
+					<option value="dmb">DMB</option>
+				</select>
+			</div>
+			<div>
+				Default Timeframe:
+				<div class="icon-question-sign" id="timeframeTT"></div>
+				<select name="test" id="timeframeDD">
+					<option value="This Year">This Year</option>
+					<option value="This Month">This Month</option>
+					<option value="This Week">This Week</option>
+					<option value="Recent Tour">Recent Tour</option>
+				</select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-warning" data-dismiss="modal"
+				id="resetDefaults">Reset Defaults</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary" data-dismiss="modal"
+				id="saveDefaults">Save changes</button>
+		</div>
+	</div>
+
+	<div class="modal hide" id="firstTimeModal" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Welcome to Break For It!</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here you will find a collection of live DMB footage grouped
+				together by concert date. More artists will be coming in the future
+				as our site expands.</p>
+			<br>
+			<p>The home page will always display the most recent events, but
+				use the search box at the top right to find and relive concerts from
+				any year.</p>
+			<br>
+			<p>Please feel free to leave comments and suggestions on our
+				feedback widget(left side), Facebook, or Twitter!
+		</div>
+		<div class="modal-footer">
+			<button id="okButton" class="btn" data-dismiss="modal"
+				aria-hidden="true">OK</button>
+			<button id="dontShowFirstTime" class="btn btn-primary"
+				data-dismiss="modal" aria-hidden="true">Don't Show Again</button>
+		</div>
+	</div>
+
+
+
+	<div class="modal hide" id="aboutModal" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">About This Site</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				Break For It was designed and developed by <a
+					href="http://www.timmygcentral.com" target="_blank">Tim Giblin</a>.
+				It allows users to view organized concert footage in order to easily
+				relive concert experiences again and again. Videos are currently
+				streamed solely from YouTube, but other sites are being looked into.
+			</p>
+			<br>
+			<p>If there is any concerts or additional artists that you would
+				like to see, please contact us via the feedback widget, Facebook, or
+				Twitter.</p>
+			<br>
+			<p>If you have YouTube videos that are being displayed on this
+				site and would not like them to be, go to your video settings >
+				advanced settings > uncheck 'Allow Embedding'. Remember, this site
+				makes no money and has no plans to. All views will be recorded just
+				like if watching through YouTube.com.</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>
+
+	<section id="content">
+		<div class="basic" id="accordion">
+			<%@ include file="FilteredAccordian.jsp"%>
+		</div>
+	</section>
+	<!-- 		<div id="paddingDiv" style="height:400px;display:none;"> -->
+	<!-- 		</div> -->
+	<footer>
+		<div id="footer">
+			<a href="#aboutModal" class="footerButtons" data-toggle="modal"><img
+				id="about" class="footer" src="images/about.png" alt="about"
+				style="height: 50px" /></a> <a href="#accountModal"
+				class="footerButtons" data-toggle="modal"><img id="defaults"
+				class="footer" src="images/defaults.png" alt="defaults"
+				style="height: 50px" /></a>
+		</div>
+		©2012 Break For It
+	</footer>
+
+	<div class="alert alert-block" id="noVideosAlert">
+		<!-- 		  <button type="button" class="close" data-dismiss="alert">×</button> -->
+		<h4>Sorry!</h4>
+		No videos for this event yet!
+	</div>
+	<div class="alert alert-danger" id="noEventsAlert">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<h4>Sorry!</h4>
+		No events for this search term
+	</div>
+	<div class="alert alert-danger" id="nothingSelectedAlert">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<h4>Sorry!</h4>
+		You must selected a term from the search list!
+	</div>
+
+	<button type="button" class="btn btn-primary" id="toTop"></button>
+
+	<div id="browserFooter"></div>
+	<!-- crowd -->
+	<script type='text/javascript'>
 	
 	var _ues = {
 	host:'breakforit.userecho.com',

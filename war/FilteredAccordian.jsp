@@ -11,7 +11,7 @@
 							(<span class="videoCount"><c:out value="${thisEvent.videoCount}" /></span>)
 								<span class="eventDate"><c:out value="${thisEvent.dateFormatted}" /></span>
 								<input type="hidden" name="tag" value="${thisEvent.tag}" /> 
-								<input type="hidden" name="feedURL" value="${thisEvent.feedURL}" />
+<%-- 								<input type="hidden" name="feedURL" value="${thisEvent.feedURL}" /> --%>
 								<input type="hidden" name="eventID" value="${thisEvent.id.id}" /> 
 								<input type="hidden" name="date" value="${thisEvent.dateNumString}" />
 					</a>
@@ -33,7 +33,7 @@
 			<!-- dummy event because jquery UI accordion was overlapping for last event-->
 			<h3 class="evt">
 			<a class="header"> <span class = "eventTitle"></span>Test
-								<span class="eventDate">June 2, 2012</span>
+								<span class="">June 2, 2012</span>
 					</a>
 			</h3>
 	</c:when>

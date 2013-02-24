@@ -7,22 +7,14 @@
 <html>
 <head>
 
-<!-- <link rel="stylesheet" type="text/css" media="all" href="fonts.css" /> -->
-<!--[if IE]>
-	<link rel="stylesheet" type="text/css" media="all" href="ie-fonts.css" />
-<![endif]-->
+<meta name="viewport" content="width=device-width"/> 
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
 <!-- FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Share+Tech|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-
-<!-- jQuery-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<!-- jQuery UI-->
-<script src="jQ/js/jquery-ui-1.9.0.custom.min.js"></script>
-<link rel="stylesheet"
-	href="jQ/css/custom-theme/jquery-ui-1.9.0.custom.css" type="text/css"
-	media="screen" />
 
 <!--  TWITTER BOOTSTRAP DONT GET FROM CDN USING FOR DIFFERING TOOLTIP LOCATIONS--> 
 <script src="twbootstrap/js/bootstrap.js"></script>
@@ -43,144 +35,12 @@
 <!-- ==================================================================================================================================== -->
 <script type="text/javascript">
 
-	shortcut.add("alt+s", function() {
-	    $('#search').focus();
-	});  
-
-// 	function installStuff() {
-// // 		makeFancyBoxey();
-// // 		$('.thumbnail').css('cursor', 'pointer');
-// // 		$('.bar2').mosaic({
-// // 			animation : 'slide',
-// // 			// 									 speed : 150,
-// // 			opacity : 0,
-// // // 			preload : 1,
-// // 			anchor_x : 'bottom',
-// // 			// 									 anchor_y : 'left',
-// // 			// 									 hover_x : '0px',
-// // 			hover_y : '1px'
-// // 		});
-
-// // 	}
-// 	function makeFancyBoxey() {
-// 		$(".fancybox").fancybox({
-			
-			
-// 			'transitionIn'        :        'elastic', 
-//             'transitionOut'        :        'elastic', 
-//             'cyclic'                :        true, 
-//             'easingIn'                :        'easeInOutQuad', 
-//             'easingOut'                :        'easeInOutQuad', 
-//             'speedIn'                :        300, 
-//             'speedOut'                :        300, 
-            
-// 			openEffect : 'elastic',
-// 			closeEffect : 'elastic',
-// 			padding : 0,
-// 			width : '640',
-// 			height : '385',
-// 			hideOnOverlayClick : 'false',
-// 			hideOnContentClick : 'false',
-// 			// 								overlayShow: false,
-// 			// 								'showNavArrows'   : false,  
-// 			youtube : {
-// 				'autoplay' : 1, // 1 = will enable autoplay
-// 				wmode : 'transparent'
-// 			},
-
-// 			helpers : {
-// 				media : {}
-// 			}
-// 		});
-// 	}
 	
 	var contentHeight = 0;
 	var firstTime = true;
 	var divExpanded = false;
 	
-	function makeAccordion() {
-		
-		$("#accordion").accordion(
-				{
-					autoHeight : true,
-					animated: 'bounceslide', 
-					collapsible : true,
-					active : false,
-					changestart : function(e, ui) {	
-						var videoCount = $(ui.newHeader[0]).children('a').children('span.videoCount').text().replace(/[^0-9]/g, '');
-						var content = $(ui.newHeader[0]).next();
-						if(videoCount >=9){//3 rows
-							content.height('555px');								
-						}else if(videoCount >=5){//2 rows
-							content.height('420px');								
-						}else if(videoCount >=1){//1 row
-							content.height('235px');								
-						}else{//no videos
-							content.height('145px');		
-						}
-						var moreButton = $(ui.newHeader[0]).next().children('.eventFooter').children('.moreButton');
-						var populated = ui.newContent.hasClass('populated');
-						if (!populated && ui.newContent.length > 0) {
-							$.get('/videos', {
-								action : "open",
-								artistTerms : $('#artistTerms').val(),
-								tag : ui.newHeader.children('a').children(
-										"input[name=tag]").val(),
-								feedURL : ui.newHeader.children('a').children(
-										"input[name=feedURL]").val(),
-								eventID : ui.newHeader.children('a').children(
-										"input[name=eventID]").val(),
-								date : ui.newHeader.children('a').children(
-										"input[name=date]").val(),
-								screenWidth : screen.width
-							},
 
-							function(data) {
-								if(data.indexOf('noMoreVideos') == -1){
-									var thisVidDiv = $(ui.newHeader[0]).next().children(':first-child');
-									thisVidDiv.hide();
-									thisVidDiv.children('.vidzContainer').html(data), 'html';
-									formatVideos(thisVidDiv);
-									thisVidDiv.fadeIn('slow');
-									thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
-// 									installStuff();
-									moreButton.button();
-									moreButton.click(function() {
-										if(!$(this).hasClass('disabled')){
-											moreButton.hide();
-											getMoreVideos(this);
-										}
-									});
-									moreButton.delay(1000).fadeIn("slow");
-									$(this).popover('show');
-								}else{
-									//no videos at all for event
-// 									$(ui.newHeader[0]).next().animate({'height':'100%'});
-									var noVidsDiv = $('#noVideosAlert');
-									$(ui.newHeader[0]).next().children(
-										':first-child').html(noVidsDiv), 'html';
-									$('#noVideosAlert').show();
-								}
-								ui.newContent.addClass('populated');
-							});
-						}
-					}
-				});
-
-	}
-	
-	function formatVideos(thisVidDiv){
-		var dimensions = getDimensions(screen.width);
-		thisVidDiv.find('.mosaic-backdrop, .mosaic-block').css({
-		    'height': dimensions[0],
-		    'width': dimensions[1]
-		});
-		thisVidDiv.find('img').css({
-		    'height': '100%',
-		    'width': '100%'
-		});
-	}
-	
 	function getDimensions(screenWidth){
 			var width = 0;
 			var height = 0;
@@ -203,34 +63,30 @@
 		$.get('/videos', {
 			action : "more",
 			artistTerms : $('#artistTerms').val(),
-			eventID : $(button).parent().parent().prev().children('a').children(
+			eventID : $(button).parent().parent().children(
 					"input[name=eventID]").val(),
-			videoCount : $(button).parent().parent().children('.vidz').children(
-					".vidzContainer").children('.video').length,
-			feedURL : $(button).parent().parent().prev().children('a')
+			videoCount : $(button).parent().parent().children('p').children('a').length,
+			feedURL : $(button).parent().parent()
 					.children("input[name=feedURL]").val(),
-			tag : $(button).parent().parent().prev().children('a').children(
+			tag : $(button).parent().parent().children(
 					"input[name=tag]").val(),
-			date : $(button).parent().parent().prev().children('a').children(
+			date : $(button).parent().parent().children(
 					"input[name=date]").val(),
 		}, function(data) {
 			if (data.indexOf('noMoreVideos') == -1) {
-				var thisVidDiv = $(button).parent().prev();
-				thisVidDiv.children('.vidzContainer').append(data), 'html';
-				formatVideos(thisVidDiv);
-// 				installStuff();
-				//reposition more button
-				$('.eventFooter').css('width', '0px');
-				$('.eventFooter').css('margin', '0 auto');
+
+				$(button).parent().parent().children('p').append(data), 'html';
 			} else {
 				//no more videos message
+				var html = $(button)[0].innerHTML.replace('More','No More Videos');
+				$(button)[0].innerHTML = html;
 				$(button).show();
 				$(button).addClass('disabled');
-				$(button).popover('show');
+// 				$(button).popover('show');
 			}
 		}).done(function() { 
-			$(button).fadeIn("slow");
-		});;
+			$(button).css('visibility','visible');
+		});
 	}
 	
 	$(document).click(function(event){
@@ -253,8 +109,61 @@
 	}
 
 	var i = 0;
+	var recentButtonClicked;
 
 	$(function() {
+		var eventButton = $('.event'); //ui.newHeader
+		eventButton.bind('expand', function () {
+			var eventData = $(this).children('.ui-collapsible-content');
+			recentButtonClicked = eventData;
+			if (!eventData.hasClass('populated')) {
+				$.get('/videos', {
+					action : "open",
+					artistTerms : $('#artistTerms').val(),
+					tag : eventData.children(
+							"input[name=tag]").val(),
+					feedURL : eventData.children(
+							"input[name=feedURL]").val(),
+					eventID : eventData.children(
+							"input[name=eventID]").val(),
+					date : eventData.children(
+							"input[name=date]").val(),
+					screenWidth : screen.width
+				},function(data) {
+					if(data.indexOf('noMoreVideos') == -1){
+						var thisVidDiv = recentButtonClicked;
+// 						recentButtonClicked.children('p');
+// 						thisVidDiv.hide();
+						thisVidDiv.children('p').html(data), 'html';
+// 						formatVideos(thisVidDiv);
+// 						thisVidDiv.fadeIn('slow');
+// 						thisVidDiv.parents('.videoContent').height(thisVidDiv.height()+thisVidDiv.next());
+// 						installStuff();
+						var moreButton = thisVidDiv.children('.eventFooter').children('.moreButton');
+						moreButton.button();
+						moreButton.click(function() {
+							if(!$(this).hasClass('disabled')){
+								moreButton.css('visibility','hidden');
+								getMoreVideos(this);
+							}
+						});
+						moreButton.show();
+						$(this).popover('show');
+					}else{
+						//no videos at all for event
+//							$(ui.newHeader[0]).next().animate({'height':'100%'});
+						var noVidsDiv = $('#noVideosAlert');
+						$(ui.newHeader[0]).next().children(
+							':first-child').html(noVidsDiv), 'html';
+// 						$('#noVideosAlert').show();
+						
+					}
+// 					moreButton.css('visibility','visible');
+					eventData.addClass('populated');
+				});
+			};	
+		});
+		
 		var searchBox = $('#search');
 		searchBox.typeahead({
 			source: termsArrayStrings,
@@ -285,21 +194,10 @@
 					if(data.indexOf('eventsEmpty') == -1){
 						$('#accordion').hide();
 						$('#accordion')
-// 							.animate({ width: ['toggle', 'swing'],height: ['toggle', 'swing'] })
-// 							.fadeIn('4000')
 						    .html(data)
 						    , 'html';
 						dimZeroCountEvents();
-						$('#accordion').accordion('destroy');
-						makeAccordion();
-						$('#accordion').animate({
-						    width: ['toggle', 'swing'],
-						    height: ['toggle', 'swing'],
-						    opacity: 'toggle'
-						  }, 300, 'linear', function() {
-// 						      animation complete
-						  });
-						
+						$('#accordion').show();
 						$('.moreButton').hide();
 					}else{
 						var noEventsDiv = $('#noEventsAlert');
@@ -309,40 +207,13 @@
 				});
 		});
 
-		makeAccordion();
+// 		makeAccordion();
 		$('.moreButton').hide();
 		$('.alert').hide();
-		$('#search').click(function () {
-			$('#search').tooltip('hide');
-	    });
 	
-		$('#search').tooltip({
-			'trigger':'hover', 
-			'title': 'Search for concerts by Date, Year, Tour, Venue, or even relative date terms.  Example: Today, Yesterday, July 7, 2012, Riverbend, Summer Tour 2002, Last Month, 11/20/2010', 
-			'placement':'bottom'
-			});
 		
-		$('div#artistTT.icon-question-sign').tooltip({
-			'trigger':'hover', 
-			'title': 'This is the artist that will be the default when you go to breakforit.com', 
-			'placement':'top',
-			});
 		
-		$('div#timeframeTT.icon-question-sign').tooltip({
-			'trigger':'hover', 
-			'title': 'This is the default timeframe for events that will appear upon entering the site', 
-			'placement':'top'
-			});
-		
-		$('div#accordion h3:first-child .eventTitle').tooltip({
-			'title': 'Click here to see videos for this event.  This pulls videos in real-time from YouTube', 
-			'placement':'top tab',
-			});
-		
-		$('div#accordion > h3:nth-child(11) .videoCount').tooltip({
-			'title': 'Number of video for this event', 
-			'placement':'top'
-			});
+
 		
 		dimZeroCountEvents();
 		
@@ -370,11 +241,8 @@
 		});
 		$('#dontShowFirstTime').click(function() {
 			$.cookie("firstTime", "true", {expires: 9999, path: '/'});
-			$('#search').tooltip('hide');
 		});	
-		$('#okButton').click(function() {
-			$('#search').tooltip('hide');
-		});
+
 		//set defaults from cookies
 		 var artistCookie = $.cookie("artist");
 		 var tfCookie = $.cookie("timeframe");
@@ -394,33 +262,8 @@
 		 	window.open('https://www.facebook.com/BreakForIt');
 		 });
 		
-		 //color background differently
-		 var colorArray = [
-		                              'Red',
-		                              'BlueViolet',
-		                              'Orange',
-		                              'Chocolate',
-		                              'SteelBlue', 
-		                              'OliveDrab', 
-		                              'Green'
-		                          ];
 		 
-		 jQuery.each($('.tooltip-inner'), function(i, val) {
-		      $(this).css('background-color',getRandomColor());
-	     });
-		 
-		 function getRandomColor(){
-			 
-              var randomColorIx = Math.floor(Math.random()*colorArray.length);
-              var color = colorArray[randomColorIx];
-              colorArray.splice(randomColorIx,1);
-              
-              return color;
-		 };
-		 
-		 $('#chg').click(function(){
-			 changeBackground();
-		 });
+
 		 
 	});
 	
@@ -441,21 +284,7 @@
 	}
 	
 	function showFirstTimeStuff(){
-		hideOrShowAllTooltips('show');
-		$('#firstTimeModal').modal('show');
-		$('#firstTimeModal').on('hidden', function () {
-			hideOrShowAllTooltips('hide');
-		});
-		
-		function hideOrShowAllTooltips(hideOrShow){
-			$('#search').tooltip(hideOrShow);
-			if(hideOrShow=='hide'){
-				hideOrShow = 'destroy';
-			}
-			$('div#accordion h3:first-child .eventTitle').tooltip(hideOrShow);
-			$('div#accordion > h3:nth-child(11) .videoCount').tooltip(hideOrShow);
-			
-		};
+
 	}
 	
 	function dimZeroCountEvents(){
@@ -489,21 +318,19 @@
 	<div id="container">
 		<div id="headerbar">
 			<div id="logo">
-				<a href="../" ><img src="images/logotext.png" alt="Break For It Logo"></a>
+<!-- 				<a href="../" ><img src="images/logotext.png" alt="Break For It Logo"></a> -->
 			</div> 
 			<div id="social">
 				<img id="fb" class="soc" src="images/facebook.png" alt="facebook" style="height:50px"/>
 				<img id="tw" class="soc" src="images/twitter.png" alt="twitter" style="height:50px"/>
+				<a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
 		    </div>
-<!-- 		    <div class="searchBox"> -->
-<!-- 				<button class="btn btn-inverse" id="chg">change background 0</button> -->
-	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0">
+<!-- 	             <input type="text" autocomplete="off" id="search" class="searchInput"  data-provide="typeahead" placeholder="Search" data-items="4" tabindex="0"> -->
 	             <input type="hidden" id="searchValue" />
 	             <input type="hidden" id="searchCategory" /> 
 	             <input type="hidden" id="searchLabel" /> 
 	             <input type="hidden" id="currentTime" value="${currentTime}" /> 
 	             <input type="hidden" id="artistTerms" value="${artistTerms}" /> 
-<!-- 	        </div> -->
 	        
 		  </div>
 		</div>
@@ -580,17 +407,17 @@
 
 		<section id="content">
 			<div class="basic" id="accordion">
-				<%@ include file="FilteredAccordian.jsp" %>
+				<%@ include file="FilteredAccordianMobile.jsp" %>
 			</div>
 		</section>
 <!-- 		<div id="paddingDiv" style="height:400px;display:none;"> -->
 <!-- 		</div> -->
 		<footer>
 			<div id="footer">
-			    <a href="#aboutModal" class="footerButtons" data-toggle="modal"><img id="about" class="footer" src="images/about.png" alt="about" style="height:50px"/></a>
-			    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a>
+			    
+<!-- 			    <a href="#accountModal" class="footerButtons" data-toggle="modal"><img id="defaults" class="footer" src="images/defaults.png" alt="defaults" style="height:50px"/></a> -->
 			</div>
-			©2012 Break For It
+<!-- 			Break For It -->
 		</footer>
 		
 		<div class="alert alert-block" id="noVideosAlert">
@@ -609,33 +436,33 @@
 		  You must selected a term from the search list!
 		</div>
 		
-		<button type="button" class="btn btn-primary" id="toTop" ></button>
+<!-- 		<button type="button" class="btn btn-primary" id="toTop" ></button> -->
 
 <div id="browserFooter"></div> <!-- crowd -->
-<script type='text/javascript'>
+<!-- <script type='text/javascript'> -->
 	
-	var _ues = {
-	host:'breakforit.userecho.com',
-	forum:'14750',
-	lang:'en',
-	tab_corner_radius:15,
-	tab_font_size:20,
-	tab_image_hash:'ZmVlZGJhY2s%3D',
-	tab_chat_hash:'Y2hhdA%3D%3D',
-	tab_alignment:'left',
-	tab_text_color:'black',
-	tab_text_shadow_color:'#00000055',
-	tab_bg_color:'white',
-	tab_hover_color:'aqua'
-	};
+<!-- // 	var _ues = { -->
+<!-- // 	host:'breakforit.userecho.com', -->
+<!-- // 	forum:'14750', -->
+<!-- // 	lang:'en', -->
+<!-- // 	tab_corner_radius:15, -->
+<!-- // 	tab_font_size:20, -->
+<!-- // 	tab_image_hash:'ZmVlZGJhY2s%3D', -->
+<!-- // 	tab_chat_hash:'Y2hhdA%3D%3D', -->
+<!-- // 	tab_alignment:'left', -->
+<!-- // 	tab_text_color:'black', -->
+<!-- // 	tab_text_shadow_color:'#00000055', -->
+<!-- // 	tab_bg_color:'white', -->
+<!-- // 	tab_hover_color:'aqua' -->
+<!-- // 	}; -->
 	
-	(function() {
-	    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true;
-	    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s);
-	  })();
+<!-- // 	(function() { -->
+<!-- // 	    var _ue = document.createElement('script'); _ue.type = 'text/javascript'; _ue.async = true; -->
+<!-- // 	    _ue.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.userecho.com/js/widget-1.4.gz.js'; -->
+<!-- // 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_ue, s); -->
+<!-- // 	  })(); -->
 
-</script>
+<!-- </script> -->
 </body>
 
 </html>

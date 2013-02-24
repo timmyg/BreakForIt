@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -41,6 +42,7 @@ public class EventServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
+		String mobileOverride = null;
 		try{
 			
 			pm = PMF.get().getPersistenceManager();
@@ -70,6 +72,7 @@ public class EventServlet extends HttpServlet {
 			Calendar startDate = Calendar.getInstance();
 	        Calendar endDate = Calendar.getInstance();
 	        
+	        mobileOverride = req.getParameter("mob");
 			String diffTodayDate = req.getParameter("date");
 			if(diffTodayDate != null){
 				//20120645
@@ -133,19 +136,38 @@ public class EventServlet extends HttpServlet {
 			if(artist.getSearchTerm2() != null){
 				artistTerms = artistTerms + "," + artist.getSearchTerm2();
 			}
-	
+			
+			Calendar nextConcert = Calendar.getInstance();
+			nextConcert.setTimeZone(TimeZone.getTimeZone("US/Central"));
+			nextConcert.set(2013, Calendar.APRIL, 6);
+			nextConcert.set(Calendar.HOUR, 20);
+			nextConcert.set(Calendar.MINUTE, 0);			
+			
+			Long a = today.getTime().getTime();
+			Long b = nextConcert.getTime().getTime();			
+			Long hours = (b-a) / (1000*60*60);
+			Long days = hours / 24;
+			
+			Query q = pm.newQuery(Event.class);
+    		q.setFilter("date >= todayParam");
+    		q.setOrdering("date asc");
+    		q.declareParameters("String todayParam");
+    		q.setRange(0,5);
+    		List<Event> nextEvents = (List<Event>) q.execute(today.getTime());
+ 
 			req.setAttribute("artistTerms", artistTerms);
-			req.setAttribute("currentTime", Calendar.getInstance().getTime()
-					.toString());
+			req.setAttribute("currentTime", Calendar.getInstance().getTime().toString());
 			req.setAttribute("searchJson", searchJson);
 			req.setAttribute("events", filteredEvents);
 			req.setAttribute("bgCount", bgCount);
 			req.setAttribute("eventsPopulated", filteredEvents.size() > 0);
+			req.setAttribute("daysUntil", days>0?String.valueOf(days):"0");
+			req.setAttribute("nextEvents", nextEvents);
 		} finally {
 //	        pm.close();
 	    }
 		try {
-			if(MobileDeviceDetector.isMobile(req)){
+			if(MobileDeviceDetector.isMobile(req) || (mobileOverride != null && mobileOverride.length() > 0)){
 				req.getRequestDispatcher("/ArtistMobile.jsp").forward(req, resp);
 			}else{
 				req.getRequestDispatcher("/Artist.jsp").forward(req, resp);

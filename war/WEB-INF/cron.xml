@@ -3,7 +3,7 @@
   <cron>
     <url>/updaterecentvideocounts</url>
     <description>Update recent event video counts</description>
-    <schedule>every 15 minutes</schedule>
+    <schedule>every 1 hour</schedule>
   </cron>
   <cron>
     <url>/updateallcountsqueue</url>

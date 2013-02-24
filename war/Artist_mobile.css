@@ -1,41 +1,66 @@
 * {
 	font-family: 'PT Sans Narrow', 'lucida grande', helvetica, verdana,
 		arial, sans-serif;
-	font-weight:bold;
+/* 	font-size:60px; */
+/* 	font-size:1.3em; */
 }
 
 html {
-	background: url(images/bglogo.png), url(images/bg/bg0.png);
-	background-position: center top, left top;;
-	background-repeat: no-repeat, repeat;
+	
 }
-body{
-	padding: 0;
+body.ui-mobile-viewport{
+	background: url(images/logotextmobile.png), url(images/dmbmobile.png), url(images/bg/bg0.png);
+	background-position: 10px 10px, center 60px, left top;
+	background-repeat: no-repeat, no-repeat, repeat;
+	padding: 2px;
+/* 	margin-left:auto; */
+/* 	margin-right:auto; */
+}
+
+p{
+	margin:0;
+}
+
+a{
+	text-decoration:none;
+}
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
+h4{
+	margin:0;
+	line-height:inherit;
+/* 	padding-left:5%; */
+}
+
+#loading-image{
+	display:block;
 	margin-left:auto;
 	margin-right:auto;
 }
-
-.vidzContainer  div{
-	text-align:center;
-	margin-left:auto;
-	margin-right:auto;
+#search{
+/* 	height:140px; */
+	font-size:45px;
 }
 
-button.btn{
-	width:100%;
-	margin-top: 2%;
+a.btn.moreButton{
+	display:block;
+/* 	height:200px; */
 }
 
-.videoContent{
-	background: rgba(255,255,255,0.5);
-	text-align: center;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
+img.soc{
+	float:right;
 }
 
-.moreButton{
-/* 	margin-top:3%; */
+img.footer{
+	float:right;
+}
+
+div#accordion{
+	clear:both;
+	padding-top:60px;
+	padding-bottom:5%;
 }

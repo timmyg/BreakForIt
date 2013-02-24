@@ -130,7 +130,7 @@ public class Venue {
 	}
 	
 	public String getLocation() {
-		if(country.equals("US")){
+		if(country != null && country.equals("US")){
 			return getCity() + ", " + getState();
 		}else{
 			return getCity() + ", " + getCountry();
