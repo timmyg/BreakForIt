@@ -18,6 +18,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>linkedin</servlet-name>
+		<servlet-class>com.bfi.LinkedInAPIServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>linkedin</servlet-name>
+		<url-pattern>/linkedin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>createevents</servlet-name>
 		<servlet-class>com.bfi.CreateEventsServlet</servlet-class>
 	</servlet>

@@ -292,6 +292,8 @@
 	var i = 0;
 
 	$(function() {
+
+		$('#upcomingAlert').show();
 		mixpanel.track('Visit', {
 		});
 		
@@ -356,7 +358,7 @@
 
 		makeAccordion();
 		$('.moreButton').hide();
-		$('.alert').hide();
+		$('.alert').not($('.upcomingAlert')).hide();
 		$('#search').click(function () {
 			$('#search').tooltip('hide');
 	    });
@@ -558,17 +560,6 @@ mixpanel.init("aa7b0128e1925baed3a3618c08dc6c3c");
 					style="height: 50px" /> <img id="tw" class="soc"
 					src="images/twitter.png" alt="twitter" style="height: 50px" />
 			</div>
-			<div>
-				${daysUntil} days until opening night
-			</div>
-			<div>
-				Coming up:
-				<c:forEach var="thisEvent" items="${nextEvents}">
-				<p>
-				${thisEvent.venue.name} ${thisEvent.venue.location} ${thisEvent.dateFormatted}
-				</p>
-				</c:forEach>
-			</div>
 			<!-- 		    <div class="searchBox"> -->
 			<!-- 				<button class="btn btn-inverse" id="chg">change background 0</button> -->
 			<input type="text" autocomplete="off" id="search" class="searchInput"
@@ -579,6 +570,21 @@ mixpanel.init("aa7b0128e1925baed3a3618c08dc6c3c");
 				value="${currentTime}" /> <input type="hidden" id="artistTerms"
 				value="${artistTerms}" />
 			<!-- 	        </div> -->
+			<div class="upcoming upcomingAlert alert alert-info">
+				<div>
+					<strong>${daysUntil}</strong> days until opening night
+				</div>
+				<div>
+					<i>Coming up:</i>
+					<ul>
+					<c:forEach var="thisEvent" items="${nextEvents}">
+						<li>
+						&nbsp&nbsp&nbsp${thisEvent.venue.name} ${thisEvent.venue.location} ${thisEvent.dateFormatted}
+						</li>
+					</c:forEach>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	</div>

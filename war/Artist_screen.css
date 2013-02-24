@@ -139,6 +139,7 @@ a.brand {
 span.eventDate {
 	float: right;
 	display: inline-block;
+	clear: both;
 	/* position:absolute; */
 	/* left: 82%; */
 	/* min-width:60%; */
@@ -228,4 +229,15 @@ div#logo > a:hover{
 
 button#resetDefaults{
 	float:left;
+}
+
+div.upcoming{
+	float:right;
+	clear:right;
+	padding: 10px;
+	margin: 30px 20px 0 0
+}
+
+div.upcoming li{
+	list-style: none;
 }
