@@ -1,59 +1,108 @@
 package com.bfi;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import org.scribe.builder.*;
-import org.scribe.builder.api.*;
-import org.scribe.model.*;
-import org.scribe.oauth.*;
+import oauth.signpost.*;
+import oauth.signpost.basic.DefaultOAuthConsumer;
+import oauth.signpost.basic.DefaultOAuthProvider;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+import oauth.signpost.exception.OAuthNotAuthorizedException;
 
-public class LinkedInExample
-{
-  private static final String PROTECTED_RESOURCE_URL = "http://api.linkedin.com/v1/people/~/connections:(id,last-name)";
+public class LinkedInExample {
 
-  public static void main(String[] args)
-  {
-    OAuthService service = new ServiceBuilder()
-                                .provider(LinkedInApi.class)
-                                .apiKey("y9chg9rhtniz")
-                                .apiSecret("cgShyTZZGT1AfJ6P")
-                                .build();
-    Scanner in = new Scanner(System.in);
+	public static void main(String[] args) {
 
-    System.out.println("=== LinkedIn's OAuth Workflow ===");
-    System.out.println();
+		String linkedinKey = "y9chg9rhtniz"; // Your LinkedIn key
+		String linkedinSecret = "cgShyTZZGT1AfJ6P";// Your LinkedIn Secret
+		OAuthConsumer consumer = new DefaultOAuthConsumer(linkedinKey,
+				linkedinSecret);
 
-    // Obtain the Request Token
-    System.out.println("Fetching the Request Token...");
-    Token requestToken = service.getRequestToken();
-    System.out.println("Got the Request Token!");
-    System.out.println();
+		OAuthProvider provider = new DefaultOAuthProvider(
+				"https://api.linkedin.com/uas/oauth/requestToken",
+				"https://api.linkedin.com/uas/oauth/accessToken",
+				"https://api.linkedin.com/uas/oauth/authorize");
 
-    System.out.println("Now go and authorize Scribe here:");
-    System.out.println(service.getAuthorizationUrl(requestToken));
-    System.out.println("And paste the verifier here");
-    System.out.print(">>");
-    Verifier verifier = new Verifier(in.nextLine());
-    System.out.println();
+		System.out.println("Fetching request token from LinkedIn...");
+		String authUrl;
+		try {
+			authUrl = provider
+					.retrieveRequestToken(consumer, OAuth.OUT_OF_BAND);
+			System.out
+					.println("Check the below link and grant this app authorization -You will get Pin Number.Copy it\n"
+							+ authUrl);
+			System.out
+					.println("Enter the PIN code and hit ENTER when you're done:");
+		} catch (OAuthMessageSignerException e1) {
+			e1.printStackTrace();
+		} catch (OAuthNotAuthorizedException e1) {
+			e1.printStackTrace();
+		} catch (OAuthExpectationFailedException e1) {
+			e1.printStackTrace();
+		} catch (OAuthCommunicationException e1) {
+			e1.printStackTrace();
+		}
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String pin;
+		try {
+			pin = br.readLine();
+			System.out.println("Fetching access token from LinkedIn...");
+			provider.retrieveAccessToken(consumer, pin);
+			System.out.println("Access token: " + consumer.getToken());
+			System.out.println("Token secret: " + consumer.getTokenSecret());
+			URL url = new URL(
+//					"http://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,headline)"
+//					"http://api.linkedin.com/v1/people/~:(id,first-name,last-name,recommendations-received)"
+					"http://api.linkedin.com/v1/people/id=qaKIeIjtCY:(recommendations-received)"
+					);
 
-    // Trade the Request Token and Verfier for the Access Token
-    System.out.println("Trading the Request Token for an Access Token...");
-    Token accessToken = service.getAccessToken(requestToken, verifier);
-    System.out.println("Got the Access Token!");
-    System.out.println("(if your curious it looks like this: " + accessToken + " )");
-    System.out.println();
+			HttpURLConnection request = (HttpURLConnection) url
+					.openConnection();
+			consumer.sign(request);
+			request.connect();
+			System.out.println("Sending request to LinkedIn...");
+			String responseBody = convertStreamToString(request
+					.getInputStream());
+			System.out.println("Response: " + request.getResponseCode() + " "
+					+ request.getResponseMessage() + "\n" + responseBody);
 
-    // Now let's go and ask for a protected resource!
-    System.out.println("Now we're going to access a protected resource...");
-    OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
-    service.signRequest(accessToken, request);
-    Response response = request.send();
-    System.out.println("Got it! Lets see what we found...");
-    System.out.println();
-    System.out.println(response.getBody());
+		} catch (OAuthMessageSignerException e) {
+			e.printStackTrace();
+		} catch (OAuthNotAuthorizedException e) {
+			e.printStackTrace();
+		} catch (OAuthExpectationFailedException e) {
+			e.printStackTrace();
+		} catch (OAuthCommunicationException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    System.out.println();
-    System.out.println("Thats it man! Go and build something awesome with Scribe! :)");
-  }
+	public static String convertStreamToString(InputStream is) {
 
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sb.toString();
+	}
 }

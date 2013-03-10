@@ -164,7 +164,7 @@ public class Event {
 	public String getFeedURL() {
 		String feedURL = "http://gdata.youtube.com/feeds/api/videos?" + "q=";
 		if (this.getArtist() != null && this.getArtist().getName() != null) {
-			feedURL = feedURL + this.getArtist().getName() + "+";
+			feedURL = feedURL + "%22"+ this.getArtist().getName() + "%22+";
 		}
 		if (this.getVenue() != null && this.getVenue().getSearchTerm1() != null) {
 			feedURL = feedURL + this.getVenue().getSearchTerm1() + "+";
@@ -190,6 +190,12 @@ public class Event {
 
 	public String getDateNumString() {
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+		return new StringBuilder(dateformatYYYYMMDD.format(getDate()))
+				.toString();
+	}
+	
+	public String getDateNum() {
+		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("MM/dd");
 		return new StringBuilder(dateformatYYYYMMDD.format(getDate()))
 				.toString();
 	}

@@ -8,6 +8,7 @@ import com.google.gdata.client.youtube.YouTubeService;
 import com.google.gdata.data.youtube.VideoEntry;
 import com.google.gdata.data.youtube.VideoFeed;
 import com.google.gdata.util.ServiceException;
+import com.google.gdata.util.common.base.StringUtil;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -29,17 +30,19 @@ public class YouTubeUtils {
 
         VideoFeed videoFeed = null;
         Long startIndex = 1L;
-        String orderBy = "viewCount";
+//        String orderBy = "viewCount";
         String developerKey = "AI39si6xzNDr4sK-84zSW9v2Yc9HvVE5cC6WhDtmMn0jO7RH0496fjRpw-E3iyH8m4iElENPGZsDm0ntVQzSU9QbRItB37k_2g";
         List<VideoEntry> cleanedList = new ArrayList<VideoEntry>();
         try {
             YouTubeService service = new YouTubeService("BFI", developerKey);
             String feedURL = event.getFeedURL()
-                    + "&orderby=" + String.valueOf(orderBy)
+//                    + "&orderby=" + String.valueOf(orderBy)
                     + "&start-index=" + String.valueOf(startIndex)
                     + "&max-results=" + String.valueOf(VideoServlet.MAX_RESULTS_API_MAX);
+            System.out.println("Feed URL: " + feedURL);
             videoFeed = service.getFeed(new URL(feedURL),
                     VideoFeed.class);
+            System.out.println("Return XML: " + videoFeed.getXmlBlob().getFullText());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -67,6 +70,10 @@ public class YouTubeUtils {
 
         boolean validVideo = false;
         loadOpeners();
+        System.out.println("Checking video.. title: " + videoTitle +
+        		"description: "+ videoDescription +
+				"eventDate: "+ eventDate.toGMTString() +
+				"artistTerms: "+ artistTerms);
 
         Calendar cal=Calendar.getInstance();
         cal.setTime(eventDate);
@@ -87,23 +94,9 @@ public class YouTubeUtils {
         }
 
         if(validVideo){
-        	if(openers != null){
-	        	for(String artist: artistTerms.split(",")){
-	        		if(titleAndDescription.contains(artist.trim()) && !titleAndDescription.contains("opening for")){
-	        			for(String opener: openers.getSearchTerm1().split(",")){
-	        				if(titleAndDescription.contains(opener))return false;
-	        			}
-	        		}else{
-	        			for(String opener: openers.getSearchTerm1().split(",")){
-	        				if(titleAndDescription.contains(opener))return false;
-	        			}	
-	        		}
-	        	}
-	            return true;
-        	}else{//if openers is null, return true
-        		return true;
-        	}
+        	return true;
         }else{
+        	System.err.println("Returned false 3");
             return false;
         }
     }
@@ -145,6 +138,8 @@ public class YouTubeUtils {
         regexs.add("("+yearFirstTwo+")?"+yearSecondTwo+"[-/.]"+allowZeroMonth+monthNum+"[-/.]"+allowZeroDate+date+"");
         regexs.add("("+monthNamesWithBars+"){1}\\s"+allowZeroDate+date+"(rd|st|th|nd)?,?\\s("+yearFirstTwo+")?"+yearSecondTwo);
 
+//        System.out.println("Regexs" + StringUtil.join(regexs));
+        
         return regexs;
     }
 

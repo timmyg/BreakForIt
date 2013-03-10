@@ -579,7 +579,7 @@ mixpanel.init("aa7b0128e1925baed3a3618c08dc6c3c");
 					<ul>
 					<c:forEach var="thisEvent" items="${nextEvents}">
 						<li>
-						&nbsp&nbsp&nbsp${thisEvent.venue.name} ${thisEvent.venue.location} ${thisEvent.dateFormatted}
+						&nbsp&nbsp${thisEvent.dateNum}&nbsp${thisEvent.venue.name} ${thisEvent.venue.location} 
 						</li>
 					</c:forEach>
 					</ul>
