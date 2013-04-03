@@ -32,6 +32,9 @@ import com.bfi.jdo.Event;
 import com.bfi.jdo.PMF;
 import com.bfi.jdo.Tour;
 import com.bfi.jdo.Venue;
+import com.google.appengine.api.memcache.Expiration;
+import com.google.appengine.api.memcache.MemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
 import com.google.gson.Gson;
 
 @SuppressWarnings("serial")
@@ -45,12 +48,10 @@ public class EventServlet extends HttpServlet {
 		String mobileOverride = null;
 		try{
 			
-			pm = PMF.get().getPersistenceManager();
+			pm = PMF.get().getPersistenceManager(); //TODO memcache
 			
-			int bgCount = getBackgroundCount();
+			MemcacheService memcache = MemcacheServiceFactory.getMemcacheService();
 			
-//			String u = lookAtAnts();
-					
 			String timeframeCookieValue = "";
 			String artistCookieValue = "";
 			
@@ -111,8 +112,14 @@ public class EventServlet extends HttpServlet {
 	        	endDate = today;	        	
 	        }
 	        
-	        Collection<Event> filteredEvents = getEvents(startDate, endDate);
-	        
+	        Collection<Event> filteredEvents = new ArrayList<Event>();
+	        boolean headlinesAreCached = memcache.contains("filteredEvents" + startDate.toString() + endDate.toString());
+	        if(!headlinesAreCached){
+	        	filteredEvents = getEvents(startDate, endDate); //TODO memcache
+	        	memcache.put("filteredEvents" + startDate.toString() + endDate.toString(), 
+		        		filteredEvents, 
+		        		Expiration.byDeltaSeconds(60*60*12)); //12 hours
+	        }
 			
 			if(filteredEvents == null || filteredEvents.size() == 0){
 				//if theres still no events, just return this years events
@@ -122,7 +129,14 @@ public class EventServlet extends HttpServlet {
 				filteredEvents = getEvents(startDateY, endDateY);
 			}
 		
-			ArrayList<Triplet<String, String, String>> allSearchTerms = getAllSearchTerms();
+			ArrayList<Triplet<String, String, String>> allSearchTerms = new ArrayList<Triplet<String,String,String>>();
+			boolean searchTermsAreCached = memcache.contains("searchTerms");
+	        if(!searchTermsAreCached){
+	        	allSearchTerms = getAllSearchTerms();
+	        	memcache.put("searchTerms", 
+	        			allSearchTerms, 
+		        		Expiration.byDeltaSeconds(60*60*48)); //2 days TODO maybe longer?
+	        }
 			
 			Gson gson = new Gson();
 			String searchJson = gson.toJson(allSearchTerms);
@@ -137,29 +151,23 @@ public class EventServlet extends HttpServlet {
 				artistTerms = artistTerms + "," + artist.getSearchTerm2();
 			}
 			
-			Calendar nextConcert = Calendar.getInstance();
-			nextConcert.setTimeZone(TimeZone.getTimeZone("US/Central"));
-			nextConcert.set(2013, Calendar.APRIL, 6);
-			nextConcert.set(Calendar.HOUR, 20);
-			nextConcert.set(Calendar.MINUTE, 0);			
 			
-			Long a = today.getTime().getTime();
-			Long b = nextConcert.getTime().getTime();			
-			Long hours = (b-a) / (1000*60*60);
-			Long days = hours / 24;
+			List<Event> nextEvents = new ArrayList<Event>();
+	        boolean nextEventsAreCached = memcache.contains("nextEvents");
+	        if(!nextEventsAreCached){
+	        	nextEvents = getNextEvents();
+	        	memcache.put("nextEvents", 
+	        			nextEvents, 
+		        		Expiration.byDeltaSeconds(60*60*12)); //12 hours
+	        }
+	        
+			Long days = getDaysUntilNextConcert(getNextEvents().get(0));
 			
-			Query q = pm.newQuery(Event.class);
-    		q.setFilter("date >= todayParam");
-    		q.setOrdering("date asc");
-    		q.declareParameters("String todayParam");
-    		q.setRange(0,5);
-    		List<Event> nextEvents = (List<Event>) q.execute(today.getTime());
- 
 			req.setAttribute("artistTerms", artistTerms);
 			req.setAttribute("currentTime", Calendar.getInstance().getTime().toString());
 			req.setAttribute("searchJson", searchJson);
 			req.setAttribute("events", filteredEvents);
-			req.setAttribute("bgCount", bgCount);
+//			req.setAttribute("bgCount", bgCount);
 			req.setAttribute("eventsPopulated", filteredEvents.size() > 0);
 			req.setAttribute("daysUntil", days>0?String.valueOf(days):"0");
 			req.setAttribute("nextEvents", nextEvents);
@@ -168,6 +176,7 @@ public class EventServlet extends HttpServlet {
 	    }
 		try {
 			if(MobileDeviceDetector.isMobile(req) || (mobileOverride != null && mobileOverride.length() > 0)){
+				//servlet filter that intercepts jsp?
 				req.getRequestDispatcher("/ArtistMobile.jsp").forward(req, resp);
 			}else{
 				req.getRequestDispatcher("/Artist.jsp").forward(req, resp);
@@ -179,8 +188,32 @@ public class EventServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 	
+	@SuppressWarnings("unchecked")
+	private List<Event> getNextEvents(){
+		
+		
+		Query q = pm.newQuery(Event.class);
+		q.setFilter("date >= todayParam");
+		q.setOrdering("date asc");
+		q.declareParameters("String todayParam");
+		q.setRange(0,5);
+		return (List<Event>) q.execute(Calendar.getInstance().getTime());
+	}
+	
+	private Long getDaysUntilNextConcert(Event next){
+		Calendar nextConcert = Calendar.getInstance();
+		nextConcert.setTimeZone(TimeZone.getTimeZone("US/Central"));
+		nextConcert.set(next.getDate().getYear(), next.getDate().getMonth(), next.getDate().getDate());
+		nextConcert.set(Calendar.HOUR, 20);
+		nextConcert.set(Calendar.MINUTE, 0);			
+		
+		Long a = Calendar.getInstance().getTime().getTime();
+		Long b = nextConcert.getTime().getTime();			
+		Long hours = (b-a) / (1000*60*60);
+		return hours / 24;
+		
+	}
 
 	@SuppressWarnings({ "unchecked" })
 	private ArrayList<Triplet<String, String, String>> getAllSearchTerms() {
