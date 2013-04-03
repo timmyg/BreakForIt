@@ -17,24 +17,6 @@
 		<url-pattern>/createstuff</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>linkedin</servlet-name>
-		<servlet-class>com.bfi.LinkedInAPIServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>linkedin</servlet-name>
-		<url-pattern>/linkedin</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>createevents</servlet-name>
-		<servlet-class>com.bfi.CreateEventsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>createevents</servlet-name>
-		<url-pattern>/createevents</url-pattern>
-	</servlet-mapping>
-	
 	<!-- called by cron job -->
 	<servlet>
 		<servlet-name>updaterecentvideocounts</servlet-name>
@@ -63,24 +45,6 @@
 	<servlet-mapping>
 		<servlet-name>updateallcountsqueue</servlet-name>
 		<url-pattern>/updateallcountsqueue</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>updatedb</servlet-name>
-		<servlet-class>com.bfi.UpdateDBQueueServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>updatedb</servlet-name>
-		<url-pattern>/updatedb</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>deletestuff</servlet-name>
-		<servlet-class>com.bfi.DeleteStuffServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>deletestuff</servlet-name>
-		<url-pattern>/deletestuff</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
