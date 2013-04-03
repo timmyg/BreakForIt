@@ -20,7 +20,7 @@
 	<!-- called by cron job -->
 	<servlet>
 		<servlet-name>updaterecentvideocounts</servlet-name>
-		<servlet-class>com.bfi.UpdateRecentEventVideoCountsServlet</servlet-class>
+		<servlet-class>com.bfi.update.UpdateRecentEventVideoCountsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>updaterecentvideocounts</servlet-name>
@@ -30,7 +30,7 @@
 	<!-- called by allVideosQueueServlet (task)-->
 	<servlet>
 		<servlet-name>updateallcountstask</servlet-name>
-		<servlet-class>com.bfi.UpdateAllCountsTaskServlet</servlet-class>
+		<servlet-class>com.bfi.update.UpdateAllCountsTaskServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>updateallcountstask</servlet-name>
@@ -40,7 +40,7 @@
 	<!-- called by cron job -->
 	<servlet>
 		<servlet-name>updateallcountsqueue</servlet-name>
-		<servlet-class>com.bfi.UpdateAllCountsQueueServlet</servlet-class>
+		<servlet-class>com.bfi.update.UpdateAllCountsQueueServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>updateallcountsqueue</servlet-name>
