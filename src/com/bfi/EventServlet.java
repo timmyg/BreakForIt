@@ -112,10 +112,14 @@ public class EventServlet extends HttpServlet {
 	        	endDate = today;	        	
 	        }
 	        
+	        //memcache test
+	        memcache.put("test", "testvalue123", Expiration.byDeltaSeconds(60*60*12* 10)); //120 hrs
+	        
 	        Collection<Event> filteredEvents = new ArrayList<Event>();
 	        boolean headlinesAreCached = memcache.contains("filteredEvents" + startDate.toString() + endDate.toString());
 	        if(!headlinesAreCached){
 	        	filteredEvents = getEvents(startDate, endDate); //TODO memcache
+	        	memcache.put("testEvent", filteredEvents.iterator().next(), Expiration.byDeltaSeconds(60*60*12* 10)); //120 hrs
 	        	memcache.put("filteredEvents" + startDate.toString() + endDate.toString(), 
 		        		filteredEvents, 
 		        		Expiration.byDeltaSeconds(60*60*12)); //12 hours

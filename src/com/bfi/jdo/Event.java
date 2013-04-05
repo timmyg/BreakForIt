@@ -1,5 +1,6 @@
 package com.bfi.jdo;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,7 +16,12 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.datanucleus.annotations.Unowned;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Event {
+public final class Event implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public Event() {
 	}
