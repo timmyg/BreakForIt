@@ -474,26 +474,26 @@
 		 };
 		 
 		 $('#chg').click(function(){
-			 changeBackground();
+			 //changeBackground();
 		 });
 		 
 	});
 	
-	function changeBackground(){
-		var bgCount = ${bgCount};
-		 var randomnumber=Math.floor(Math.random()*bgCount);
-		 var bg = 'url(images/bglogo.png), url(images/bg/bg'+randomnumber+'.png)';
-		 $('html').css('background',bg);
-		 $('html').css('background-position','center top, left top');
-		 $('html').css('background-repeat','no-repeat, repeat');
-		 $('#chg').html('change background '+ randomnumber);
+// 	function changeBackground(){
+// 		var bgCount = ${bgCount};
+// 		 var randomnumber=Math.floor(Math.random()*bgCount);
+// 		 var bg = 'url(images/bglogo.png), url(images/bg/bg'+randomnumber+'.png)';
+// 		 $('html').css('background',bg);
+// 		 $('html').css('background-position','center top, left top');
+// 		 $('html').css('background-repeat','no-repeat, repeat');
+// 		 $('#chg').html('change background '+ randomnumber);
 		 
-		 /*
-		 	background: url(images/bglogo.png), url(images/bg/bg21.png);
-			background-position: center top, left top;;
-			background-repeat: no-repeat, repeat;
-		 */
-	}
+// 		 /*
+// 		 	background: url(images/bglogo.png), url(images/bg/bg21.png);
+// 			background-position: center top, left top;;
+// 			background-repeat: no-repeat, repeat;
+// 		 */
+// 	}
 	
 	function showFirstTimeStuff(){
 		hideOrShowAllTooltips('show');
@@ -571,9 +571,13 @@ mixpanel.init("aa7b0128e1925baed3a3618c08dc6c3c");
 				value="${artistTerms}" />
 			<!-- 	        </div> -->
 			<div class="upcoming upcomingAlert alert alert-info">
+			<c:choose>
+			<c:when test="${daysUntilRemaining}">
 				<div>
 					<strong>${daysUntil}</strong> days until opening night
 				</div>
+			</c:when>
+			</c:choose>
 				<div>
 					<i>Coming up:</i>
 					<ul>

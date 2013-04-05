@@ -31,7 +31,7 @@ public final class Event implements Serializable {
 		this.date = date;
 		this.artist = a;
 		this.venue = v;
-		this.tour = t;
+//		this.tour = t;
 		this.venueID = String.valueOf(v.getId().getId());
 		this.artistID = String.valueOf(a.getId().getId());
 	}
@@ -71,10 +71,10 @@ public final class Event implements Serializable {
 	@Unowned
 	private Venue venue;
 
-	@Persistent
+//	@Persistent
 	// (defaultFetchGroup = "true")
-	@Unowned
-	private Tour tour;
+//	@Unowned
+//	private Tour tour;
 
 	public Key getId() {
 		return id;
@@ -116,9 +116,9 @@ public final class Event implements Serializable {
 		return venue;
 	}
 
-	public Tour getTour() {
-		return tour;
-	}
+//	public Tour getTour() {
+//		return tour;
+//	}
 
 	public String getTag() {
 		return tag;
@@ -159,9 +159,9 @@ public final class Event implements Serializable {
 		this.venue = venue;
 	}
 
-	public void setTour(Tour tour) {
-		this.tour = tour;
-	}
+//	public void setTour(Tour tour) {
+//		this.tour = tour;
+//	}
 
 	public String getDateFormatted() {
 		return DateFormat.getDateInstance(DateFormat.LONG).format(getDate());

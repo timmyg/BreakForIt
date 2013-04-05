@@ -1,5 +1,6 @@
 package com.bfi.jdo;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -12,8 +13,14 @@ import com.google.appengine.api.datastore.Key;
 
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Venue { 
+public class Venue implements Serializable{ 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public Venue() {
 	}
 	
