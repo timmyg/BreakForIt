@@ -207,6 +207,7 @@ public class EventServlet extends HttpServlet {
 				memcache.put("nextEvents", nextEvents2,
 						Expiration.byDeltaSeconds(60 * 60 * 12)); // 12 hours
 			}else{
+				nextEvents = (List<Event>) memcache.get("nextEvents");
 				System.out.println("getting nextEvents from cache");
 			}
 //			System.out.println("memcache nextEvents completed");
