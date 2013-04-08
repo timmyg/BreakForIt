@@ -54,7 +54,7 @@ public class YouTubeUtils {
         for(VideoEntry v: allVideos){
             if(v.getMediaGroup() != null && v.getMediaGroup().getDescription() != null){
                 if (!isCorrectDateAndArtist(v.getTitle().getPlainText(), v.getMediaGroup().getDescription().getPlainTextContent(),
-                        event.getDate(), event.getArtist().getSearchTerms())) {
+                        event.getDate(), event.getArtist().getSearchTerms(), v.getAuthors().get(0).getName())) {
                     continue;
                 }
             }
@@ -66,15 +66,17 @@ public class YouTubeUtils {
     }
 
     private boolean isCorrectDateAndArtist(String videoTitle, String videoDescription, Date eventDate,
-                                           String artistTerms) {
+                                           String artistTerms, String author) {
 
         boolean validVideo = false;
         loadOpeners();
         System.out.println("Checking video.. title: " + videoTitle +
-        		"description: "+ videoDescription +
-				"eventDate: "+ eventDate.toGMTString() +
-				"artistTerms: "+ artistTerms);
+        		" description: "+ videoDescription +
+				" eventDate: "+ eventDate.toGMTString() +
+				" artistTerms: "+ artistTerms +
+				" author: "+ author);
 
+        
         Calendar cal=Calendar.getInstance();
         cal.setTime(eventDate);
         String titleAndDescription = videoTitle + " " + videoDescription;
@@ -92,7 +94,11 @@ public class YouTubeUtils {
             }
             if(validVideo==true)break;
         }
-
+        if(author.equals("ChesterCopperPot5")){
+        	System.out.println("excluding Copperpot vid");
+        	return false;
+        }
+        
         if(validVideo){
         	return true;
         }else{
